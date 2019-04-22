@@ -1,0 +1,19 @@
+{
+  "name": "landing-page",
+  "version": "1.0.0",
+  "description": "A landing page for the IT Services company",
+  "private": true,
+  "keywords": [
+    "frontend",
+    "javascript",
+    "es6",
+    "animation",
+    "responsive",
+    "webpack"
+  ],
+  "author": {
+    "name": "Kamil Nowak",
+    "email": "nowakkamil@yahoo.com",
+    "url": "https://github.com/nowakkamil"
+  }
+}
