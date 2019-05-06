@@ -18,7 +18,22 @@ nav {
 
 .nav {
     &__logo {
-        grid-column: 1;
+        height: 70px;
+        padding-top: 22px;
+        padding-left: 22px;
+        filter: invert(96%);
+        pointer-events: none;
+
+        &-container {
+            position: absolute;
+            display: block;
+            height: 70px;
+
+            &-wrapper {
+                position: relative;
+                grid-column: 1;
+            }
+        }
     }
 
     &__link {
@@ -27,16 +42,15 @@ nav {
         height: 100%;
         margin: -26px;
         padding: 26px;
-        font-size: $h3-font-size;
+        font-size: $nav-link-font-size;
         text-decoration: none;
         color: black;
         transition: color 300ms ease-in-out 50ms;
 
         &-container {
-            padding-top: 22px;
+            padding-top: 30px;
 
             &-wrapper {
-                position: absolute;
                 grid-column: 2;
                 display: flex;
                 flex-direction: row;
@@ -54,7 +68,7 @@ nav {
             content: "";
             position: absolute;
             display: block;
-            bottom: -6.5%;
+            bottom: -16%;
             left: 12%;
             width: 0;
             height: 3px;
