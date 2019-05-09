@@ -262,6 +262,39 @@ section {
         border-radius: 20px;
         color: $color-mine-shaft-95-alfa;
 
+        &--background {
+            &-visuals,
+            &-development,
+            &-maintenance {
+                background-repeat: no-repeat;
+                background-size: 70%;
+                background-position: right -50% bottom -10%;
+                transition: background-position 400ms ease-out;
+
+                &:hover {
+                    background-position: right 0% bottom -10%;
+                }
+            }
+
+            &-visuals {
+                background-image: url(../../public/icon-visuals.svg);
+            }
+
+            &-development {
+                background-image: url(../../public/icon-development.svg);
+            }
+
+            &-maintenance {
+                background-image: url(../../public/icon-maintenance.svg);
+                background-size: 58%;
+                background-position: right -34% bottom 0%;
+
+                &:hover {
+                    background-position: right 0% bottom -0%;
+                }
+            }
+        }
+
         &-container {
             display: flex;
             justify-content: center;
@@ -306,3 +339,7 @@ section {
         }
     }
 }
+
+// @mixin element-color($color) {
+//     background-image: url('data:image/svg+xml;utf8,<svg ...><g stroke="#{$color}" ... /></g></svg>');
+// }
