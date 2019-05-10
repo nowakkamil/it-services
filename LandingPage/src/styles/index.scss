@@ -13,7 +13,7 @@ hr {
 }
 
 nav {
-    z-index: 1;
+    z-index: 2;
     position: fixed;
     display: grid;
     grid-template-columns: 612fr 388fr;
@@ -108,6 +108,10 @@ section {
 
     &--yellow {
         background: $color-bright-sun;
+    }
+
+    &--mine-shaft {
+        background: $color-mine-shaft;
     }
 
     &--black {
@@ -340,6 +344,61 @@ section {
     }
 }
 
-// @mixin element-color($color) {
-//     background-image: url('data:image/svg+xml;utf8,<svg ...><g stroke="#{$color}" ... /></g></svg>');
-// }
+.staff-section {
+    overflow: hidden;
+
+    &__video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+
+        &-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            filter: grayscale(100%) brightness(60%);
+        }
+
+        &-overlay {
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+
+            &--dotted {
+                background-image: -webkit-repeating-radial-gradient(
+                    center center,
+                    rgba(0, 0, 0, 0.2),
+                    rgba(0, 0, 0, 0.2) 1px,
+                    transparent 1px,
+                    transparent 100%
+                );
+                background-image: -moz-repeating-radial-gradient(
+                    center center,
+                    rgba(0, 0, 0, 0.2),
+                    rgba(0, 0, 0, 0.2) 1px,
+                    transparent 1px,
+                    transparent 100%
+                );
+                background-image: -ms-repeating-radial-gradient(
+                    center center,
+                    rgba(0, 0, 0, 0.2),
+                    rgba(0, 0, 0, 0.2) 1px,
+                    transparent 1px,
+                    transparent 100%
+                );
+                background-image: repeating-radial-gradient(
+                    center center,
+                    rgba(0, 0, 0, 0.2),
+                    rgba(0, 0, 0, 0.2) 1px,
+                    transparent 1px,
+                    transparent 100%
+                );
+                background-size: 4px 4px;
+            }
+        }
+    }
+}
