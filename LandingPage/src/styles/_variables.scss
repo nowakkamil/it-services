@@ -16,7 +16,7 @@ $landing-section-description-line-height: 1.3 * $base-line-height;
 
 // The length unit in which to output vertical rhythm values.
 // Supported values: px, em, rem.
-$base-unit: 'em';
+$base-unit: "em";
 
 // The default font family.
 $base-font-family: "Lato", "sans-serif";
@@ -51,9 +51,24 @@ $normalize-vertical-rhythm: false;
 
 // The colors used throughout the application
 $color-scotch-mist: #fffade;
+$color-concrete-10-alpha: #f2f2f21a;
 $color-bright-sun: #ffda38;
 $color-broom: #ffeb16;
 $color-mine-shaft: #212121;
+$color-mine-shaft-20-alfa: #21212133;
 $color-mine-shaft-50-alfa: #2121218f;
 $color-mine-shaft-90-alfa: #212121e6;
 $color-mine-shaft-95-alfa: #212121f2;
+
+// The variables used by the bokeh overlay component
+$bokehCount: 16;
+$bokehBaseSize: 10rem;
+$bokehBaseOpacity: 0.5;
+$bokehBaseBrightness: 150;
+$bokehBaseDuration: 55s;
+$colorSet: (
+    $color-concrete-10-alpha,
+    $color-mine-shaft-20-alfa,
+    $color-mine-shaft-50-alfa,
+    $color-mine-shaft-90-alfa
+);
