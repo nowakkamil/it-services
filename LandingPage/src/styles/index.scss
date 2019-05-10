@@ -314,7 +314,7 @@ section {
         margin: 0 1.4vw;
         width: 23%;
         min-width: 400px;
-        height: 61vh;
+        height: 68%;
         border: 3px solid $color-scotch-mist;
         border-radius: 20px;
         color: $color-mine-shaft-95-alfa;
@@ -416,6 +416,7 @@ section {
         }
 
         &-overlay {
+            z-index: 1;
             position: absolute;
             width: 100%;
             height: 100%;
