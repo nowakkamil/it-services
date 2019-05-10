@@ -54,6 +54,9 @@ $color-scotch-mist: #fffade;
 $color-concrete-10-alpha: #f2f2f21a;
 $color-bright-sun: #ffda38;
 $color-broom: #ffeb16;
+$color-golden-fizz: #fded3c;
+$color-golden-fizz-85-alfa: #fded3cd9;
+$color-golden-fizz-90-alfa: #fded3ce6;
 $color-mine-shaft: #212121;
 $color-mine-shaft-20-alfa: #21212133;
 $color-mine-shaft-50-alfa: #2121218f;
@@ -61,9 +64,10 @@ $color-mine-shaft-90-alfa: #212121e6;
 $color-mine-shaft-95-alfa: #212121f2;
 
 // The variables used by the bokeh overlay component
-$bokehCount: 16;
+$bokehCount: 18;
+$bokehTextOverlayCount: 4;
 $bokehBaseSize: 10rem;
-$bokehBaseOpacity: 0.5;
+$bokehBaseOpacity: 0.6;
 $bokehBaseBrightness: 150;
 $bokehBaseDuration: 55s;
 $colorSet: (

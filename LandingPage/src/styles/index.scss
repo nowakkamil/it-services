@@ -107,7 +107,7 @@ section {
     }
 
     &--yellow {
-        background: $color-bright-sun;
+        background-color: $color-golden-fizz-85-alfa;
     }
 
     &--mine-shaft {
@@ -130,26 +130,21 @@ section {
         &__image-container {
             position: relative;
             height: 100%;
-            transform: scaleX(-1);
-            filter: grayscale(100%);
+            width: 100%;
         }
 
         &__image {
             position: absolute;
-            right: 0%;
             bottom: 0%;
+            left: 0%;
             height: 100%;
             max-width: 100vw;
             object-fit: cover;
-
-            // Blur should be removed so that it won't be rendering unnecessary borders around the image
-            filter: blur(4px);
 
             &-overlay {
                 position: relative;
                 width: 100%;
                 height: 100%;
-                background-color: $color-concrete-10-alpha;
 
                 &-container {
                     z-index: 1;
@@ -158,7 +153,6 @@ section {
                     height: 100%;
                     overflow: hidden;
                     mix-blend-mode: screen;
-                    filter: blur(4px);
                 }
 
                 &--bokeh {
@@ -177,11 +171,19 @@ section {
                                 top: random(100) * 1% - random(40) * 1%;
                                 left: random(100) * 1%;
                                 color: nth($colorSet, random(length($colorSet)));
-                                opacity: $bokehBaseOpacity + random(2) * 0.15;
-                                box-shadow: ($randomizedSize + 5rem) 0 (0.2rem + random() * 0.5rem) currentColor;
+                                opacity: $bokehBaseOpacity + random(4) * 0.1;
+                                box-shadow: ($randomizedSize + 5rem) 0 (0.35rem + random() * 0.5rem) currentColor;
                                 transform-origin: (random(40)-20) * 1rem (random(40)-20) * 1rem;
                                 animation-duration: $bokehBaseDuration + random(30) * 1s;
                                 filter: brightness($bokehBaseBrightness + random(150) * 1%);
+                            }
+                        }
+
+                        // The initial position of a few particles is set to match the text for the overlay effect
+                        @for $index from 1 through $bokehTextOverlayCount {
+                            &:nth-child(#{$index}) {
+                                top: random(55) * 1%;
+                                left: random(30) * 1% + 50%;
                             }
                         }
                     }
@@ -228,7 +230,7 @@ section {
                     padding-top: $h3-font-size;
                     font-size: $landing-section-right-header-font-size;
                     text-align: left;
-                    color: $color-mine-shaft;
+                    color: $color-mine-shaft-95-alfa;
                 }
             }
 
@@ -242,17 +244,18 @@ section {
             }
 
             &-description {
+                z-index: 1;
                 position: absolute;
                 bottom: 24.5%;
-                left: 13%;
+                left: 14%;
                 font-size: $h2-font-size;
                 line-height: $landing-section-description-line-height;
             }
 
             &-read-more {
                 position: absolute;
-                top: 0%;
-                right: 1%;
+                top: 5%;
+                right: 2.5%;
                 margin: 0;
                 padding: 0;
                 font-size: $h2-font-size;
@@ -270,7 +273,7 @@ section {
         &__read-more-container {
             position: relative;
             height: 100%;
-            width: 100%;
+            width: 102%;
 
             &-wrapper {
                 z-index: 1;
