@@ -162,6 +162,7 @@ section {
                         animation-name: bokeh;
                         animation-iteration-count: infinite;
                         animation-timing-function: linear;
+                        will-change: transform;
 
                         @for $index from 1 through $bokehCount {
                             &:nth-child(#{$index}) {
@@ -173,7 +174,7 @@ section {
                                 color: nth($colorSet, random(length($colorSet)));
                                 opacity: $bokehBaseOpacity + random(4) * 0.1;
                                 box-shadow: ($randomizedSize + 5rem) 0 (0.35rem + random() * 0.5rem) currentColor;
-                                transform-origin: (random(40)-20) * 1rem (random(40)-20) * 1rem;
+                                transform-origin: (random(40) - 20) * 1rem (random(40) - 20) * 1rem;
                                 animation-duration: $bokehBaseDuration + random(30) * 1s;
                                 filter: brightness($bokehBaseBrightness + random(150) * 1%);
                             }
