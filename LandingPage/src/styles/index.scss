@@ -12,6 +12,10 @@ hr {
     border-bottom: none;
 }
 
+main {
+    overflow: hidden;
+}
+
 nav {
     z-index: 10;
     position: fixed;
@@ -99,6 +103,7 @@ section {
     height: 100vh;
     min-height: 800px;
     color: $color-mine-shaft-95-alfa;
+    overflow: hidden;
 }
 
 .section {
