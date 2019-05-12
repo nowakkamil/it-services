@@ -4,7 +4,9 @@ matrix:
       node_js:
       - "lts/*"
       - "node"
-      before_script:
+      before_install:
         - cd LandingPage
+      install:
+        - npm install
       script:
         - npm run build
