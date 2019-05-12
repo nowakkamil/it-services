@@ -17,7 +17,7 @@ nav {
     position: fixed;
     display: grid;
     grid-template-columns: 612fr 388fr;
-    top: 0%;
+    top: 0;
     width: 100vw;
     height: 64px;
 }
@@ -129,8 +129,8 @@ section {
 
         &__image {
             position: absolute;
-            bottom: 0%;
-            left: 0%;
+            bottom: 0;
+            left: 0;
             height: 100%;
             max-width: 100vw;
             object-fit: cover;
@@ -212,7 +212,7 @@ section {
                 &-right {
                     position: absolute;
                     top: 35%;
-                    left: 0%;
+                    left: 0;
                     line-height: $landing-section-header-line-height;
                 }
 
@@ -280,7 +280,7 @@ section {
                 z-index: 1;
                 position: absolute;
                 bottom: 10%;
-                left: 0%;
+                left: 0;
                 height: 5.5%;
                 width: 71%;
             }
@@ -301,7 +301,7 @@ section {
 
             &-wrapper {
                 position: absolute;
-                bottom: 0%;
+                bottom: 0;
                 height: 30%;
                 width: 100%;
             }
@@ -345,7 +345,7 @@ section {
             &-maintenance {
                 background-image: url(../../public/icon-maintenance.svg);
                 background-size: 58%;
-                background-position: right -34% bottom 0%;
+                background-position: right -34% bottom 0;
 
                 &:hover {
                     background-position: right 0% bottom -0%;
@@ -404,8 +404,8 @@ section {
 
     &__video {
         position: absolute;
-        top: 0%;
-        left: 0%;
+        top: 0;
+        left: 0;
         min-width: 100%;
         min-height: 100%;
         object-fit: cover;
@@ -494,7 +494,7 @@ section {
 
             &-wrapper {
                 position: absolute;
-                top: 0%;
+                top: 0;
                 left: 50%;
                 transform: translate(-50%, -100%);
                 overflow: hidden;
@@ -509,8 +509,8 @@ section {
                 flex-wrap: wrap;
                 justify-content: space-between;
                 align-content: stretch;
-                bottom: 0%;
-                left: 0%;
+                bottom: 0;
+                left: 0;
                 width: 100%;
                 height: 54%;
                 list-style: none;
@@ -550,11 +550,11 @@ section {
                 transform: scale(1.01);
 
                 &--upper {
-                    top: 0%;
+                    top: 0;
                 }
 
                 &--lower {
-                    bottom: 0%;
+                    bottom: 0;
                 }
             }
         }
