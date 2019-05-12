@@ -1,0 +1,10 @@
+matrix:
+  include:
+    - language: node_js
+      node_js:
+      - "lts/*"
+      - "node"
+      before_script:
+        - cd LandingPage
+      script:
+        - npm run build
