@@ -35,9 +35,12 @@ $landing-section-left-header-font-size: 7.2 * $base-font-size;
 $landing-section-right-header-font-size: 6 * $base-font-size;
 $services-section-card-title-font-size: 1.33 * $base-font-size;
 $services-section-card-content-font-size: 1.23 * $base-font-size;
+$staff-section-card-title-font-size: 30 * $base-font-size;
+$staff-section-card-text-font-size: 1.88 * $base-font-size;
 
 // The letter spacings for custom elements.
 $landing-section-left-header-letter-spacing: 10px;
+$staff-section-card-title-letter-spacing: 20px;
 
 // The amount lists and blockquotes are indented.
 $indent-amount: 40px;
@@ -49,11 +52,18 @@ $indent-amount: 40px;
 // $normalize-vertical-rhythm to be automatically set to true.
 $normalize-vertical-rhythm: false;
 
-// The colors used throughout the application
+// The colors used throughout the application.
 $color-scotch-mist: #fffade;
+$color-scotch-mist-20-alpha: #fffade33;
+$color-scotch-mist-90-alpha: #fffadee6;
+$color-concrete: #f2f2f2;
 $color-concrete-10-alpha: #f2f2f21a;
+$color-concrete-25-alpha: #f2f2f240;
+$color-concrete-35-alpha: #f2f2f259;
+$color-concrete-80-alpha: #f2f2f2cc;
 $color-bright-sun: #ffda38;
 $color-broom: #ffeb16;
+$color-broom-50-alpha: #ffeb168f;
 $color-golden-fizz: #fded3c;
 $color-golden-fizz-85-alfa: #fded3cd9;
 $color-golden-fizz-90-alfa: #fded3ce6;
@@ -63,7 +73,11 @@ $color-mine-shaft-50-alfa: #2121218f;
 $color-mine-shaft-90-alfa: #212121e6;
 $color-mine-shaft-95-alfa: #212121f2;
 
-// The variables used by the bokeh overlay component
+// The border variables used by custom elements.
+$staff-section-card-border-size: 12px;
+$staff-section-card-border-color: $color-golden-fizz;
+
+// The variables used by the bokeh overlay component.
 $bokehCount: 18;
 $bokehTextOverlayCount: 4;
 $bokehBaseSize: 10rem;
