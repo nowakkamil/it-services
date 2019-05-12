@@ -1,0 +1,562 @@
+@import "normalize";
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+hr {
+    margin: 0 5%;
+    border-top: 3px solid $color-scotch-mist;
+    border-bottom: none;
+}
+
+nav {
+    z-index: 10;
+    position: fixed;
+    display: grid;
+    grid-template-columns: 612fr 388fr;
+    top: 0;
+    width: 100vw;
+    height: 64px;
+}
+
+.nav {
+    &__logo {
+        height: 70px;
+        padding-top: 22px;
+        padding-left: 22px;
+        filter: invert(96%);
+        pointer-events: none;
+
+        &-wrapper {
+            position: absolute;
+            display: block;
+            height: 70px;
+
+            &-wrapper {
+                position: relative;
+                grid-column: 1;
+            }
+        }
+    }
+
+    &__link {
+        position: relative;
+        display: inline-block;
+        height: 100%;
+        padding: 25px;
+        font-size: $nav-link-font-size;
+        text-decoration: none;
+        color: $color-mine-shaft-95-alfa;
+        transition: color 300ms ease-in-out 50ms;
+
+        &-wrapper {
+            &-container {
+                grid-column: 2;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: stretch;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                list-style: none;
+            }
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            display: block;
+            bottom: 18.5%;
+            left: 12%;
+            width: 0;
+            height: 3px;
+            background-color: $color-broom;
+            transition: width 250ms ease-in-out;
+        }
+
+        &:hover {
+            color: $color-mine-shaft-50-alfa;
+
+            &::after {
+                width: 76%;
+            }
+
+            &:active {
+                color: $color-broom;
+                transition: color 80ms ease-in-out;
+            }
+        }
+    }
+}
+
+section {
+    width: 100%;
+    height: 100vh;
+    min-height: 800px;
+    color: $color-mine-shaft-95-alfa;
+}
+
+.section {
+    &--white {
+        background: white;
+    }
+
+    &--yellow {
+        background-color: $color-golden-fizz-85-alfa;
+    }
+
+    &--mine-shaft {
+        background: $color-mine-shaft;
+    }
+
+    &--black {
+        background: black;
+    }
+}
+
+.landing-section {
+    display: grid;
+    grid-template-columns: 618fr 382fr;
+
+    &-left {
+        grid-column: 1;
+        background-color: #151515;
+
+        &__image {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            max-width: 100vw;
+            object-fit: cover;
+
+            &-wrapper {
+                position: relative;
+                height: 100%;
+                width: 100%;
+            }
+
+            &-overlay {
+                position: relative;
+                width: 100%;
+                height: 100%;
+
+                &-wrapper {
+                    z-index: 1;
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    mix-blend-mode: screen;
+                }
+
+                &--bokeh {
+                    & div {
+                        position: absolute;
+                        border-radius: 50%;
+                        animation-name: bokeh;
+                        animation-iteration-count: infinite;
+                        animation-timing-function: linear;
+                        will-change: transform;
+
+                        @for $index from 1 through $bokehCount {
+                            &:nth-child(#{$index}) {
+                                $randomizedSize: random(3) + $bokehBaseSize;
+                                width: $randomizedSize;
+                                height: $randomizedSize;
+                                top: random(100) * 1% - random(40) * 1%;
+                                left: random(100) * 1%;
+                                color: nth($colorSet, random(length($colorSet)));
+                                opacity: $bokehBaseOpacity + random(4) * 0.1;
+                                box-shadow: ($randomizedSize + 5rem) 0 (0.35rem + random() * 0.5rem) currentColor;
+                                transform-origin: (random(40) - 20) * 1rem (random(40) - 20) * 1rem;
+                                animation-duration: $bokehBaseDuration + random(30) * 1s;
+                                filter: brightness($bokehBaseBrightness + random(150) * 1%);
+                            }
+                        }
+
+                        // The initial position of a few particles is set to match the text for the overlay effect
+                        @for $index from 1 through $bokehTextOverlayCount {
+                            &:nth-child(#{$index}) {
+                                top: random(55) * 1%;
+                                left: random(30) * 1% + 50%;
+                            }
+                        }
+                    }
+
+                    @keyframes bokeh {
+                        100% {
+                            transform: rotate(360deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &-right {
+        position: relative;
+        grid-column: 2;
+        width: 100%;
+        box-shadow: inset 100px -10px 55px -102px rgba(0, 0, 0, 0.45);
+        background-color: white;
+
+        &__text {
+            &-container {
+                &-left,
+                &-right {
+                    position: absolute;
+                    top: 35%;
+                    left: 0;
+                    line-height: $landing-section-header-line-height;
+                }
+
+                &-left {
+                    transform: translate(-101%, -50%);
+                    mix-blend-mode: screen;
+                    font-size: $landing-section-left-header-font-size;
+                    font-weight: 900;
+                    letter-spacing: $landing-section-left-header-letter-spacing;
+                    text-align: right;
+                    color: $color-broom;
+                }
+
+                &-right {
+                    transform: translate(3%, -50%);
+                    padding-top: $h3-font-size;
+                    font-size: $landing-section-right-header-font-size;
+                    text-align: left;
+                    color: $color-mine-shaft-95-alfa;
+                }
+            }
+
+            &-upper,
+            &-lower {
+                &-left,
+                &-right {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+
+            &-description {
+                z-index: 1;
+                position: absolute;
+                bottom: 24.5%;
+                left: 14%;
+                font-size: $h2-font-size;
+                line-height: $landing-section-description-line-height;
+            }
+
+            &-read-more {
+                position: absolute;
+                top: 5%;
+                right: 2.5%;
+                margin: 0;
+                padding: 0;
+                font-size: $h2-font-size;
+                color: $color-mine-shaft-50-alfa;
+            }
+        }
+
+        &__text-read-more,
+        &__line {
+            transition-property: color, stroke;
+            transition-duration: 200ms;
+            transition-timing-function: ease-in-out;
+        }
+
+        &__read-more-container {
+            position: relative;
+            height: 100%;
+            width: 102%;
+
+            &-wrapper {
+                z-index: 1;
+                position: absolute;
+                bottom: 10%;
+                left: 0;
+                height: 5.5%;
+                width: 71%;
+            }
+
+            &:hover .landing-section-right__text-read-more {
+                color: $color-broom;
+                cursor: default;
+            }
+
+            &:hover .landing-section-right__line {
+                stroke: $color-broom;
+            }
+        }
+
+        &__line {
+            stroke: $color-mine-shaft-50-alfa;
+            stroke-width: 2;
+
+            &-wrapper {
+                position: absolute;
+                bottom: 0;
+                height: 30%;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.services-section {
+    &__card {
+        display: inline-block;
+        margin: 0 1.4vw;
+        width: 23%;
+        min-width: 400px;
+        height: 68%;
+        border: 3px solid $color-scotch-mist;
+        border-radius: 20px;
+        color: $color-mine-shaft-95-alfa;
+
+        &--background {
+            &-visuals,
+            &-development,
+            &-maintenance {
+                background-repeat: no-repeat;
+                background-size: 70%;
+                background-position: right -50% bottom -10%;
+                transition: background-position 400ms ease-out;
+
+                &:hover {
+                    background-position: right 0% bottom -10%;
+                }
+            }
+
+            &-visuals {
+                background-image: url(../../public/icon-visuals.svg);
+            }
+
+            &-development {
+                background-image: url(../../public/icon-development.svg);
+            }
+
+            &-maintenance {
+                background-image: url(../../public/icon-maintenance.svg);
+                background-size: 58%;
+                background-position: right -34% bottom 0;
+
+                &:hover {
+                    background-position: right 0% bottom -0%;
+                }
+            }
+        }
+
+        &-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 3.5%;
+            width: 100%;
+            height: 100%;
+        }
+
+        &-title {
+            padding-top: 1.7%;
+            padding-bottom: 1%;
+            font-size: $services-section-card-title-font-size;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        &-content,
+        &-service-container {
+            font-size: $services-section-card-content-font-size;
+            text-align: justify;
+        }
+
+        &-content {
+            padding: 0 11%;
+        }
+
+        &-service {
+            &-container {
+                &--left-indent {
+                    padding-inline-start: 16%;
+                }
+            }
+        }
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.staff-section {
+    position: relative;
+    overflow: hidden;
+
+    &__video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+
+        &-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform: scaleX(-1);
+            filter: grayscale(100%) brightness(50%);
+        }
+
+        &-overlay {
+            z-index: 1;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: $color-concrete-10-alpha;
+            opacity: 0.76;
+        }
+    }
+
+    &__card {
+        &-icon {
+            &-designer,
+            &-architect,
+            &-support {
+                width: 8vw;
+            }
+
+            &-developer {
+                width: 9.8vw;
+            }
+
+            &-business-analyst {
+                width: 8.7vw;
+            }
+
+            &-architect-wrapper--upper,
+            &-designer-wrapper--lower,
+            &-developer-wrapper--upper,
+            &-support-wrapper--lower,
+            &-business-analyst-wrapper--upper {
+                position: absolute;
+            }
+
+            &-architect-wrapper--upper {
+                top: 10%;
+                left: 50%;
+                transform: translate(-50%, 30%);
+            }
+
+            &-designer-wrapper--lower {
+                bottom: 10%;
+                left: 52%;
+                transform: translate(-52%, -30%);
+            }
+
+            &-developer-wrapper--upper {
+                top: 9%;
+                left: 50%;
+                transform: translate(-50%, 20%);
+            }
+
+            &-support-wrapper--lower {
+                bottom: 10%;
+                left: 50%;
+                transform: translate(-50%, -30%);
+            }
+
+            &-business-analyst-wrapper--upper {
+                top: 9%;
+                left: 52%;
+                transform: translate(-50%, 30%);
+            }
+        }
+
+        &-title {
+            position: relative;
+            margin: 0;
+            transform: translate(0%, 29%);
+            font-size: $staff-section-card-title-font-size;
+            font-weight: 500;
+            letter-spacing: $staff-section-card-title-letter-spacing;
+            color: $color-concrete-25-alpha;
+
+            &-wrapper {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%, -100%);
+                overflow: hidden;
+            }
+        }
+
+        &-staff {
+            &-container {
+                z-index: 2;
+                position: absolute;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-content: stretch;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 54%;
+                list-style: none;
+                box-shadow: 0px 0px 100px 14px rgba(0, 0, 0, 0.21);
+            }
+
+            // Border left set to none on each .staff-section__card-staff-member-container element but first
+            &-container &-member-container ~ &-member-container {
+                border-left: none;
+            }
+
+            &-member {
+                &-container {
+                    position: relative;
+                    flex: 0 0 20%;
+                    border: $staff-section-card-border-size solid $staff-section-card-border-color;
+                }
+            }
+        }
+
+        &-text {
+            margin: 0;
+            padding: 0 20%;
+            font-size: $staff-section-card-text-font-size;
+            font-weight: 500;
+            text-align: center;
+            color: $color-mine-shaft-90-alfa;
+
+            &-wrapper {
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 30%;
+                background-color: $staff-section-card-border-color;
+                transform: scale(1.01);
+
+                &--upper {
+                    top: 0;
+                }
+
+                &--lower {
+                    bottom: 0;
+                }
+            }
+        }
+    }
+}

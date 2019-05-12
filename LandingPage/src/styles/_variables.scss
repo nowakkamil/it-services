@@ -5,32 +5,88 @@
 // lines to that file. NOTE: Edit the lines to remove "!default".
 
 // The font size set on the root html element.
-$base-font-size: 16px !default;
+$base-font-size: 16px;
 
 // The base line height determines the basic unit of vertical rhythm.
-$base-line-height: 24px !default;
+$base-line-height: 24px;
+
+// The line heights for custom elements.
+$landing-section-header-line-height: 6.5 * $base-line-height;
+$landing-section-description-line-height: 1.3 * $base-line-height;
 
 // The length unit in which to output vertical rhythm values.
 // Supported values: px, em, rem.
-$base-unit: 'em' !default;
+$base-unit: "em";
 
 // The default font family.
-$base-font-family: null !default;
+$base-font-family: "Lato", "sans-serif";
 
 // The font sizes for h1-h6.
-$h1-font-size: 2    * $base-font-size !default;
-$h2-font-size: 1.5  * $base-font-size !default;
-$h3-font-size: 1.17 * $base-font-size !default;
-$h4-font-size: 1    * $base-font-size !default;
-$h5-font-size: 0.83 * $base-font-size !default;
-$h6-font-size: 0.67 * $base-font-size !default;
+$h1-font-size: 2    * $base-font-size;
+$h2-font-size: 1.5  * $base-font-size;
+$h3-font-size: 1.17 * $base-font-size;
+$h4-font-size: 1    * $base-font-size;
+$h5-font-size: 0.83 * $base-font-size;
+$h6-font-size: 0.67 * $base-font-size;
+
+// The font sizes for custom elements.
+$nav-link-font-size: 1.3 * $base-font-size;
+$landing-section-left-header-font-size: 7.2 * $base-font-size;
+$landing-section-right-header-font-size: 6 * $base-font-size;
+$services-section-card-title-font-size: 1.33 * $base-font-size;
+$services-section-card-content-font-size: 1.23 * $base-font-size;
+$staff-section-card-title-font-size: 30 * $base-font-size;
+$staff-section-card-text-font-size: 1.88 * $base-font-size;
+
+// The letter spacings for custom elements.
+$landing-section-left-header-letter-spacing: 10px;
+$staff-section-card-title-letter-spacing: 20px;
 
 // The amount lists and blockquotes are indented.
-$indent-amount: 40px !default;
+$indent-amount: 40px;
 
 // The following variable controls whether normalize-scss will output
 // font-sizes, line-heights and block-level top/bottom margins that form a basic
 // vertical rhythm on the page, which differs from the original Normalize.css.
 // However, changing any of the variables above will cause
 // $normalize-vertical-rhythm to be automatically set to true.
-$normalize-vertical-rhythm: false !default;
+$normalize-vertical-rhythm: false;
+
+// The colors used throughout the application.
+$color-scotch-mist: #fffade;
+$color-scotch-mist-20-alpha: #fffade33;
+$color-scotch-mist-90-alpha: #fffadee6;
+$color-concrete: #f2f2f2;
+$color-concrete-10-alpha: #f2f2f21a;
+$color-concrete-25-alpha: #f2f2f240;
+$color-concrete-35-alpha: #f2f2f259;
+$color-concrete-80-alpha: #f2f2f2cc;
+$color-bright-sun: #ffda38;
+$color-broom: #ffeb16;
+$color-broom-50-alpha: #ffeb168f;
+$color-golden-fizz: #fded3c;
+$color-golden-fizz-85-alfa: #fded3cd9;
+$color-golden-fizz-90-alfa: #fded3ce6;
+$color-mine-shaft: #212121;
+$color-mine-shaft-20-alfa: #21212133;
+$color-mine-shaft-50-alfa: #2121218f;
+$color-mine-shaft-90-alfa: #212121e6;
+$color-mine-shaft-95-alfa: #212121f2;
+
+// The border variables used by custom elements.
+$staff-section-card-border-size: 12px;
+$staff-section-card-border-color: $color-golden-fizz;
+
+// The variables used by the bokeh overlay component.
+$bokehCount: 18;
+$bokehTextOverlayCount: 4;
+$bokehBaseSize: 10rem;
+$bokehBaseOpacity: 0.6;
+$bokehBaseBrightness: 150;
+$bokehBaseDuration: 55s;
+$colorSet: (
+    $color-concrete-10-alpha,
+    $color-mine-shaft-20-alfa,
+    $color-mine-shaft-50-alfa,
+    $color-mine-shaft-90-alfa
+);
