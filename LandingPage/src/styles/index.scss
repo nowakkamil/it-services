@@ -565,3 +565,92 @@ section {
         }
     }
 }
+
+.contact-section {
+    position: relative;
+
+    &__card {
+        flex: 0 0 50%;
+        min-width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &-container {
+            position: absolute;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vh;
+        }
+
+        &-title {
+            margin: 0 5% 6% 5%;
+            font-size: $contact-section-card-title-font-size;
+            font-weight: 900;
+            text-align: center;
+            color: $color-concrete;
+        }
+
+        &-button {
+            $button: &;
+            $rect: #{&}-rect;
+            $text: #{&}-text;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+
+            &-wrapper {
+                position: relative;
+
+                // Proportions: svg width / svg height
+                $svgProportions: 166 / 45;
+                $viewportWidth: 4.5vw;
+                width: $viewportWidth * $svgProportions;
+                height: $viewportWidth;
+
+                &:hover {
+                    & #{$button} #{$rect} {
+                        stroke: $color-broom;
+                        stroke-width: 4;
+                        stroke-dasharray: 110, 312;
+                        stroke-dashoffset: 183;
+                    }
+
+                    & #{$text} {
+                        fill: $color-broom;
+                    }
+                }
+            }
+
+            &-rect {
+                stroke: $color-concrete;
+                stroke-width: 4;
+                stroke-dasharray: 422, 0;
+                stroke-dashoffset: 0;
+                transition: $contactSectionButtonTransitions;
+            }
+
+            &-text {
+                font-size: $contact-section-card-button-font-size;
+                fill: $color-concrete;
+            }
+        }
+
+        &-text {
+            margin: 6% 0 0 0;
+            font-size: $contact-section-card-text-font-size;
+            font-weight: 200;
+            text-align: center;
+            color: $color-concrete;
+        }
+    }
+}
