@@ -160,37 +160,35 @@ section {
                     mix-blend-mode: screen;
                 }
 
-                &--bokeh {
-                    & div {
-                        position: absolute;
-                        border-radius: 50%;
-                        animation-name: bokeh;
-                        animation-iteration-count: infinite;
-                        animation-timing-function: linear;
-                        will-change: transform;
+                &-bokeh {
+                    position: absolute;
+                    border-radius: 50%;
+                    animation-name: bokeh;
+                    animation-iteration-count: infinite;
+                    animation-timing-function: linear;
+                    will-change: transform;
 
-                        @for $index from 1 through $bokehCount {
-                            &:nth-child(#{$index}) {
-                                $randomizedSize: random(3) + $bokehBaseSize;
-                                width: $randomizedSize;
-                                height: $randomizedSize;
-                                top: random(100) * 1% - random(40) * 1%;
-                                left: random(100) * 1%;
-                                color: nth($colorSet, random(length($colorSet)));
-                                opacity: $bokehBaseOpacity + random(4) * 0.1;
-                                box-shadow: ($randomizedSize + 5rem) 0 (0.35rem + random() * 0.5rem) currentColor;
-                                transform-origin: (random(40) - 20) * 1rem (random(40) - 20) * 1rem;
-                                animation-duration: $bokehBaseDuration + random(30) * 1s;
-                                filter: brightness($bokehBaseBrightness + random(150) * 1%);
-                            }
+                    @for $index from 1 through $bokehCount {
+                        &:nth-child(#{$index}) {
+                            $randomizedSize: random(3) + $bokehBaseSize;
+                            width: $randomizedSize;
+                            height: $randomizedSize;
+                            top: random(100) * 1% - random(40) * 1%;
+                            left: random(100) * 1%;
+                            color: nth($colorSet, random(length($colorSet)));
+                            opacity: $bokehBaseOpacity + random(4) * 0.1;
+                            box-shadow: ($randomizedSize + 5rem) 0 (0.35rem + random() * 0.5rem) currentColor;
+                            transform-origin: (random(40) - 20) * 1rem (random(40) - 20) * 1rem;
+                            animation-duration: $bokehBaseDuration + random(30) * 1s;
+                            filter: brightness($bokehBaseBrightness + random(150) * 1%);
                         }
+                    }
 
-                        // The initial position of a few particles is set to match the text for the overlay effect
-                        @for $index from 1 through $bokehTextOverlayCount {
-                            &:nth-child(#{$index}) {
-                                top: random(55) * 1%;
-                                left: random(30) * 1% + 50%;
-                            }
+                    // The initial position of a few particles is set to match the text for the overlay effect
+                    @for $index from 1 through $bokehTextOverlayCount {
+                        &:nth-child(#{$index}) {
+                            top: random(55) * 1%;
+                            left: random(30) * 1% + 50%;
                         }
                     }
 
