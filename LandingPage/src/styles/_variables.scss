@@ -4,6 +4,9 @@
 // If you have an initialization partial (or equivalent), you should move these
 // lines to that file. NOTE: Edit the lines to remove "!default".
 
+// The fonts.
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,900");
+
 // The font size set on the root html element.
 $base-font-size: 16px;
 
@@ -37,6 +40,9 @@ $services-section-card-title-font-size: 1.33 * $base-font-size;
 $services-section-card-content-font-size: 1.23 * $base-font-size;
 $staff-section-card-title-font-size: 30 * $base-font-size;
 $staff-section-card-text-font-size: 1.88 * $base-font-size;
+$contact-section-card-title-font-size: 5.5 * $base-font-size;
+$contact-section-card-button-font-size: 1 * $base-font-size;
+$contact-section-card-text-font-size: 1.5 * $base-font-size;
 
 // The letter spacings for custom elements.
 $landing-section-left-header-letter-spacing: 10px;
@@ -76,6 +82,13 @@ $color-mine-shaft-95-alfa: #212121f2;
 // The border variables used by custom elements.
 $staff-section-card-border-size: 12px;
 $staff-section-card-border-color: $color-golden-fizz;
+
+// Thevariables used by the transitions of custom elements.
+$contactSectionButtonTransitionDurationTimingFunction: 750ms ease-in-out;
+$contactSectionButtonTransitions: (
+    (stroke-dasharray $contactSectionButtonTransitionDurationTimingFunction),
+    (stroke-dashoffset $contactSectionButtonTransitionDurationTimingFunction)
+);
 
 // The variables used by the bokeh overlay component.
 $bokehCount: 18;
