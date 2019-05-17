@@ -7,6 +7,17 @@
 // The fonts.
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400,900");
 
+// The variables used in media queries.
+$mobile-min-width: 320px;
+$desktop-min-width: 1440px;
+
+// The variables used to obtain fluid typography.
+$very-aggressive-responsive-font-size-factor: 4.5;
+$aggressive-responsive-font-size-factor: 3;
+$standard-responsive-font-size-factor: 2;
+$relaxed-responsive-font-size-factor: 1.5;
+$very-relaxed-responsive-font-size-factor: 1.2;
+
 // The font size set on the root html element.
 $base-font-size: 16px;
 
@@ -40,7 +51,7 @@ $services-section-card-title-font-size: 1.33 * $base-font-size;
 $services-section-card-content-font-size: 1.23 * $base-font-size;
 $staff-section-card-title-font-size: 30 * $base-font-size;
 $staff-section-card-text-font-size: 1.88 * $base-font-size;
-$contact-section-card-title-font-size: 5.5 * $base-font-size;
+$contact-section-card-title-font-size: 5 * $base-font-size;
 $contact-section-card-button-font-size: 1 * $base-font-size;
 $contact-section-card-text-font-size: 1.5 * $base-font-size;
 
