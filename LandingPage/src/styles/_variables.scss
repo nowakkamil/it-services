@@ -95,7 +95,7 @@ $staff-section-card-border-size: 12px;
 $staff-section-card-border-color: $color-golden-fizz;
 
 // Thevariables used by the transitions of custom elements.
-$contactSectionButtonTransitionDurationTimingFunction: 750ms ease-in-out;
+$contactSectionButtonTransitionDurationTimingFunction: 620ms ease-in-out;
 $contactSectionButtonTransitions: (
     (stroke-dasharray $contactSectionButtonTransitionDurationTimingFunction),
     (stroke-dashoffset $contactSectionButtonTransitionDurationTimingFunction)
