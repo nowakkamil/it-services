@@ -9,6 +9,7 @@
 
 // The variables used in media queries.
 $mobile-min-width: 320px;
+$tablet-max-width: 768px;
 $desktop-min-width: 1440px;
 
 // The variables used to obtain fluid typography.
@@ -45,6 +46,7 @@ $h6-font-size: 0.67 * $base-font-size;
 
 // The font sizes for custom elements.
 $nav-link-font-size: 1.3 * $base-font-size;
+$nav-overlay-link-font-size: 3 * $base-font-size;
 $landing-section-left-header-font-size: 7.2 * $base-font-size;
 $landing-section-right-header-font-size: 6 * $base-font-size;
 $services-section-card-title-font-size: 1.33 * $base-font-size;
@@ -94,7 +96,12 @@ $color-mine-shaft-95-alfa: #212121f2;
 $staff-section-card-border-size: 12px;
 $staff-section-card-border-color: $color-golden-fizz;
 
-// Thevariables used by the transitions of custom elements.
+// The variables used by the transitions of custom elements.
+$navbarIconTransitionDurationTimingFunction: 250ms ease-in-out;
+$navbarIconTransitions: (
+    (visibility $navbarIconTransitionDurationTimingFunction),
+    (opacity $navbarIconTransitionDurationTimingFunction)
+);
 $contactSectionButtonTransitionDurationTimingFunction: 620ms ease-in-out;
 $contactSectionButtonTransitions: (
     (stroke-dasharray $contactSectionButtonTransitionDurationTimingFunction),

@@ -27,6 +27,61 @@ nav {
     height: 64px;
 }
 
+input {
+    &[type="checkbox"] {
+        &:checked {
+            // Prevent input from disappearing when a viewport width exceeds tablet width
+            visibility: visible;
+
+            // Prevent icon from disappearing when a viewport width exceeds tablet width
+            & ~ .nav__icon-wrapper {
+                visibility: visible;
+                opacity: 1;
+            }
+
+            & ~ .nav__overlay {
+                display: block;
+            }
+
+            & ~ .nav__link-wrapper-container {
+                z-index: 21;
+                position: fixed;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                top: 0;
+                left: 0;
+                padding: 36vh 0;
+            }
+
+            & ~ .nav__link-wrapper-container .nav__link-wrapper .nav__link {
+                margin: 0;
+                padding: 6%;
+                font-size: $nav-overlay-link-font-size;
+
+                &::after {
+                    bottom: 4.5%;
+                    left: 0;
+                    height: 4px;
+                    background-color: white;
+                }
+
+                &:hover {
+                    color: $color-mine-shaft;
+
+                    &::after {
+                        width: 99%;
+                    }
+
+                    &:active {
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .nav {
     &__logo {
         height: 70px;
@@ -36,6 +91,7 @@ nav {
         pointer-events: none;
 
         &-wrapper {
+            z-index: 21;
             position: absolute;
             display: block;
             height: 70px;
@@ -45,6 +101,56 @@ nav {
                 grid-column: 1;
             }
         }
+    }
+
+    &__toggler {
+        z-index: 22;
+        visibility: hidden;
+        opacity: 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 58px;
+        height: 58px;
+        padding: 20px 23px 0 0;
+        cursor: pointer;
+
+        @media screen and (max-width: $tablet-max-width) {
+            visibility: visible;
+        }
+    }
+
+    &__icon {
+        width: 4.6vw;
+        max-width: 40px;
+
+        &-wrapper {
+            z-index: 21;
+            visibility: hidden;
+            opacity: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            padding: 20px 23px 0 0;
+            filter: invert(26%);
+            transition: $navbarIconTransitions;
+
+            @media screen and (max-width: $tablet-max-width) {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }
+
+    &__overlay {
+        z-index: 20;
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: $color-bright-sun;
     }
 
     &__link {
@@ -69,10 +175,14 @@ nav {
                 justify-content: space-evenly;
                 align-items: stretch;
                 margin: 0;
-                padding: 0 0 0 3%;
+                padding: 0;
                 width: 100%;
                 height: 100%;
                 list-style: none;
+
+                @media screen and (max-width: $tablet-max-width) {
+                    display: none;
+                }
             }
         }
 
@@ -92,7 +202,7 @@ nav {
             color: $color-mine-shaft-50-alfa;
 
             &::after {
-                width: 76%;
+                width: 75.2%;
             }
 
             &:active {
@@ -161,6 +271,7 @@ section {
                     position: absolute;
                     width: 100%;
                     height: 100%;
+                    min-height: 800px;
                     overflow: hidden;
                     mix-blend-mode: screen;
                 }
