@@ -580,6 +580,12 @@ section {
     }
 
     &__card {
+        $text: #{&}-text;
+        $text-wrapper-upper: #{&}-text-wrapper--upper;
+        $text-wrapper-lower: #{&}-text-wrapper--lower;
+        $title-wrapper-upper: #{&}-title-wrapper--upper;
+        $title-wrapper-lower: #{&}-title-wrapper--lower;
+
         &-icon {
             &-designer,
             &-architect,
@@ -660,6 +666,29 @@ section {
                     position: relative;
                     flex: 0 0 20%;
                     border: $staff-section-card-border-size solid $staff-section-card-border-color;
+                    overflow: hidden;
+
+                    &:hover {
+                        & #{$text} {
+                            opacity: 1;
+                        }
+
+                        & #{$text-wrapper-upper} {
+                            top: 0;
+                        }
+
+                        & #{$text-wrapper-lower} {
+                            bottom: 0;
+                        }
+
+                        & #{$title-wrapper-upper} {
+                            top: $staff-section-card-text-wrapper-height;
+                        }
+
+                        & #{$title-wrapper-lower} {
+                            bottom: $staff-section-card-text-wrapper-height;
+                        }
+                    }
                 }
             }
         }
@@ -669,8 +698,8 @@ section {
             padding: 0 20%;
             @include interpolate(
                 font-size,
-                $staff-section-card-text-font-size / $standard-responsive-font-size-factor,
-                $staff-section-card-text-font-size
+                $staff-section-card-title-font-size / $standard-responsive-font-size-factor,
+                $staff-section-card-title-font-size
             );
             font-weight: 400;
             text-align: center;
@@ -682,16 +711,58 @@ section {
                 justify-content: center;
                 align-items: center;
                 width: 100%;
-                height: 30%;
+                height: $staff-section-card-title-wrapper-height;
                 background-color: $staff-section-card-border-color;
                 transform: scale(1.01);
 
                 &--upper {
                     top: 0;
+                    transition: top $staffSectionCardTransitionDurationTimingFunction;
                 }
 
                 &--lower {
                     bottom: 0;
+                    transition: bottom $staffSectionCardTransitionDurationTimingFunction;
+                }
+            }
+        }
+
+        &-text {
+            opacity: 0;
+            margin: 0;
+            @include interpolate(
+                font-size,
+                $staff-section-card-text-font-size / $standard-responsive-font-size-factor,
+                $staff-section-card-text-font-size
+            );
+            font-weight: 400;
+            text-align: center;
+            transition: opacity 400ms ease-in-out 170ms;
+
+            &-wrapper {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin: 0;
+                padding: 0 10% 11%;
+                width: 100%;
+                height: $staff-section-card-text-wrapper-height;
+                @include interpolate(
+                    line-height,
+                    $staff-section-card-text-line-height / $aggressive-responsive-font-size-factor,
+                    $staff-section-card-text-line-height
+                );
+                background-color: $staff-section-card-border-color;
+
+                &--upper {
+                    top: -$staff-section-card-text-wrapper-height;
+                    transition: top $staffSectionCardTransitionDurationTimingFunction;
+                }
+
+                &--lower {
+                    bottom: -$staff-section-card-text-wrapper-height;
+                    transition: bottom $staffSectionCardTransitionDurationTimingFunction;
                 }
             }
         }
@@ -703,8 +774,8 @@ section {
         transform: translate(0%, 29%);
         @include interpolate(
             font-size,
-            $staff-section-card-title-font-size / $very-aggressive-responsive-font-size-factor,
-            $staff-section-card-title-font-size
+            $staff-section-title-font-size / $very-aggressive-responsive-font-size-factor,
+            $staff-section-title-font-size
         );
         font-weight: 400;
         color: $color-concrete-25-alpha;
