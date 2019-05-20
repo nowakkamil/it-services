@@ -27,6 +27,11 @@ nav {
     height: 64px;
 }
 
+.nav--no-js {
+    height: 76px;
+    background: $color-concrete-50-alpha;
+}
+
 input {
     &[type="checkbox"] {
         &:checked {
