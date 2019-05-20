@@ -580,6 +580,12 @@ section {
     }
 
     &__card {
+        $text: #{&}-text;
+        $text-wrapper-upper: #{&}-text-wrapper--upper;
+        $text-wrapper-lower: #{&}-text-wrapper--lower;
+        $title-wrapper-upper: #{&}-title-wrapper--upper;
+        $title-wrapper-lower: #{&}-title-wrapper--lower;
+
         &-icon {
             &-designer,
             &-architect,
@@ -634,27 +640,6 @@ section {
             }
         }
 
-        &-title {
-            position: relative;
-            margin: 0;
-            transform: translate(0%, 29%);
-            @include interpolate(
-                font-size,
-                $staff-section-card-title-font-size / $very-aggressive-responsive-font-size-factor,
-                $staff-section-card-title-font-size
-            );
-            font-weight: 400;
-            color: $color-concrete-25-alpha;
-
-            &-wrapper {
-                position: absolute;
-                top: 0;
-                left: 50%;
-                transform: translate(-50%, -100%);
-                overflow: hidden;
-            }
-        }
-
         &-staff {
             &-container {
                 z-index: 2;
@@ -681,17 +666,40 @@ section {
                     position: relative;
                     flex: 0 0 20%;
                     border: $staff-section-card-border-size solid $staff-section-card-border-color;
+                    overflow: hidden;
+
+                    &:hover {
+                        & #{$text} {
+                            opacity: 1;
+                        }
+
+                        & #{$text-wrapper-upper} {
+                            top: 0;
+                        }
+
+                        & #{$text-wrapper-lower} {
+                            bottom: 0;
+                        }
+
+                        & #{$title-wrapper-upper} {
+                            top: $staff-section-card-text-wrapper-height;
+                        }
+
+                        & #{$title-wrapper-lower} {
+                            bottom: $staff-section-card-text-wrapper-height;
+                        }
+                    }
                 }
             }
         }
 
-        &-text {
+        &-title {
             margin: 0;
             padding: 0 20%;
             @include interpolate(
                 font-size,
-                $staff-section-card-text-font-size / $standard-responsive-font-size-factor,
-                $staff-section-card-text-font-size
+                $staff-section-card-title-font-size / $standard-responsive-font-size-factor,
+                $staff-section-card-title-font-size
             );
             font-weight: 400;
             text-align: center;
@@ -703,18 +711,81 @@ section {
                 justify-content: center;
                 align-items: center;
                 width: 100%;
-                height: 30%;
+                height: $staff-section-card-title-wrapper-height;
                 background-color: $staff-section-card-border-color;
                 transform: scale(1.01);
 
                 &--upper {
                     top: 0;
+                    transition: top $staffSectionCardTransitionDurationTimingFunction;
                 }
 
                 &--lower {
                     bottom: 0;
+                    transition: bottom $staffSectionCardTransitionDurationTimingFunction;
                 }
             }
+        }
+
+        &-text {
+            opacity: 0;
+            margin: 0;
+            @include interpolate(
+                font-size,
+                $staff-section-card-text-font-size / $standard-responsive-font-size-factor,
+                $staff-section-card-text-font-size
+            );
+            font-weight: 400;
+            text-align: center;
+            transition: opacity 400ms ease-in-out 170ms;
+
+            &-wrapper {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin: 0;
+                padding: 0 10% 11%;
+                width: 100%;
+                height: $staff-section-card-text-wrapper-height;
+                @include interpolate(
+                    line-height,
+                    $staff-section-card-text-line-height / $aggressive-responsive-font-size-factor,
+                    $staff-section-card-text-line-height
+                );
+                background-color: $staff-section-card-border-color;
+
+                &--upper {
+                    top: -$staff-section-card-text-wrapper-height;
+                    transition: top $staffSectionCardTransitionDurationTimingFunction;
+                }
+
+                &--lower {
+                    bottom: -$staff-section-card-text-wrapper-height;
+                    transition: bottom $staffSectionCardTransitionDurationTimingFunction;
+                }
+            }
+        }
+    }
+
+    &__title {
+        position: relative;
+        margin: 0;
+        transform: translate(0%, 29%);
+        @include interpolate(
+            font-size,
+            $staff-section-title-font-size / $very-aggressive-responsive-font-size-factor,
+            $staff-section-title-font-size
+        );
+        font-weight: 400;
+        color: $color-concrete-25-alpha;
+
+        &-wrapper {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            overflow: hidden;
         }
     }
 }
@@ -815,5 +886,19 @@ section {
             text-align: center;
             color: $color-concrete;
         }
+    }
+
+    &__footer {
+        position: absolute;
+        bottom: 1.1%;
+        left: 0;
+        width: 100%;
+        @include interpolate(
+            font-size,
+            $contact-section-footer-font-size / $very-relaxed-responsive-font-size-factor,
+            $contact-section-footer-font-size
+        );
+        text-align: center;
+        color: $color-concrete-15-alpha;
     }
 }
