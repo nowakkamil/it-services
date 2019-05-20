@@ -634,27 +634,6 @@ section {
             }
         }
 
-        &-title {
-            position: relative;
-            margin: 0;
-            transform: translate(0%, 29%);
-            @include interpolate(
-                font-size,
-                $staff-section-card-title-font-size / $very-aggressive-responsive-font-size-factor,
-                $staff-section-card-title-font-size
-            );
-            font-weight: 400;
-            color: $color-concrete-25-alpha;
-
-            &-wrapper {
-                position: absolute;
-                top: 0;
-                left: 50%;
-                transform: translate(-50%, -100%);
-                overflow: hidden;
-            }
-        }
-
         &-staff {
             &-container {
                 z-index: 2;
@@ -685,7 +664,7 @@ section {
             }
         }
 
-        &-text {
+        &-title {
             margin: 0;
             padding: 0 20%;
             @include interpolate(
@@ -715,6 +694,27 @@ section {
                     bottom: 0;
                 }
             }
+        }
+    }
+
+    &__title {
+        position: relative;
+        margin: 0;
+        transform: translate(0%, 29%);
+        @include interpolate(
+            font-size,
+            $staff-section-card-title-font-size / $very-aggressive-responsive-font-size-factor,
+            $staff-section-card-title-font-size
+        );
+        font-weight: 400;
+        color: $color-concrete-25-alpha;
+
+        &-wrapper {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            overflow: hidden;
         }
     }
 }
