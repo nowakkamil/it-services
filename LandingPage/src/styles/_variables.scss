@@ -17,7 +17,7 @@ $very-aggressive-responsive-font-size-factor: 4.5;
 $aggressive-responsive-font-size-factor: 3;
 $standard-responsive-font-size-factor: 2;
 $relaxed-responsive-font-size-factor: 1.5;
-$very-relaxed-responsive-font-size-factor: 1.2;
+$very-relaxed-responsive-font-size-factor: 1.3;
 
 // The font size set on the root html element.
 $base-font-size: 16px;
@@ -56,6 +56,7 @@ $staff-section-card-text-font-size: 1.88 * $base-font-size;
 $contact-section-card-title-font-size: 5 * $base-font-size;
 $contact-section-card-button-font-size: 1 * $base-font-size;
 $contact-section-card-text-font-size: 1.5 * $base-font-size;
+$contact-section-footer-font-size: 1.1 * $base-font-size;
 
 // The letter spacings for custom elements.
 $landing-section-left-header-letter-spacing: 10px;
@@ -78,6 +79,7 @@ $color-scotch-mist-50-alpha: #fffade8f;
 $color-scotch-mist-90-alpha: #fffadee6;
 $color-concrete: #f2f2f2;
 $color-concrete-10-alpha: #f2f2f21a;
+$color-concrete-15-alpha: #f2f2f226;
 $color-concrete-25-alpha: #f2f2f240;
 $color-concrete-35-alpha: #f2f2f259;
 $color-concrete-50-alpha: #f2f2f28f;

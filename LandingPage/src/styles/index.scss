@@ -816,4 +816,18 @@ section {
             color: $color-concrete;
         }
     }
+
+    &__footer {
+        position: absolute;
+        bottom: 1.1%;
+        left: 0;
+        width: 100%;
+        @include interpolate(
+            font-size,
+            $contact-section-footer-font-size / $very-relaxed-responsive-font-size-factor,
+            $contact-section-footer-font-size
+        );
+        text-align: center;
+        color: $color-concrete-15-alpha;
+    }
 }
