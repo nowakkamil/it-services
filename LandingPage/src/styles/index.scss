@@ -724,6 +724,14 @@ section {
                 height: 54%;
                 list-style: none;
                 box-shadow: 0px 0px 100px 14px rgba(0, 0, 0, 0.21);
+
+                @media screen and (max-width: $tablet-max-width) {
+                    height: 64%;
+                }
+
+                @media screen and (max-width: $mobile-mid-width) {
+                    height: 68%;
+                }
             }
 
             // Border left set to none on each .staff-section__card-staff-member-container element but first
@@ -737,6 +745,10 @@ section {
                     flex: 0 0 20%;
                     border: $staff-section-card-border-size solid $staff-section-card-border-color;
                     overflow: hidden;
+
+                    @media screen and (max-width: $mobile-mid-width) {
+                        flex: 1 1 50%;
+                    }
 
                     &:hover {
                         & #{$text} {
@@ -768,7 +780,7 @@ section {
             padding: 0 20%;
             @include interpolate(
                 font-size,
-                $staff-section-card-title-font-size / $standard-responsive-font-size-factor,
+                $staff-section-card-title-font-size / $aggressive-responsive-font-size-factor,
                 $staff-section-card-title-font-size
             );
             font-weight: 400;
@@ -805,9 +817,29 @@ section {
                 $staff-section-card-text-font-size / $standard-responsive-font-size-factor,
                 $staff-section-card-text-font-size
             );
+            @include interpolate(
+                line-height,
+                $staff-section-card-text-line-height / $aggressive-responsive-font-size-factor,
+                $staff-section-card-text-line-height
+            );
             font-weight: 400;
             text-align: center;
             transition: opacity 400ms ease-in-out 170ms;
+
+            @media screen and (min-width: $mobile-mid-width) and (max-height: $mobile-mid-width) {
+                font-size: $staff-section-card-text-panoramic-tablet-font-size;
+                line-height: initial;
+            }
+
+            @media screen and (min-width: $laptop-min-width) and (max-height: $tablet-oversized-width) {
+                font-size: $h4-font-size;
+                line-height: initial;
+            }
+
+            @media screen and (min-width: $laptop-mid-width) and (max-height: $tablet-oversized-width) {
+                font-size: $h3-font-size;
+                line-height: initial;
+            }
 
             &-wrapper {
                 position: absolute;
@@ -818,12 +850,11 @@ section {
                 padding: 0 10% 11%;
                 width: 100%;
                 height: $staff-section-card-text-wrapper-height;
-                @include interpolate(
-                    line-height,
-                    $staff-section-card-text-line-height / $aggressive-responsive-font-size-factor,
-                    $staff-section-card-text-line-height
-                );
                 background-color: $staff-section-card-border-color;
+
+                @media screen and (min-width: $mobile-mid-width) and (max-height: $mobile-mid-width) {
+                    padding: 0 2%;
+                }
 
                 &--upper {
                     top: -$staff-section-card-text-wrapper-height;
