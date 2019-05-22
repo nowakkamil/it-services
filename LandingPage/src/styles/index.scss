@@ -221,7 +221,6 @@ input {
 section {
     width: 100%;
     height: 100vh;
-    min-height: 800px;
     color: $color-mine-shaft-95-alfa;
     overflow: hidden;
 }
@@ -276,7 +275,6 @@ section {
                     position: absolute;
                     width: 100%;
                     height: 100%;
-                    min-height: 800px;
                     overflow: hidden;
                     mix-blend-mode: screen;
                 }
@@ -455,13 +453,38 @@ section {
 .services-section {
     &__card {
         display: inline-block;
+        flex-basis: 25%;
         margin: 0 1.4vw;
         width: 23%;
-        min-width: 400px;
         height: 68%;
         border: 3px solid $color-scotch-mist;
         border-radius: 20px;
         color: $color-mine-shaft-95-alfa;
+
+        @media screen and (max-width: $laptop-mid-width) {
+            flex-basis: 27%;
+            margin: 0;
+            height: 66%;
+        }
+
+        @media screen and (max-width: $laptop-min-width) {
+            flex-basis: 30%;
+        }
+
+        // This media query is used for styling cards which are positioned as a column
+        @media screen and (max-width: $tablet-max-width) {
+            width: 60%;
+            margin: 2%;
+            justify-self: center;
+        }
+
+        @media screen and (max-height: $tablet-oversized-width) {
+            height: 76%;
+        }
+
+        @media screen and (max-height: $mobile-mid-width) {
+            height: 86%;
+        }
 
         &--background {
             &-visuals,
@@ -472,8 +495,20 @@ section {
                 background-position: right -50% bottom -10%;
                 transition: background-position 400ms ease-out;
 
+                @media screen and (max-width: $laptop-mid-width) {
+                    background-position: right -50% bottom -4%;
+                }
+
+                @media screen and (max-width: $tablet-max-width) {
+                    background-size: 50%;
+                }
+
                 &:hover {
-                    background-position: right 0% bottom -10%;
+                    background-position: right 0 bottom -10%;
+
+                    @media screen and (max-width: $laptop-mid-width) {
+                        background-position: right 0 bottom -4%;
+                    }
                 }
             }
 
@@ -490,8 +525,20 @@ section {
                 background-size: 58%;
                 background-position: right -34% bottom 0;
 
+                @media screen and (max-width: $laptop-mid-width) {
+                    background-position: right -34% bottom 2%;
+                }
+
+                @media screen and (max-width: $tablet-max-width) {
+                    background-size: 42%;
+                }
+
                 &:hover {
-                    background-position: right 0% bottom -0%;
+                    background-position: right 0 bottom 0;
+
+                    @media screen and (max-width: $laptop-mid-width) {
+                        background-position: right 0 bottom 2%;
+                    }
                 }
             }
         }
@@ -503,6 +550,24 @@ section {
             padding-top: 3.5%;
             width: 100%;
             height: 100%;
+
+            @media screen and (max-width: $laptop-mid-width) {
+                justify-content: space-evenly;
+            }
+
+            // This media query is used for styling cards which are positioned as a column
+            @media screen and (max-width: $tablet-max-width) {
+                flex-direction: column;
+
+                // Reset the justify-content property so that the flex column is accessible while scrolling
+                justify-content: unset;
+                padding-bottom: 2.5%;
+                overflow: scroll;
+            }
+
+            @media screen and (max-height: $tablet-oversized-width) {
+                padding-top: 2.5%;
+            }
         }
 
         &-title {
@@ -510,7 +575,7 @@ section {
             padding-bottom: 1%;
             @include interpolate(
                 font-size,
-                $services-section-card-title-font-size / $relaxed-responsive-font-size-factor,
+                $services-section-card-title-font-size / $standard-responsive-font-size-factor,
                 $services-section-card-title-font-size
             );
             font-weight: 900;
@@ -521,19 +586,25 @@ section {
         &-service-container {
             @include interpolate(
                 font-size,
-                $services-section-card-content-font-size / $very-relaxed-responsive-font-size-factor,
+                $services-section-card-content-font-size / $standard-responsive-font-size-factor,
                 $services-section-card-content-font-size
             );
             text-align: justify;
+
+            // This media query prevents the font from overlapping with a background icon
+            @media screen and (min-width: $laptop-undersized-width) and (max-height: $tablet-oversized-width) {
+                font-size: $h4-font-size;
+            }
         }
 
         &-content {
-            padding: 0 11%;
+            padding: 0 8%;
         }
 
         &-service {
             &-container {
                 &--left-indent {
+                    padding-right: 8%;
                     padding-inline-start: 16%;
                 }
             }

@@ -9,7 +9,12 @@
 
 // The variables used in media queries.
 $mobile-min-width: 320px;
+$mobile-mid-width: 600px;
 $tablet-max-width: 768px;
+$tablet-oversized-width: 800px;
+$laptop-undersized-width: 1000px;
+$laptop-min-width: 1024px;
+$laptop-mid-width: 1280px;
 $desktop-min-width: 1440px;
 
 // The variables used to obtain fluid typography.
@@ -99,6 +104,7 @@ $color-golden-fizz-90-alfa: #fded3ce6;
 $color-mine-shaft: #212121;
 $color-mine-shaft-20-alfa: #21212133;
 $color-mine-shaft-50-alfa: #2121218f;
+$color-mine-shaft-80-alfa: #212121cc;
 $color-mine-shaft-90-alfa: #212121e6;
 $color-mine-shaft-95-alfa: #212121f2;
 
