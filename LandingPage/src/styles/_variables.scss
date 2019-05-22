@@ -8,7 +8,8 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400,900");
 
 // The variables used in media queries.
-$mobile-min-width: 320px;
+$mobile-undersized-width: 320px;
+$mobile-min-width: 375px;
 $mobile-mid-width: 600px;
 $tablet-max-width: 768px;
 $tablet-oversized-width: 800px;

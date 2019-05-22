@@ -730,7 +730,11 @@ section {
                 }
 
                 @media screen and (max-width: $mobile-mid-width) {
-                    height: 68%;
+                    height: 67%;
+                }
+
+                @media screen and (max-width: $mobile-min-width) {
+                    height: 74%;
                 }
             }
 
@@ -743,7 +747,13 @@ section {
                 &-container {
                     position: relative;
                     flex: 0 0 20%;
-                    border: $staff-section-card-border-size solid $staff-section-card-border-color;
+                    @include interpolate(
+                        border-width,
+                        $staff-section-card-border-size / $aggressive-responsive-font-size-factor,
+                        $staff-section-card-border-size
+                    );
+                    border-style: solid;
+                    border-color: $staff-section-card-border-color;
                     overflow: hidden;
 
                     @media screen and (max-width: $mobile-mid-width) {
@@ -795,7 +805,7 @@ section {
                 width: 100%;
                 height: $staff-section-card-title-wrapper-height;
                 background-color: $staff-section-card-border-color;
-                transform: scale(1.01);
+                transform: scale(1.02);
 
                 &--upper {
                     top: 0;
