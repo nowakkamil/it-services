@@ -24,7 +24,7 @@ nav {
     grid-template-columns: 612fr 388fr;
     top: 0;
     width: 100vw;
-    height: 64px;
+    height: $nav-height;
 }
 
 .nav--no-js {
@@ -337,7 +337,7 @@ section {
                     left: 0;
                     @include interpolate(
                         line-height,
-                        $landing-section-header-line-height / $standard-responsive-font-size-factor,
+                        $landing-section-header-line-height / $aggressive-responsive-font-size-factor,
                         $landing-section-header-line-height
                     );
                 }
@@ -347,7 +347,7 @@ section {
                     mix-blend-mode: screen;
                     @include interpolate(
                         font-size,
-                        $landing-section-left-header-font-size / $standard-responsive-font-size-factor,
+                        $landing-section-left-header-font-size / $aggressive-responsive-font-size-factor,
                         $landing-section-left-header-font-size
                     );
                     font-weight: 900;
@@ -361,7 +361,7 @@ section {
                     padding-top: $h3-font-size;
                     @include interpolate(
                         font-size,
-                        $landing-section-right-header-font-size / $standard-responsive-font-size-factor,
+                        $landing-section-right-header-font-size / $aggressive-responsive-font-size-factor,
                         $landing-section-right-header-font-size
                     );
                     text-align: left;
@@ -381,14 +381,14 @@ section {
             &-description,
             &-read-more {
                 position: absolute;
-                @include interpolate(font-size, $h2-font-size / $standard-responsive-font-size-factor, $h2-font-size);
+                @include interpolate(font-size, $h2-font-size / $aggressive-responsive-font-size-factor, $h2-font-size);
             }
 
             &-description {
                 z-index: 1;
                 bottom: 24.5%;
                 left: 14%;
-                padding: 0 10% 0 0;
+                padding: 0 15% 0 0;
                 @include interpolate(
                     line-height,
                     $landing-section-description-line-height / $standard-responsive-font-size-factor,
@@ -397,7 +397,7 @@ section {
             }
 
             &-read-more {
-                @include interpolate(bottom, 18px, 26px);
+                @include interpolate(bottom, 12px, 22px);
                 right: 2.5%;
                 margin: 0;
                 padding: 0;
@@ -561,7 +561,7 @@ section {
                 // Reset the justify-content property so that the flex column is accessible while scrolling
                 justify-content: unset;
                 padding-bottom: 2.5%;
-                overflow: scroll;
+                overflow-y: scroll;
             }
 
             @media screen and (max-height: $tablet-oversized-width) {
@@ -739,8 +739,16 @@ section {
                 list-style: none;
                 box-shadow: 0px 0px 100px 14px rgba(0, 0, 0, 0.21);
 
+                @media screen and (max-width: $laptop-mid-width) {
+                    height: 60%;
+                }
+
+                @media screen and (max-width: $laptop-undersized-width) {
+                    height: 63%;
+                }
+
                 @media screen and (max-width: $tablet-max-width) {
-                    height: 64%;
+                    height: 66%;
                 }
 
                 @media screen and (max-width: $mobile-max-width) {
@@ -840,7 +848,7 @@ section {
                 width: 100%;
                 height: $staff-section-card-title-wrapper-height;
                 background-color: $staff-section-card-border-color;
-                transform: scale(1.02);
+                transform: scale(1.03);
 
                 @media screen and (max-width: $mobile-max-width) {
                     transform: scale(1.1);
@@ -872,7 +880,7 @@ section {
             );
             @include interpolate(
                 line-height,
-                $staff-section-card-text-line-height / $standard-responsive-font-size-factor,
+                $staff-section-card-text-line-height / $aggressive-responsive-font-size-factor,
                 $staff-section-card-text-line-height
             );
             font-weight: 400;
@@ -910,7 +918,7 @@ section {
                 height: $staff-section-card-text-wrapper-height;
                 background-color: $staff-section-card-border-color;
 
-                @media screen and (max-height: $mobile-max-width) {
+                @media screen and (max-height: $mobile-max-width), screen and (max-width: $laptop-mid-width) {
                     padding: 0 2%;
                 }
 
@@ -927,12 +935,12 @@ section {
                     bottom: -$staff-section-card-text-wrapper-height;
                     transition: bottom $staffSectionCardTransitionDurationTimingFunction;
                 }
-                
+
                 @media screen and (max-width: $mobile-undersized-width) {
                     &--upper {
                         top: -$staff-section-card-text-wrapper-mobile-height;
                     }
-    
+
                     &--lower {
                         bottom: -$staff-section-card-text-wrapper-mobile-height;
                     }

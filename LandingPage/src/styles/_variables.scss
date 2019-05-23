@@ -59,7 +59,7 @@ $landing-section-left-header-font-size: 7.2 * $base-font-size;
 $landing-section-right-header-font-size: 6 * $base-font-size;
 $services-section-card-title-font-size: 1.33 * $base-font-size;
 $services-section-card-content-font-size: 1.23 * $base-font-size;
-$staff-section-title-font-size: 30 * $base-font-size;
+$staff-section-title-font-size: 25 * $base-font-size;
 $staff-section-card-title-font-size: 1.88 * $base-font-size;
 $staff-section-card-text-font-size: 1.38 * $base-font-size;
 $staff-section-card-text-panoramic-tablet-font-size: 0.64 * $base-font-size;
@@ -84,6 +84,7 @@ $indent-amount: 40px;
 $normalize-vertical-rhythm: false;
 
 // The dimensions of custom elements.
+$nav-height: 64px;
 $staff-section-card-title-wrapper-height: 30%;
 $staff-section-card-title-wrapper-mobile-height: 22%;
 $staff-section-card-text-wrapper-height: 100% - $staff-section-card-title-wrapper-height;
