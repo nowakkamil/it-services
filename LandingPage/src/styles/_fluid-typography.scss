@@ -4,7 +4,7 @@
     $min-value,
     $max-value,
     $min-screen: $mobile-min-width,
-    $max-screen: $desktop-min-width
+    $max-screen: $desktop-mid-width
 ) {
     & {
         @each $property in $properties {
