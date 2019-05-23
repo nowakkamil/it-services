@@ -17,6 +17,10 @@ main {
     overflow: hidden;
 }
 
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
 nav {
     z-index: 10;
     position: fixed;
