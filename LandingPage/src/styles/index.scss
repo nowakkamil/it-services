@@ -723,6 +723,8 @@ section {
         }
 
         &-staff {
+            $member: #{&}-member-container;
+
             &-container {
                 z-index: 2;
                 position: absolute;
@@ -749,6 +751,15 @@ section {
                 @media screen and (max-width: $mobile-min-width) {
                     height: 74%;
                 }
+
+                @media screen and (max-width: $mobile-undersized-width) {
+                    margin-bottom: -26vh;
+                    height: 98%;
+
+                    & > #{$member}:last-child {
+                        height: 18vh;
+                    }
+                }
             }
 
             // Border left set to none on each .staff-section__card-staff-member-container element but first
@@ -766,6 +777,7 @@ section {
                     @media screen and (max-width: $mobile-max-width) {
                         flex: 1 1 50%;
                         border-width: $staff-section-card-mobile-border-size;
+                        border-bottom: none;
                     }
 
                     &:hover {
@@ -787,6 +799,16 @@ section {
 
                         & #{$title-wrapper-lower} {
                             bottom: $staff-section-card-text-wrapper-height;
+                        }
+
+                        @media screen and (max-width: $mobile-undersized-width) {
+                            & #{$title-wrapper-upper} {
+                                top: $staff-section-card-text-wrapper-mobile-height;
+                            }
+
+                            & #{$title-wrapper-lower} {
+                                bottom: $staff-section-card-text-wrapper-mobile-height;
+                            }
                         }
                     }
                 }
@@ -822,6 +844,10 @@ section {
 
                 @media screen and (max-width: $mobile-max-width) {
                     transform: scale(1.1);
+                }
+
+                @media screen and (max-width: $mobile-undersized-width) {
+                    height: $staff-section-card-title-wrapper-mobile-height;
                 }
 
                 &--upper {
@@ -868,6 +894,11 @@ section {
                 line-height: initial;
             }
 
+            @media screen and (max-width: $mobile-undersized-width) {
+                font-size: $staff-section-card-text-panoramic-mobile-font-size;
+                line-height: initial;
+            }
+
             &-wrapper {
                 position: absolute;
                 display: flex;
@@ -878,9 +909,13 @@ section {
                 width: 100%;
                 height: $staff-section-card-text-wrapper-height;
                 background-color: $staff-section-card-border-color;
-                
+
                 @media screen and (max-height: $mobile-max-width) {
                     padding: 0 2%;
+                }
+
+                @media screen and (max-width: $mobile-undersized-width) {
+                    height: $staff-section-card-text-wrapper-mobile-height;
                 }
 
                 &--upper {
@@ -891,6 +926,16 @@ section {
                 &--lower {
                     bottom: -$staff-section-card-text-wrapper-height;
                     transition: bottom $staffSectionCardTransitionDurationTimingFunction;
+                }
+                
+                @media screen and (max-width: $mobile-undersized-width) {
+                    &--upper {
+                        top: -$staff-section-card-text-wrapper-mobile-height;
+                    }
+    
+                    &--lower {
+                        bottom: -$staff-section-card-text-wrapper-mobile-height;
+                    }
                 }
             }
         }

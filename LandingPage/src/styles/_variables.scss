@@ -62,7 +62,8 @@ $services-section-card-content-font-size: 1.23 * $base-font-size;
 $staff-section-title-font-size: 30 * $base-font-size;
 $staff-section-card-title-font-size: 1.88 * $base-font-size;
 $staff-section-card-text-font-size: 1.38 * $base-font-size;
-$staff-section-card-text-panoramic-tablet-font-size: 0.73 * $base-font-size;
+$staff-section-card-text-panoramic-tablet-font-size: 0.64 * $base-font-size;
+$staff-section-card-text-panoramic-mobile-font-size: 0.6 * $base-font-size;
 $contact-section-card-title-font-size: 5 * $base-font-size;
 $contact-section-card-button-font-size: 1 * $base-font-size;
 $contact-section-card-text-font-size: 1.5 * $base-font-size;
@@ -84,7 +85,9 @@ $normalize-vertical-rhythm: false;
 
 // The dimensions of custom elements.
 $staff-section-card-title-wrapper-height: 30%;
+$staff-section-card-title-wrapper-mobile-height: 22%;
 $staff-section-card-text-wrapper-height: 100% - $staff-section-card-title-wrapper-height;
+$staff-section-card-text-wrapper-mobile-height: 100% - $staff-section-card-title-wrapper-mobile-height;
 
 // The colors used throughout the application.
 $color-scotch-mist: #fffade;
@@ -113,7 +116,7 @@ $color-mine-shaft-95-alfa: #212121f2;
 
 // The border variables used by custom elements.
 $staff-section-card-border-size: 12px;
-$staff-section-card-mobile-border-size: 10px;
+$staff-section-card-mobile-border-size: 6px;
 $staff-section-card-border-color: $color-golden-fizz;
 
 // The variables used by the transitions of custom elements.
