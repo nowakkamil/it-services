@@ -888,22 +888,38 @@ section {
             transition: opacity 400ms ease-in-out 170ms;
 
             @media screen and (min-width: $mobile-max-width) and (max-height: $mobile-max-width) {
-                font-size: $staff-section-card-text-panoramic-tablet-font-size;
+                @include interpolate(
+                    font-size,
+                    $staff-section-card-text-panoramic-tablet-font-size / $relaxed-responsive-font-size-factor,
+                    $staff-section-card-text-panoramic-tablet-font-size
+                );
                 line-height: initial;
             }
 
             @media screen and (min-width: $laptop-min-width) and (max-height: $tablet-oversized-width) {
-                font-size: $h4-font-size;
+                @include interpolate(
+                    font-size,
+                    $h4-font-size / $relaxed-responsive-font-size-factor,
+                    $h4-font-size
+                );
                 line-height: initial;
             }
 
             @media screen and (min-width: $laptop-mid-width) and (max-height: $tablet-oversized-width) {
-                font-size: $h3-font-size;
+                @include interpolate(
+                    font-size,
+                    $h3-font-size / $relaxed-responsive-font-size-factor,
+                    $h3-font-size
+                );
                 line-height: initial;
             }
 
             @media screen and (max-width: $mobile-undersized-width) {
-                font-size: $staff-section-card-text-panoramic-mobile-font-size;
+                @include interpolate(
+                    font-size,
+                    $staff-section-card-text-panoramic-mobile-font-size / $relaxed-responsive-font-size-factor,
+                    $staff-section-card-text-panoramic-mobile-font-size
+                );
                 line-height: initial;
             }
 
