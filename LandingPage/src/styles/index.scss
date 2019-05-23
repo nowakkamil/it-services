@@ -386,7 +386,7 @@ section {
 
             &-description {
                 z-index: 1;
-                bottom: 24.5%;
+                bottom: 23%;
                 left: 14%;
                 padding: 0 15% 0 0;
                 @include interpolate(
@@ -773,6 +773,11 @@ section {
             // Border left set to none on each .staff-section__card-staff-member-container element but first
             &-container &-member-container ~ &-member-container {
                 border-left: none;
+
+                @media screen and (max-width: $mobile-max-width) {
+                    border: $staff-section-card-border-size solid $staff-section-card-border-color;
+                    border-width: $staff-section-card-mobile-border-size;
+                }
             }
 
             &-member {
@@ -880,8 +885,9 @@ section {
             );
             @include interpolate(
                 line-height,
-                $staff-section-card-text-line-height / $aggressive-responsive-font-size-factor,
-                $staff-section-card-text-line-height
+                $staff-section-card-text-line-height / $very-aggressive-responsive-font-size-factor,
+                $staff-section-card-text-line-height,
+                0
             );
             font-weight: 400;
             text-align: center;
@@ -902,25 +908,24 @@ section {
                     $h4-font-size / $relaxed-responsive-font-size-factor,
                     $h4-font-size
                 );
-                line-height: initial;
             }
 
-            @media screen and (min-width: $laptop-mid-width) and (max-height: $tablet-oversized-width) {
+            @media screen and (min-width: $desktop-min-width) and (max-height: $tablet-oversized-width) {
                 @include interpolate(
                     font-size,
                     $h3-font-size / $relaxed-responsive-font-size-factor,
                     $h3-font-size
                 );
-                line-height: initial;
             }
 
             @media screen and (max-width: $mobile-undersized-width) {
                 @include interpolate(
                     font-size,
-                    $staff-section-card-text-panoramic-mobile-font-size / $relaxed-responsive-font-size-factor,
-                    $staff-section-card-text-panoramic-mobile-font-size
+                    $staff-section-card-text-panoramic-mobile-font-size / $aggressive-responsive-font-size-factor,
+                    $staff-section-card-text-panoramic-mobile-font-size,
+                    0,
+                    $mobile-undersized-width
                 );
-                line-height: initial;
             }
 
             &-wrapper {

@@ -18,6 +18,7 @@ $laptop-undersized-width: 1000px;
 $laptop-min-width: 1024px;
 $laptop-mid-width: 1280px;
 $desktop-min-width: 1440px;
+$desktop-mid-width: 1920px;
 
 // The variables used to obtain fluid typography.
 $very-aggressive-responsive-font-size-factor: 4.5;
@@ -33,7 +34,7 @@ $base-font-size: 16px;
 $base-line-height: 24px;
 
 // The line heights for custom elements.
-$landing-section-header-line-height: 6.5 * $base-line-height;
+$landing-section-header-line-height: 7.5 * $base-line-height;
 $landing-section-description-line-height: 1.3 * $base-line-height;
 $staff-section-card-text-line-height: 1.1 * $base-line-height;
 
@@ -55,11 +56,11 @@ $h6-font-size: 0.67 * $base-font-size;
 // The font sizes for custom elements.
 $nav-link-font-size: 1.3 * $base-font-size;
 $nav-overlay-link-font-size: 3 * $base-font-size;
-$landing-section-left-header-font-size: 7.2 * $base-font-size;
-$landing-section-right-header-font-size: 6 * $base-font-size;
+$landing-section-left-header-font-size: 8.2 * $base-font-size;
+$landing-section-right-header-font-size: 6.8 * $base-font-size;
 $services-section-card-title-font-size: 1.33 * $base-font-size;
 $services-section-card-content-font-size: 1.23 * $base-font-size;
-$staff-section-title-font-size: 25 * $base-font-size;
+$staff-section-title-font-size: 26 * $base-font-size;
 $staff-section-card-title-font-size: 1.88 * $base-font-size;
 $staff-section-card-text-font-size: 1.38 * $base-font-size;
 $staff-section-card-text-panoramic-tablet-font-size: 0.9 * $base-font-size;
