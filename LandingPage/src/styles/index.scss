@@ -1008,20 +1008,30 @@ section {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 86vw;
+            width: 100vw;
             height: 84vh;
+            padding: 0 2%;
+
+            @media screen and (max-width: $tablet-oversized-width) {
+                @include interpolate(padding-top, 100px, 1px, 0, $tablet-oversized-width);
+            }
         }
 
         &-title {
             margin: 0 5% 3.4vh 5%;
             @include interpolate(
                 font-size,
-                $contact-section-card-title-font-size / $aggressive-responsive-font-size-factor,
-                $contact-section-card-title-font-size
+                $contact-section-card-title-font-size / $very-aggressive-responsive-font-size-factor,
+                $contact-section-card-title-font-size,
+                0
             );
             font-weight: 900;
             text-align: center;
             color: $color-concrete;
+
+            @media screen and (max-width: $mobile-min-width) {
+                width: 60%;
+            }
         }
 
         &-button {
@@ -1077,8 +1087,9 @@ section {
             margin: 4.1vh 0 0 0;
             @include interpolate(
                 font-size,
-                $contact-section-card-text-font-size / $relaxed-responsive-font-size-factor,
-                $contact-section-card-text-font-size
+                $contact-section-card-text-font-size / $standard-responsive-font-size-factor,
+                $contact-section-card-text-font-size,
+                0
             );
             font-weight: 300;
             text-align: center;
