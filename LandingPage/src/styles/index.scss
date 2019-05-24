@@ -32,11 +32,10 @@ nav {
     grid-template-columns: 612fr 388fr;
     top: 0;
     width: 100vw;
-    height: $nav-height;
+    @include interpolate(height, $nav-height / $very-relaxed-responsive-font-size-factor, $nav-height, 0);
 }
 
 .nav--no-js {
-    height: 76px;
     background: $color-concrete-50-alpha;
 
     @media screen and (max-width: $tablet-max-width) {
@@ -101,14 +100,8 @@ input {
 
 .nav {
     &__logo {
-        @include interpolate(
-            height,
-            $nav-logo-height / $very-relaxed-responsive-font-size-factor,
-            $nav-logo-height,
-            $mobile-mid-width
-        );
-        padding-top: 22px;
-        padding-left: 22px;
+        @include interpolate(height, $nav-logo-min-height, $nav-logo-max-height, 0);
+        @include interpolate((padding-top padding-left), 16px, 22px);
         filter: invert(96%);
         pointer-events: none;
 
@@ -180,7 +173,7 @@ input {
         position: relative;
         display: inline-block;
         height: 100%;
-        padding: 25px 20px;
+        @include interpolate((padding-top, padding-right, padding-bottom, padding-left), 18px, 25px, $tablet-max-width);
         @include interpolate(
             font-size,
             $nav-link-font-size / $relaxed-responsive-font-size-factor,
@@ -216,7 +209,7 @@ input {
             bottom: 18.5%;
             left: 12%;
             width: 0;
-            height: 3px;
+            @include interpolate(height, 2px, 3px, $laptop-undersized-width, $desktop-min-width);
             background-color: $color-broom;
             transition: width 250ms ease-in-out;
         }
@@ -1289,7 +1282,7 @@ section {
         width: 100%;
         @include interpolate(
             font-size,
-            $contact-section-footer-font-size / $very-relaxed-responsive-font-size-factor,
+            $contact-section-footer-font-size / $relaxed-responsive-font-size-factor,
             $contact-section-footer-font-size
         );
         text-align: center;

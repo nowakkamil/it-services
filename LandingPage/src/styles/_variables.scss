@@ -91,7 +91,8 @@ $normalize-vertical-rhythm: false;
 
 // The dimensions of custom elements.
 $nav-height: 64px;
-$nav-logo-height: 62px;
+$nav-logo-min-height: 40px;
+$nav-logo-max-height: 62px;
 $staff-section-card-title-wrapper-height: 30%;
 $staff-section-card-title-wrapper-mobile-height: 22%;
 $staff-section-card-text-wrapper-height: 100% - $staff-section-card-title-wrapper-height;
