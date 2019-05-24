@@ -7,14 +7,18 @@
     box-sizing: border-box;
 }
 
-hr {
-    margin: 0 5%;
-    border-top: 3px solid $color-scotch-mist;
-    border-bottom: none;
+body {
+    user-select: none;
 }
 
 main {
     overflow: hidden;
+}
+
+hr {
+    margin: 0 5%;
+    border-top: 3px solid $color-scotch-mist;
+    border-bottom: none;
 }
 
 a {
@@ -28,12 +32,15 @@ nav {
     grid-template-columns: 612fr 388fr;
     top: 0;
     width: 100vw;
-    height: $nav-height;
+    @include interpolate(height, $nav-height / $very-relaxed-responsive-font-size-factor, $nav-height, 0);
 }
 
 .nav--no-js {
-    height: 76px;
     background: $color-concrete-50-alpha;
+
+    @media screen and (max-width: $tablet-max-width) {
+        background: initial;
+    }
 }
 
 input {
@@ -66,12 +73,18 @@ input {
             & ~ .nav__link-wrapper-container .nav__link-wrapper .nav__link {
                 margin: 0;
                 padding: 6%;
-                font-size: $nav-overlay-link-font-size;
+                @include interpolate(
+                    font-size,
+                    $nav-overlay-link-font-size / $standard-responsive-font-size-factor,
+                    $nav-overlay-link-font-size,
+                    0
+                );
+                transition: color 150ms ease-in-out 20ms;
 
                 &::after {
-                    bottom: 4.5%;
+                    bottom: 0;
                     left: 0;
-                    height: 4px;
+                    height: 3px;
                     background-color: white;
                 }
 
@@ -83,7 +96,7 @@ input {
                     }
 
                     &:active {
-                        color: white;
+                        color: $color-mine-shaft-50-alfa;
                     }
                 }
             }
@@ -93,9 +106,8 @@ input {
 
 .nav {
     &__logo {
-        height: 70px;
-        padding-top: 22px;
-        padding-left: 22px;
+        @include interpolate(height, $nav-logo-min-height, $nav-logo-max-height, 0);
+        @include interpolate((padding-top padding-left), 16px, 22px);
         filter: invert(96%);
         pointer-events: none;
 
@@ -131,7 +143,8 @@ input {
 
     &__icon {
         width: 4.6vw;
-        max-width: 40px;
+        min-width: 17px;
+        max-width: 28px;
 
         &-wrapper {
             z-index: 21;
@@ -166,7 +179,7 @@ input {
         position: relative;
         display: inline-block;
         height: 100%;
-        padding: 25px 20px;
+        @include interpolate((padding-top, padding-right, padding-bottom, padding-left), 18px, 25px, $tablet-max-width);
         @include interpolate(
             font-size,
             $nav-link-font-size / $relaxed-responsive-font-size-factor,
@@ -202,7 +215,7 @@ input {
             bottom: 18.5%;
             left: 12%;
             width: 0;
-            height: 3px;
+            @include interpolate(height, 2px, 3px, $laptop-undersized-width, $desktop-min-width);
             background-color: $color-broom;
             transition: width 250ms ease-in-out;
         }
@@ -795,7 +808,15 @@ section {
                 width: 8vw;
 
                 @media screen and (max-width: $mobile-mid-width) {
-                    width: 9.1vw;
+                    width: 10vw;
+                }
+
+                @media screen and (max-width: $mobile-min-width) {
+                    width: 14vw;
+                }
+
+                @media screen and (max-width: $mobile-min-width) and (max-height: $mobile-max-width) {
+                    width: 7vh;
                 }
             }
 
@@ -803,7 +824,15 @@ section {
                 width: 9.8vw;
 
                 @media screen and (max-width: $mobile-mid-width) {
-                    width: 11vw;
+                    width: 12.2vw;
+                }
+
+                @media screen and (max-width: $mobile-min-width) {
+                    width: 18vw;
+                }
+
+                @media screen and (max-width: $mobile-min-width) and (max-height: $mobile-max-width) {
+                    width: 8vh;
                 }
             }
 
@@ -812,6 +841,14 @@ section {
 
                 @media screen and (max-width: $mobile-mid-width) {
                     width: 10.4vw;
+                }
+
+                @media screen and (max-width: $mobile-min-width) {
+                    width: 14vw;
+                }
+
+                @media screen and (max-width: $mobile-min-width) and (max-height: $mobile-max-width) {
+                    width: 7vh;
                 }
             }
 
@@ -851,6 +888,14 @@ section {
                 top: 9%;
                 left: 52%;
                 transform: translate(-50%, 30%);
+
+                @media screen and (max-width: $mobile-min-width) {
+                    top: 2%;
+                }
+
+                @media screen and (max-width: $mobile-min-width) and (max-height: $mobile-max-width) {
+                    top: 9%;
+                }
             }
         }
 
@@ -880,21 +925,20 @@ section {
                 }
 
                 @media screen and (max-width: $tablet-max-width) {
-                    height: 66%;
+                    height: 72%;
                 }
 
                 @media screen and (max-width: $mobile-max-width) {
-                    height: 67%;
-                    min-height: 420px;
+                    height: 80%;
                 }
 
                 @media screen and (max-width: $mobile-min-width) {
-                    height: 74%;
+                    height: 82%;
                 }
 
                 @media screen and (max-width: $mobile-undersized-width) {
-                    margin-bottom: -26vh;
-                    height: 98%;
+                    margin-bottom: -28vh;
+                    height: 104%;
 
                     & > #{$member}:last-child {
                         height: 18vh;
@@ -1120,6 +1164,7 @@ section {
     position: relative;
 
     &__card {
+        $card: #{&};
         flex: 0 0 50%;
         min-width: 400px;
         display: flex;
@@ -1138,10 +1183,21 @@ section {
             transform: translate(-50%, -50%);
             width: 100vw;
             height: 84vh;
-            padding: 0 2%;
+            padding: 0 4.5%;
+            overflow-x: hidden;
+            overflow-y: auto;
+
+            @media screen and (max-width: $tablet-max-width) {
+                margin-top: -4vh;
+                height: 90vh;
+            }
 
             @media screen and (max-width: $tablet-oversized-width) {
-                @include interpolate(padding-top, 100px, 1px, 0, $tablet-oversized-width);
+                @include interpolate(padding-top, 80px, 16px, 0, $tablet-oversized-width);
+            }
+
+            & > #{$card}:last-child {
+                padding-top: 1%;
             }
         }
 
@@ -1232,7 +1288,7 @@ section {
         width: 100%;
         @include interpolate(
             font-size,
-            $contact-section-footer-font-size / $very-relaxed-responsive-font-size-factor,
+            $contact-section-footer-font-size / $relaxed-responsive-font-size-factor,
             $contact-section-footer-font-size
         );
         text-align: center;
