@@ -7,14 +7,18 @@
     box-sizing: border-box;
 }
 
-hr {
-    margin: 0 5%;
-    border-top: 3px solid $color-scotch-mist;
-    border-bottom: none;
+body {
+    user-select: none;
 }
 
 main {
     overflow: hidden;
+}
+
+hr {
+    margin: 0 5%;
+    border-top: 3px solid $color-scotch-mist;
+    border-bottom: none;
 }
 
 a {
@@ -1129,6 +1133,7 @@ section {
     position: relative;
 
     &__card {
+        $card: #{&};
         flex: 0 0 50%;
         min-width: 400px;
         display: flex;
@@ -1147,12 +1152,21 @@ section {
             transform: translate(-50%, -50%);
             width: 100vw;
             height: 84vh;
-            padding: 0 2%;
+            padding: 0 4.5%;
             overflow-x: hidden;
             overflow-y: scroll;
 
+            @media screen and (max-width: $tablet-max-width) {
+                margin-top: -4vh;
+                height: 90vh;
+            }
+
             @media screen and (max-width: $tablet-oversized-width) {
-                @include interpolate(padding-top, 40px, 10px, 0, $tablet-oversized-width);
+                @include interpolate(padding-top, 80px, 16px, 0, $tablet-oversized-width);
+            }
+
+            & > #{$card}:last-child {
+                padding-top: 1%;
             }
         }
 
