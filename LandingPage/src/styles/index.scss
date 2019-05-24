@@ -34,6 +34,10 @@ nav {
 .nav--no-js {
     height: 76px;
     background: $color-concrete-50-alpha;
+
+    @media screen and (max-width: $tablet-max-width) {
+        background: initial;
+    }
 }
 
 input {
@@ -93,7 +97,12 @@ input {
 
 .nav {
     &__logo {
-        height: 70px;
+        @include interpolate(
+            height,
+            $nav-logo-height / $very-relaxed-responsive-font-size-factor,
+            $nav-logo-height,
+            $mobile-mid-width
+        );
         padding-top: 22px;
         padding-left: 22px;
         filter: invert(96%);
@@ -131,7 +140,8 @@ input {
 
     &__icon {
         width: 4.6vw;
-        max-width: 40px;
+        min-width: 17px;
+        max-width: 28px;
 
         &-wrapper {
             z-index: 21;
@@ -880,21 +890,20 @@ section {
                 }
 
                 @media screen and (max-width: $tablet-max-width) {
-                    height: 66%;
+                    height: 72%;
                 }
 
                 @media screen and (max-width: $mobile-max-width) {
-                    height: 67%;
-                    min-height: 420px;
+                    height: 80%;
                 }
 
                 @media screen and (max-width: $mobile-min-width) {
-                    height: 74%;
+                    height: 82%;
                 }
 
                 @media screen and (max-width: $mobile-undersized-width) {
-                    margin-bottom: -26vh;
-                    height: 98%;
+                    margin-bottom: -28vh;
+                    height: 104%;
 
                     & > #{$member}:last-child {
                         height: 18vh;
@@ -1139,9 +1148,11 @@ section {
             width: 100vw;
             height: 84vh;
             padding: 0 2%;
+            overflow-x: hidden;
+            overflow-y: scroll;
 
             @media screen and (max-width: $tablet-oversized-width) {
-                @include interpolate(padding-top, 100px, 1px, 0, $tablet-oversized-width);
+                @include interpolate(padding-top, 40px, 10px, 0, $tablet-oversized-width);
             }
         }
 
