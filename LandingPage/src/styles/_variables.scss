@@ -12,6 +12,7 @@ $mobile-undersized-width: 320px;
 $mobile-min-width: 375px;
 $mobile-mid-width: 480px;
 $mobile-max-width: 600px;
+$mobile-max-width-inclusive: $mobile-max-width + 1px;
 $tablet-max-width: 768px;
 $tablet-oversized-width: 800px;
 $laptop-undersized-width: 1000px;
@@ -36,6 +37,7 @@ $base-line-height: 24px;
 // The line heights for custom elements.
 $landing-section-header-line-height: 7.5 * $base-line-height;
 $landing-section-description-line-height: 1.3 * $base-line-height;
+$landing-section-description-mobile-line-height: 1.14 * $base-line-height;
 $staff-section-card-text-line-height: 1.1 * $base-line-height;
 
 // The length unit in which to output vertical rhythm values.
@@ -58,6 +60,8 @@ $nav-link-font-size: 1.3 * $base-font-size;
 $nav-overlay-link-font-size: 3 * $base-font-size;
 $landing-section-left-header-font-size: 8.2 * $base-font-size;
 $landing-section-right-header-font-size: 6.8 * $base-font-size;
+$landing-section-header-mobile-font-size: 8 * $base-font-size;
+$landing-section-description-mobile-font-size: 1.3 * $base-font-size;
 $services-section-card-title-font-size: 1.33 * $base-font-size;
 $services-section-card-content-font-size: 1.23 * $base-font-size;
 $staff-section-title-font-size: 26 * $base-font-size;
@@ -72,6 +76,7 @@ $contact-section-footer-font-size: 1.1 * $base-font-size;
 
 // The letter spacings for custom elements.
 $landing-section-left-header-letter-spacing: 10px;
+$landing-section-header-mobile-letter-spacing: 5px;
 $staff-section-card-title-letter-spacing: 20px;
 
 // The amount lists and blockquotes are indented.
@@ -95,6 +100,7 @@ $staff-section-card-text-wrapper-mobile-height: 100% - $staff-section-card-title
 $color-scotch-mist: #fffade;
 $color-scotch-mist-20-alpha: #fffade33;
 $color-scotch-mist-50-alpha: #fffade8f;
+$color-scotch-mist-80-alpha: #fffadecc;
 $color-scotch-mist-90-alpha: #fffadee6;
 $color-concrete: #f2f2f2;
 $color-concrete-10-alpha: #f2f2f21a;

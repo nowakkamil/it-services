@@ -251,9 +251,21 @@ section {
     display: grid;
     grid-template-columns: 618fr 382fr;
 
+    @media screen and (max-width: $mobile-max-width) {
+        position: relative;
+        display: block;
+    }
+
     &-left {
         grid-column: 1;
         background-color: #151515;
+
+        @media screen and (max-width: $mobile-max-width) {
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
 
         &__image {
             position: absolute;
@@ -262,6 +274,11 @@ section {
             height: 100%;
             max-width: 100vw;
             object-fit: cover;
+            filter: brightness(68%);
+
+            @media screen and (max-width: $mobile-max-width) {
+                filter: brightness(52%);
+            }
 
             &-wrapper {
                 position: relative;
@@ -281,6 +298,10 @@ section {
                     height: 100%;
                     overflow: hidden;
                     mix-blend-mode: screen;
+
+                    @media screen and (max-width: $mobile-max-width) {
+                        display: none;
+                    }
                 }
 
                 &-bokeh {
@@ -329,11 +350,62 @@ section {
         position: relative;
         grid-column: 2;
         width: 100%;
+        height: 100%;
         box-shadow: inset 100px -10px 55px -102px rgba(0, 0, 0, 0.45);
         background-color: white;
 
+        @media screen and (max-width: $mobile-max-width) {
+            box-shadow: none;
+            background-color: transparent;
+        }
+
         &__text {
+            &-mobile {
+                margin: -3% 0;
+
+                &--yellow-bold {
+                    padding-top: 5%;
+                    font-weight: 700;
+                    @include interpolate(
+                        letter-spacing,
+                        $landing-section-header-mobile-letter-spacing / $standard-responsive-font-size-factor,
+                        $landing-section-header-mobile-letter-spacing,
+                        0
+                    );
+                    color: $color-bright-sun;
+                }
+
+                &--grey-regular {
+                    // The font size has more aggressive behaviour in terms of responsiveness.
+                    // This happens due to min-width set to 0px instead of the default value used in the container
+                    @include interpolate(
+                        font-size,
+                        $landing-section-header-mobile-font-size / $aggressive-responsive-font-size-factor,
+                        $landing-section-header-mobile-font-size,
+                        0
+                    );
+                    color: $color-scotch-mist-80-alpha;
+                }
+            }
+
             &-container {
+                &-mobile {
+                    position: absolute;
+                    top: 41%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    @include interpolate(
+                        font-size,
+                        $landing-section-header-mobile-font-size / $aggressive-responsive-font-size-factor,
+                        $landing-section-header-mobile-font-size
+                    );
+                    text-align: center;
+
+                    @media screen and (min-width: $mobile-max-width-inclusive) {
+                        display: none;
+                    }
+                }
+
                 &-left,
                 &-right {
                     position: absolute;
@@ -344,6 +416,10 @@ section {
                         $landing-section-header-line-height / $aggressive-responsive-font-size-factor,
                         $landing-section-header-line-height
                     );
+
+                    @media screen and (max-width: $mobile-max-width) {
+                        display: none;
+                    }
                 }
 
                 &-left {
@@ -362,7 +438,11 @@ section {
 
                 &-right {
                     transform: translate(3%, -50%);
-                    padding-top: $h3-font-size;
+                    @include interpolate(
+                        padding-top,
+                        $h3-font-size / $aggressive-responsive-font-size-factor,
+                        $h3-font-size
+                    );
                     @include interpolate(
                         font-size,
                         $landing-section-right-header-font-size / $aggressive-responsive-font-size-factor,
@@ -385,7 +465,12 @@ section {
             &-description,
             &-read-more {
                 position: absolute;
-                @include interpolate(font-size, $h2-font-size / $aggressive-responsive-font-size-factor, $h2-font-size);
+                @include interpolate(
+                    font-size,
+                    $h2-font-size / $standard-responsive-font-size-factor,
+                    $h2-font-size,
+                    $mobile-max-width
+                );
             }
 
             &-description {
@@ -398,6 +483,41 @@ section {
                     $landing-section-description-line-height / $standard-responsive-font-size-factor,
                     $landing-section-description-line-height
                 );
+
+                &-wrapper {
+                    @media screen and (max-width: $mobile-max-width) {
+                        position: absolute;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        bottom: 0;
+                        width: 100vw;
+                        height: 18vh;
+                        background: white;
+                    }
+                }
+
+                @media screen and (max-width: $mobile-max-width) {
+                    position: initial;
+                    display: inline;
+                    margin: 0;
+                    padding: 0 20%;
+                    @include interpolate(
+                        font-size,
+                        $landing-section-description-mobile-font-size / $relaxed-responsive-font-size-factor,
+                        $landing-section-description-mobile-font-size,
+                        $mobile-undersized-width,
+                        $mobile-max-width
+                    );
+                    @include interpolate(
+                        line-height,
+                        $landing-section-description-mobile-line-height / $standard-responsive-font-size-factor,
+                        $landing-section-description-mobile-line-height,
+                        $mobile-undersized-width,
+                        $mobile-max-width
+                    );
+                    text-align: center;
+                }
             }
 
             &-read-more {
@@ -428,6 +548,10 @@ section {
                 left: 0;
                 height: 5.5%;
                 width: 71%;
+
+                @media screen and (max-width: $mobile-max-width) {
+                    display: none;
+                }
             }
 
             &:hover .landing-section-right__text-read-more {
@@ -449,6 +573,10 @@ section {
                 bottom: 0;
                 height: 30%;
                 width: 100%;
+
+                @media screen and (max-width: $mobile-max-width) {
+                    display: none;
+                }
             }
         }
     }
