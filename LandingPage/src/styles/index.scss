@@ -73,12 +73,18 @@ input {
             & ~ .nav__link-wrapper-container .nav__link-wrapper .nav__link {
                 margin: 0;
                 padding: 6%;
-                font-size: $nav-overlay-link-font-size;
+                @include interpolate(
+                    font-size,
+                    $nav-overlay-link-font-size / $standard-responsive-font-size-factor,
+                    $nav-overlay-link-font-size,
+                    0
+                );
+                transition: color 150ms ease-in-out 20ms;
 
                 &::after {
-                    bottom: 4.5%;
+                    bottom: 0;
                     left: 0;
-                    height: 4px;
+                    height: 3px;
                     background-color: white;
                 }
 
@@ -90,7 +96,7 @@ input {
                     }
 
                     &:active {
-                        color: white;
+                        color: $color-mine-shaft-50-alfa;
                     }
                 }
             }
