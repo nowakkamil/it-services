@@ -809,7 +809,15 @@ section {
                 width: 8vw;
 
                 @media screen and (max-width: $mobile-mid-width) {
-                    width: 9.1vw;
+                    width: 10vw;
+                }
+
+                @media screen and (max-width: $mobile-min-width) {
+                    width: 14vw;
+                }
+
+                @media screen and (max-width: $mobile-min-width) and (max-height: $mobile-max-width) {
+                    width: 7vh;
                 }
             }
 
@@ -817,7 +825,15 @@ section {
                 width: 9.8vw;
 
                 @media screen and (max-width: $mobile-mid-width) {
-                    width: 11vw;
+                    width: 12.2vw;
+                }
+
+                @media screen and (max-width: $mobile-min-width) {
+                    width: 18vw;
+                }
+
+                @media screen and (max-width: $mobile-min-width) and (max-height: $mobile-max-width) {
+                    width: 8vh;
                 }
             }
 
@@ -826,6 +842,14 @@ section {
 
                 @media screen and (max-width: $mobile-mid-width) {
                     width: 10.4vw;
+                }
+
+                @media screen and (max-width: $mobile-min-width) {
+                    width: 14vw;
+                }
+
+                @media screen and (max-width: $mobile-min-width) and (max-height: $mobile-max-width) {
+                    width: 7vh;
                 }
             }
 
@@ -865,6 +889,14 @@ section {
                 top: 9%;
                 left: 52%;
                 transform: translate(-50%, 30%);
+
+                @media screen and (max-width: $mobile-min-width) {
+                    top: 2%;
+                }
+
+                @media screen and (max-width: $mobile-min-width) and (max-height: $mobile-max-width) {
+                    top: 9%;
+                }
             }
         }
 
@@ -1154,7 +1186,7 @@ section {
             height: 84vh;
             padding: 0 4.5%;
             overflow-x: hidden;
-            overflow-y: scroll;
+            overflow-y: auto;
 
             @media screen and (max-width: $tablet-max-width) {
                 margin-top: -4vh;
