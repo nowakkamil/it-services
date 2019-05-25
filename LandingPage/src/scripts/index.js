@@ -6,10 +6,25 @@ import barba from '@barba/core';
 import { TweenMax } from "gsap/all";
 
 const navbar = document.getElementsByTagName('nav')[0];
+const links = document.querySelectorAll('a[href]');
 
 // Reset the style if the JavaScript is enabled
 if (navbar) {
     navbar.classList.remove('nav--no-js');
+}
+
+// Disable page reload when the user clicks on a link with the same url as the current page
+let disableCurrentPageReload = function (e) {
+    if (e.currentTarget.href === window.location.href) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+};
+
+if (links) {
+    for (var index = 0; index < links.length; index++) {
+        links[index].addEventListener('click', disableCurrentPageReload);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -31,10 +46,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// The "async" callback is passed
+// The 'async' callback is passed
 function containerOutAnimation(element, done) {
-    const links = document.getElementsByTagName('a');
-
     // Prevent the links from being active during the transition effect
     if (links) {
         for (let index = 0; index < links.length; index++) {
@@ -52,7 +65,6 @@ function containerInAnimation(element) {
         const staff = document.querySelector('#staff');
         const contact = document.querySelector('#contact');
         const video = document.querySelector('#video');
-        const links = document.getElementsByTagName('a');
 
         if (services) {
             services.style.visibility = "visible";
