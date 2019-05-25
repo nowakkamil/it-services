@@ -1,0 +1,334 @@
+.landing-section {
+    display: grid;
+    grid-template-columns: 618fr 382fr;
+
+    @media screen and (max-width: $mobile-max-width) {
+        position: relative;
+        display: block;
+    }
+
+    &-left {
+        grid-column: 1;
+        background-color: #151515;
+
+        @media screen and (max-width: $mobile-max-width) {
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        &__image {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            max-width: 100vw;
+            object-fit: cover;
+            filter: brightness(68%);
+
+            @media screen and (max-width: $mobile-max-width) {
+                filter: brightness(52%);
+            }
+
+            &-wrapper {
+                position: relative;
+                height: 100%;
+                width: 100%;
+            }
+
+            &-overlay {
+                position: relative;
+                width: 100%;
+                height: 100%;
+
+                &-wrapper {
+                    z-index: 1;
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    mix-blend-mode: screen;
+
+                    @media screen and (max-width: $mobile-max-width) {
+                        display: none;
+                    }
+                }
+
+                &-bokeh {
+                    position: absolute;
+                    border-radius: 50%;
+                    animation-name: bokeh;
+                    animation-iteration-count: infinite;
+                    animation-timing-function: linear;
+                    will-change: transform;
+
+                    @for $index from 1 through $bokehCount {
+                        &:nth-child(#{$index}) {
+                            $randomizedSize: random(3) + $bokehBaseSize;
+                            width: $randomizedSize;
+                            height: $randomizedSize;
+                            top: random(100) * 1% - random(40) * 1%;
+                            left: random(100) * 1%;
+                            color: nth($colorSet, random(length($colorSet)));
+                            opacity: $bokehBaseOpacity + random(4) * 0.1;
+                            box-shadow: ($randomizedSize + 5rem) 0 (0.35rem + random() * 0.5rem) currentColor;
+                            transform-origin: (random(40) - 20) * 1rem (random(40) - 20) * 1rem;
+                            animation-duration: $bokehBaseDuration + random(30) * 1s;
+                            filter: brightness($bokehBaseBrightness + random(150) * 1%);
+                        }
+                    }
+
+                    // The initial position of a few particles is set to match the text for the overlay effect
+                    @for $index from 1 through $bokehTextOverlayCount {
+                        &:nth-child(#{$index}) {
+                            top: random(55) * 1%;
+                            left: random(30) * 1% + 50%;
+                        }
+                    }
+
+                    @keyframes bokeh {
+                        100% {
+                            transform: rotate(360deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &-right {
+        position: relative;
+        grid-column: 2;
+        width: 100%;
+        height: 100%;
+        box-shadow: inset 100px -10px 55px -102px rgba(0, 0, 0, 0.45);
+        background-color: white;
+
+        @media screen and (max-width: $mobile-max-width) {
+            box-shadow: none;
+            background-color: transparent;
+        }
+
+        &__text {
+            &-mobile {
+                margin: -3% 0;
+
+                &--yellow-bold {
+                    padding-top: 5%;
+                    font-weight: 700;
+                    @include interpolate(
+                        letter-spacing,
+                        $landing-section-header-mobile-letter-spacing / $standard-responsive-font-size-factor,
+                        $landing-section-header-mobile-letter-spacing,
+                        0
+                    );
+                    color: $color-bright-sun;
+                }
+
+                &--grey-regular {
+                    // The font size has more aggressive behaviour in terms of responsiveness.
+                    // This happens due to min-width set to 0px instead of the default value used in the container
+                    @include interpolate(
+                        font-size,
+                        $landing-section-header-mobile-font-size / $aggressive-responsive-font-size-factor,
+                        $landing-section-header-mobile-font-size,
+                        0
+                    );
+                    color: $color-scotch-mist-80-alpha;
+                }
+            }
+
+            &-container {
+                &-mobile {
+                    position: absolute;
+                    top: 41%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    @include interpolate(
+                        font-size,
+                        $landing-section-header-mobile-font-size / $aggressive-responsive-font-size-factor,
+                        $landing-section-header-mobile-font-size
+                    );
+                    text-align: center;
+
+                    @media screen and (min-width: $mobile-max-width-inclusive) {
+                        display: none;
+                    }
+                }
+
+                &-left,
+                &-right {
+                    position: absolute;
+                    top: 35%;
+                    left: 0;
+                    @include interpolate(
+                        line-height,
+                        $landing-section-header-line-height / $aggressive-responsive-font-size-factor,
+                        $landing-section-header-line-height
+                    );
+
+                    @media screen and (max-width: $mobile-max-width) {
+                        display: none;
+                    }
+                }
+
+                &-left {
+                    transform: translate(-101%, -50%);
+                    mix-blend-mode: screen;
+                    @include interpolate(
+                        font-size,
+                        $landing-section-left-header-font-size / $aggressive-responsive-font-size-factor,
+                        $landing-section-left-header-font-size
+                    );
+                    font-weight: 900;
+                    letter-spacing: $landing-section-left-header-letter-spacing;
+                    text-align: right;
+                    color: $color-broom;
+                }
+
+                &-right {
+                    transform: translate(3%, -50%);
+                    @include interpolate(
+                        padding-top,
+                        $h3-font-size / $aggressive-responsive-font-size-factor,
+                        $h3-font-size
+                    );
+                    @include interpolate(
+                        font-size,
+                        $landing-section-right-header-font-size / $aggressive-responsive-font-size-factor,
+                        $landing-section-right-header-font-size
+                    );
+                    text-align: left;
+                    color: $color-mine-shaft-95-alfa;
+                }
+            }
+
+            &-upper,
+            &-lower {
+                &-left,
+                &-right {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+
+            &-description,
+            &-read-more {
+                position: absolute;
+                @include interpolate(
+                    font-size,
+                    $h2-font-size / $standard-responsive-font-size-factor,
+                    $h2-font-size,
+                    $mobile-max-width
+                );
+            }
+
+            &-description {
+                z-index: 1;
+                bottom: 23%;
+                left: 14%;
+                padding: 0 15% 0 0;
+                @include interpolate(
+                    line-height,
+                    $landing-section-description-line-height / $standard-responsive-font-size-factor,
+                    $landing-section-description-line-height
+                );
+
+                &-wrapper {
+                    @media screen and (max-width: $mobile-max-width) {
+                        position: absolute;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        bottom: 0;
+                        width: 100vw;
+                        height: 18vh;
+                        background: white;
+                    }
+                }
+
+                @media screen and (max-width: $mobile-max-width) {
+                    position: initial;
+                    display: inline;
+                    margin: 0;
+                    padding: 0 20%;
+                    @include interpolate(
+                        font-size,
+                        $landing-section-description-mobile-font-size / $relaxed-responsive-font-size-factor,
+                        $landing-section-description-mobile-font-size,
+                        $mobile-undersized-width,
+                        $mobile-max-width
+                    );
+                    @include interpolate(
+                        line-height,
+                        $landing-section-description-mobile-line-height / $standard-responsive-font-size-factor,
+                        $landing-section-description-mobile-line-height,
+                        $mobile-undersized-width,
+                        $mobile-max-width
+                    );
+                    text-align: center;
+                }
+            }
+
+            &-read-more {
+                @include interpolate(bottom, 12px, 22px);
+                right: 2.5%;
+                margin: 0;
+                padding: 0;
+                color: $color-mine-shaft-50-alfa;
+            }
+        }
+
+        &__text-read-more,
+        &__line {
+            transition-property: color, stroke;
+            transition-duration: 200ms;
+            transition-timing-function: ease-in-out;
+        }
+
+        &__read-more-container {
+            position: relative;
+            height: 100%;
+            width: 102%;
+
+            &-wrapper {
+                z-index: 1;
+                position: absolute;
+                bottom: 10%;
+                left: 0;
+                height: 5.5%;
+                width: 71%;
+
+                @media screen and (max-width: $mobile-max-width) {
+                    display: none;
+                }
+            }
+
+            &:hover .landing-section-right__text-read-more {
+                color: $color-broom;
+                cursor: default;
+            }
+
+            &:hover .landing-section-right__line {
+                stroke: $color-broom;
+            }
+        }
+
+        &__line {
+            stroke: $color-mine-shaft-50-alfa;
+            stroke-width: 2;
+
+            &-wrapper {
+                position: absolute;
+                bottom: 0;
+                height: 30%;
+                width: 100%;
+
+                @media screen and (max-width: $mobile-max-width) {
+                    display: none;
+                }
+            }
+        }
+    }
+}
