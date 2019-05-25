@@ -2,59 +2,81 @@ import '../styles/_normalize.scss';
 import '../styles/_variables.scss';
 import '../styles/_vertical-rhythm.scss';
 import '../styles/index.scss';
+import barba from '@barba/core';
+import { TweenMax } from "gsap/all";
 
 const navbar = document.getElementsByTagName('nav')[0];
 
 // Reset the style if the JavaScript is enabled
-navbar.classList.remove('nav--no-js');
+if (navbar) {
+    navbar.classList.remove('nav--no-js');
+}
 
-// Initialise services section
-(() => {
-    let request = new XMLHttpRequest();
+document.addEventListener("DOMContentLoaded", function () {
+    barba.init({
+        transitions: [
+            {
+                // Default value
+                sync: false,
 
-    request.open('GET', '/services.html', true);
+                // This does not return anything and uses the 'this.async()' pattern
+                leave({ current }) {
+                    containerOutAnimation(current.container, this.async());
+                },
 
-    request.onload = function () {
-        if (request.status >= 200 && request.status < 400) {
-            let response = request.responseText;
+                // Return a promise
+                enter: ({ next }) => containerInAnimation(next.container)
+            }
+        ]
+    });
+});
 
-            document.querySelector('#services').innerHTML = response;
+// The "async" callback is passed
+function containerOutAnimation(element, done) {
+    const links = document.getElementsByTagName('a');
+
+    // Prevent the links from being active during the transition effect
+    if (links) {
+        for (let index = 0; index < links.length; index++) {
+            links[index].style.pointerEvents = "none";
         }
-    };
+    }
 
-    request.send();
-})();
+    TweenMax.to(element, 1, { height: 0, y: "-200", autoAlpha: 0, onComplete: done });
+}
 
-// Initialise staff section
-(() => {
-    let request = new XMLHttpRequest();
+// Return a promise
+function containerInAnimation(element) {
+    return new Promise(resolve => {
+        const services = document.querySelector('#services');
+        const staff = document.querySelector('#staff');
+        const contact = document.querySelector('#contact');
+        const video = document.querySelector('#video');
+        const links = document.getElementsByTagName('a');
 
-    request.open('GET', '/staff.html', true);
-
-    request.onload = function () {
-        if (request.status >= 200 && request.status < 400) {
-            let response = request.responseText;
-
-            document.querySelector('#staff').innerHTML = response;
+        if (services) {
+            services.style.visibility = "visible";
         }
-    };
-
-    request.send();
-})();
-
-// Initialise contact section
-(() => {
-    let request = new XMLHttpRequest();
-
-    request.open('GET', '/contact.html', true);
-
-    request.onload = function () {
-        if (request.status >= 200 && request.status < 400) {
-            let response = request.responseText;
-
-            document.querySelector('#contact').innerHTML = response;
+        if (staff) {
+            staff.style.visibility = "visible";
         }
-    };
+        if (contact) {
+            contact.style.visibility = "visible";
+        }
 
-    request.send();
-})();
+        if (video) {
+            video.play();
+        }
+
+        // Reactivate the links after the transition has taken place
+        if (links) {
+            setTimeout(() => {
+                for (let index = 0; index < links.length; index++) {
+                    links[index].style.pointerEvents = "auto";
+                }
+            }, 1000);
+        }
+
+        TweenMax.fromTo(element, 1, { opacity: 0 }, { opacity: 1, onComplete: resolve });
+    });
+}

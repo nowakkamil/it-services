@@ -11,8 +11,15 @@
     box-sizing: border-box;
 }
 
+#services,
+#staff,
+#contact {
+    visibility: hidden;
+}
+
 body {
     user-select: none;
+    overflow: hidden;
 }
 
 main {
