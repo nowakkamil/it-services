@@ -23,7 +23,20 @@ module.exports = {
       { from: Path.resolve(__dirname, '../public'), to: 'public' }
     ]),
     new HtmlWebpackPlugin({
+      filename: 'index.html',
       template: Path.resolve(__dirname, '../src/index.html')
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'services.html',
+      template: Path.resolve(__dirname, '../src/services.html')
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'staff.html',
+      template: Path.resolve(__dirname, '../src/staff.html')
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'contact.html',
+      template: Path.resolve(__dirname, '../src/contact.html')
     })
   ],
   resolve: {
@@ -46,7 +59,7 @@ module.exports = {
             name: '[path][name].[ext]'
           }
         }
-      },
+      }
     ]
   }
 };

@@ -1,0 +1,135 @@
+.contact-section {
+    position: relative;
+
+    &__card {
+        $card: #{&};
+        flex: 0 0 50%;
+        min-width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &-container {
+            position: absolute;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 84vh;
+            padding: 0 4.5%;
+            overflow-x: hidden;
+            overflow-y: auto;
+
+            @media screen and (max-width: $tablet-max-width) {
+                margin-top: -4vh;
+                height: 90vh;
+            }
+
+            @media screen and (max-width: $tablet-oversized-width) {
+                @include interpolate(padding-top, 80px, 16px, 0, $tablet-oversized-width);
+            }
+
+            & > #{$card}:last-child {
+                padding-top: 1%;
+            }
+        }
+
+        &-title {
+            margin: 0 5% 3.4vh 5%;
+            @include interpolate(
+                font-size,
+                $contact-section-card-title-font-size / $very-aggressive-responsive-font-size-factor,
+                $contact-section-card-title-font-size,
+                0
+            );
+            font-weight: 900;
+            text-align: center;
+            color: $color-concrete;
+
+            @media screen and (max-width: $mobile-min-width) {
+                width: 60%;
+            }
+        }
+
+        &-button {
+            $button: &;
+            $rect: #{&}-rect;
+            $text: #{&}-text;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+
+            &-wrapper {
+                position: relative;
+
+                // Proportions: svg width / svg height
+                $svgProportions: 166 / 45;
+                $viewportWidth: 4.5vw;
+                width: $viewportWidth * $svgProportions;
+                height: $viewportWidth;
+                min-width: 166px;
+                min-height: 45px;
+
+                &:hover {
+                    & #{$button} #{$rect} {
+                        stroke: $color-broom;
+                        stroke-width: 4;
+                        stroke-dasharray: 110, 312;
+                        stroke-dashoffset: 183;
+                    }
+
+                    & #{$text} {
+                        fill: $color-broom;
+                    }
+                }
+            }
+
+            &-rect {
+                stroke: $color-concrete;
+                stroke-width: 4;
+                stroke-dasharray: 422, 0;
+                stroke-dashoffset: 0;
+                transition: $contactSectionButtonTransitions;
+            }
+
+            &-text {
+                font-size: $contact-section-card-button-font-size;
+                fill: $color-concrete;
+            }
+        }
+
+        &-text {
+            margin: 4.1vh 0 0 0;
+            @include interpolate(
+                font-size,
+                $contact-section-card-text-font-size / $standard-responsive-font-size-factor,
+                $contact-section-card-text-font-size,
+                0
+            );
+            font-weight: 300;
+            text-align: center;
+            color: $color-concrete;
+        }
+    }
+
+    &__footer {
+        position: absolute;
+        bottom: 1.1%;
+        left: 0;
+        width: 100%;
+        @include interpolate(
+            font-size,
+            $contact-section-footer-font-size / $relaxed-responsive-font-size-factor,
+            $contact-section-footer-font-size
+        );
+        text-align: center;
+        color: $color-concrete-15-alpha;
+    }
+}
