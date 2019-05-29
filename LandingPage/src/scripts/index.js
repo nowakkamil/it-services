@@ -5,8 +5,10 @@ import '../styles/index.scss';
 import barba from '@barba/core';
 import { TweenMax, TimelineMax, Power4 } from "gsap/all";
 
+const githubPagesRepo = 'it-services';
 const navbar = document.querySelector('nav');
 const links = document.querySelectorAll('a[href]');
+let windowPathname = window.location.pathname;
 
 // Reset the style if the JavaScript is enabled
 if (navbar) {
@@ -27,8 +29,16 @@ if (links) {
     }
 }
 
+// Test for the URL scheme of GitHub Pages and normalize window path if necessary
+if (windowPathname.includes(githubPagesRepo)) {
+    windowPathname =
+        windowPathname
+            .replace(/\//, '')
+            .replace(githubPagesRepo, '');
+}
+
 // Display the landing section animation when the user enters the page for the first time
-if (window.location.pathname === '/') {
+if (windowPathname === '/') {
     unhideContent();
     landingEnterPromise(document.querySelector('#landing'));
 }
