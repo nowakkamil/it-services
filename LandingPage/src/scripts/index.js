@@ -3,12 +3,16 @@ import '../styles/_variables.scss';
 import '../styles/_vertical-rhythm.scss';
 import '../styles/index.scss';
 import barba from '@barba/core';
-import { TweenMax, TimelineMax, Power4 } from "gsap/all";
+import { CSSPlugin, AttrPlugin, TweenMax, TimelineMax, Power4 } from "gsap/all";
 
-const githubPagesRepo = 'it-services';
+// Prevent the webpack from performing tree shaking
+const plugins = [CSSPlugin, AttrPlugin];
 const navbar = document.querySelector('nav');
 const links = document.querySelectorAll('a[href]');
+const githubPagesRepo = 'it-services';
 let windowPathname = window.location.pathname;
+
+document.addEventListener("DOMContentLoaded", barbaInit);
 
 // Reset the style if the JavaScript is enabled
 if (navbar) {
@@ -55,7 +59,7 @@ function landingEnterPromise(landing, resolve) {
         .from(bokeh, 3, { left: 300, opacity: 0, ease: Power4.easeOut }, "-=0.9");
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+function barbaInit() {
     barba.hooks.leave(() => {
         deactivateLinks();
     });
@@ -130,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
         debug: true,
         logLevel: 4,
     });
-});
+}
 
 // The 'async' callback is passed
 function containerOutAnimation(element, done) {
