@@ -3,7 +3,7 @@ import '../styles/_variables.scss';
 import '../styles/_vertical-rhythm.scss';
 import '../styles/index.scss';
 import barba from '@barba/core';
-import { TweenMax, TimelineMax } from "gsap/all";
+import { TweenMax, TimelineMax, Power4 } from "gsap/all";
 
 const navbar = document.querySelector('nav');
 const links = document.querySelectorAll('a[href]');
@@ -35,10 +35,14 @@ if (window.location.pathname === '/') {
 
 function landingEnterPromise(landing, resolve) {
     let rightColumn = document.querySelector('.landing-section-right');
+    let rightColumnLeftText = document.querySelector('.landing-section-right__text-container-left');
+    let bokeh = document.querySelector('.landing-section-left__image-overlay');
 
     new TimelineMax({ onComplete: resolve })
-        .fromTo(landing, 1, { opacity: 0 }, { opacity: 1 })
-        .from(rightColumn, 0.5, { y: -100, opacity: 0 });
+        .from(landing, 2, { opacity: 0, ease: Power4.easeInOut })
+        .from(rightColumn, 1.5, { x: 300, opacity: 0, ease: Power4.easeOut, clearProps: "all" }, "-=1")
+        .from(rightColumnLeftText, 1.5, { left: 100, opacity: 0, ease: Power4.easeOut }, "-=0.9")
+        .from(bokeh, 3, { left: 300, opacity: 0, ease: Power4.easeOut }, "-=0.9");
 }
 
 document.addEventListener("DOMContentLoaded", function () {

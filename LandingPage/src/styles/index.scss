@@ -256,12 +256,12 @@ section {
 }
 
 .section {
-    &--white {
-        background: white;
+    &--mine-shaft-darker {
+        background: $color-mine-shaft-darker;
     }
 
     &--bright-sun {
-        background-color: $color-bright-sun;
+        background: $color-bright-sun;
     }
 
     &--mine-shaft {
