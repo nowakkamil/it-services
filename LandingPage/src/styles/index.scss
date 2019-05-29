@@ -11,6 +11,7 @@
     box-sizing: border-box;
 }
 
+#landing,
 #services,
 #staff,
 #contact {
@@ -20,6 +21,7 @@
 body {
     user-select: none;
     overflow: hidden;
+    background-color: $color-mine-shaft;
 }
 
 main {
@@ -259,7 +261,7 @@ section {
     }
 
     &--yellow {
-        background-color: $color-golden-fizz-85-alfa;
+        background-color: $color-bright-sun;
     }
 
     &--mine-shaft {
