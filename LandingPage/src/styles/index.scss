@@ -11,8 +11,17 @@
     box-sizing: border-box;
 }
 
+#landing,
+#services,
+#staff,
+#contact {
+    visibility: hidden;
+}
+
 body {
     user-select: none;
+    overflow: hidden;
+    background-color: $color-mine-shaft;
 }
 
 main {
@@ -247,12 +256,12 @@ section {
 }
 
 .section {
-    &--white {
-        background: white;
+    &--mine-shaft-darker {
+        background: $color-mine-shaft-darker;
     }
 
-    &--yellow {
-        background-color: $color-golden-fizz-85-alfa;
+    &--bright-sun {
+        background: $color-bright-sun;
     }
 
     &--mine-shaft {
