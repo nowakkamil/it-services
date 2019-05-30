@@ -56,13 +56,10 @@ header,
     align-items: center;
     background-color: $color-bright-sun;
 
-    &--hidden {
-        display: none;
-    }
-
     &__overlay {
         @extend %header;
         z-index: 99;
+        top: 100%;
         background-color: $color-tundora;
     }
 
