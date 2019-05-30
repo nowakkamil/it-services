@@ -7,7 +7,20 @@
     <title>IT Services</title>
 </head>
 
-<body>
+<!-- Inline styles will be removed after window load event has been fired -->
+<body style="background-color: #ffda38; overflow: hidden;">
+
+    <header class="header" style="z-index: 100; position: fixed; top: 0; bottom: 0; right: 0; left: 0; width: 100vw; height: 100vh;
+                                  display: flex; justify-content: center; align-items: center; background-color: #ffda38;">
+
+        <div class="header__logo-wrapper" style="width: 18%;">
+            <object class="header__logo" data="public/logo.svg" type="image/svg+xml"></object>
+        </div>
+
+        <div class="header__overlay">
+        </div>
+
+    </header>
 
     <nav class="nav--no-js">
         <input class="nav__toggler" type="checkbox">

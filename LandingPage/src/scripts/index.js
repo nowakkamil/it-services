@@ -3,70 +3,140 @@ import '../styles/_variables.scss';
 import '../styles/_vertical-rhythm.scss';
 import '../styles/index.scss';
 import barba from '@barba/core';
-import { CSSPlugin, AttrPlugin, TweenMax, TimelineMax, Power4 } from "gsap/all";
+import { CSSPlugin, AttrPlugin, TweenMax, TimelineMax, Power4, Expo } from "gsap/all";
 
 // Prevent the webpack from performing tree shaking
 const plugins = [CSSPlugin, AttrPlugin];
-const navbar = document.querySelector('nav');
-const links = document.querySelectorAll('a[href]');
 const githubPagesRepo = 'it-services';
 let windowPathname = window.location.pathname;
 
+// Elements of the DOM
+const body = document.body;
+const navbar = document.querySelector('nav');
+const header = document.querySelector('.header');
+const headerOverlay = document.querySelector('.header__overlay');
+const headerLogo = document.querySelector('.header__logo-wrapper');
+const links = document.querySelectorAll('a[href]');
+
+// Assign event handlers
 document.addEventListener("DOMContentLoaded", barbaInit);
+window.onload = windowOnLoad;
+
+function windowOnLoad() {
+    resetNavbarStyle();
+    removeInlineStyleOnWindowLoad();
+    hideheaderOnWindowLoad();
+    disableCurrentPageReload();
+    animateOnWindowLoad();
+}
 
 // Reset the style if the JavaScript is enabled
-if (navbar) {
-    navbar.classList.remove('nav--no-js');
+function resetNavbarStyle() {
+    if (navbar) {
+        navbar.classList.remove('nav--no-js');
+    }
+}
+
+function removeInlineStyleOnWindowLoad() {
+    if (body) {
+        body.removeAttribute('style');
+    }
+    if (header) {
+        header.removeAttribute('style');
+    }
+    if (headerLogo) {
+        header.removeAttribute('style');
+    }
+}
+
+function hideheaderOnWindowLoad() {
+    if (header) {
+        header.classList.add('header--hidden');
+    }
+}
+
+function unhideHeader() {
+    if (header) {
+        header.classList.remove('header--hidden');
+        header.style.visibility = "visible";
+    }
 }
 
 // Disable page reload when the user clicks on a link with the same url as the current page
-let disableCurrentPageReload = function (e) {
-    if (e.currentTarget.href === window.location.href) {
-        e.preventDefault();
-        e.stopPropagation();
-    }
-};
+function disableCurrentPageReload() {
+    let disableCurrentPageReload = function (e) {
+        if (e.currentTarget.href === window.location.href) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    };
 
-if (links) {
-    for (let index = 0; index < links.length; index++) {
-        links[index].addEventListener('click', disableCurrentPageReload);
+    if (links) {
+        for (let index = 0; index < links.length; index++) {
+            links[index].addEventListener('click', disableCurrentPageReload);
+        }
     }
 }
 
 // Test for the URL scheme of GitHub Pages and normalize window path if necessary
-if (windowPathname.includes(githubPagesRepo)) {
-    windowPathname =
-        windowPathname
-            .replace(/\//, '')
-            .replace(githubPagesRepo, '');
+function adjustWindowPathname() {
+    if (windowPathname.includes(githubPagesRepo)) {
+        windowPathname =
+            windowPathname
+                .replace(/\//, '')
+                .replace(githubPagesRepo, '');
+    }
 }
 
-// Display the landing section animation when the user enters the page for the first time
-if (windowPathname === '/') {
-    unhideContent();
-    landingEnterPromise(document.querySelector('#landing'));
+function animateOnWindowLoad() {
+    // Display the landing section animation when the user enters the page for the first time
+    if (windowPathname === '/') {
+        unhideContent();
+        landingEnterPromise(document.querySelector('#landing'));
+    }
 }
 
 function landingEnterPromise(landing, resolve) {
-    let rightColumn = document.querySelector('.landing-section-right');
-    let rightColumnLeftText = document.querySelector('.landing-section-right__text-container-left');
-    let bokeh = document.querySelector('.landing-section-left__image-overlay');
+    let rightColumn =
+        document.querySelector('.landing-section-right');
+    let rightColumnLeftText =
+        document.querySelector('.landing-section-right__text-container-left');
+    let bokeh =
+        document.querySelector('.landing-section-left__image-overlay');
 
-    new TimelineMax({ onComplete: resolve })
-        .from(landing, 2, { opacity: 0, ease: Power4.easeInOut })
-        .from(rightColumn, 1.5, { x: 300, opacity: 0, ease: Power4.easeOut, clearProps: "all" }, "-=1")
-        .from(rightColumnLeftText, 1.5, { left: 100, opacity: 0, ease: Power4.easeOut }, "-=0.9")
-        .from(bokeh, 3, { left: 300, opacity: 0, ease: Power4.easeOut }, "-=0.9");
+    new TimelineMax()
+        .from(landing, 1.8, {
+            opacity: 0,
+            ease: Power4.easeInOut
+        })
+        .from(rightColumn, 1.5, {
+            opacity: 0,
+            x: 300,
+            ease: Power4.easeOut,
+            clearProps: "all"
+        }, "-=1")
+        .from(rightColumnLeftText, 1.5, {
+            opacity: 0,
+            left: 100,
+            ease: Power4.easeOut,
+            onComplete: resolve
+        }, "-=1")
+        .from(bokeh, 4, {
+            opacity: 0,
+            left: 300,
+            ease: Expo.easeOut,
+            clearProps: "all"
+        }, "-=1");
 }
 
 function barbaInit() {
-    barba.hooks.leave(() => {
-        deactivateLinks();
-    });
+    barba.hooks.leave(() => deactivateLinks());
 
-    barba.hooks.enter(() => {
-        unhideContent();
-    });
+    barba.hooks.afterLeave(() => headerInAnimation());
+
+    barba.hooks.enter(() => unhideContent());
+
+    barba.hooks.afterEnter(() => reactivateLinks());
 
     barba.init({
         transitions: [
@@ -83,7 +153,7 @@ function barbaInit() {
                 },
 
                 // Return a promise
-                enter: ({ next }) => landingEnterAnimation(next.container).then(reactivateLinks)
+                enter: ({ next }) => landingEnterAnimation(next.container)
             },
             {
                 name: 'many-to-services',
@@ -98,7 +168,7 @@ function barbaInit() {
                 },
 
                 // Return a promise
-                enter: ({ next }) => containerInAnimation(next.container).then(reactivateLinks)
+                enter: ({ next }) => containerInAnimation(next.container)
             },
             {
                 name: 'many-to-staff',
@@ -113,7 +183,7 @@ function barbaInit() {
                 },
 
                 // Return a promise
-                enter: ({ next }) => containerInAnimation(next.container).then(reactivateLinks)
+                enter: ({ next }) => containerInAnimation(next.container)
             },
             {
                 name: 'many-to-contact',
@@ -128,7 +198,7 @@ function barbaInit() {
                 },
 
                 // Return a promise
-                enter: ({ next }) => containerInAnimation(next.container).then(reactivateLinks)
+                enter: ({ next }) => containerInAnimation(next.container)
             }
         ],
         debug: true,
@@ -138,7 +208,46 @@ function barbaInit() {
 
 // The 'async' callback is passed
 function containerOutAnimation(element, done) {
-    TweenMax.to(element, 1, { height: 0, y: "-200", autoAlpha: 0, onComplete: done });
+    // Timeout is used to enable execution of the next barba hook before this transition has finished
+    setTimeout(() => done(), 400);
+
+    TweenMax.to(element, 1, {
+        height: 0,
+        autoAlpha: 0,
+        ease: Power2.easeOut
+    });
+}
+
+// Return a promise
+function headerInAnimation() {
+    return new Promise(resolve => {
+        unhideHeader();
+
+        new TimelineMax()
+            .fromTo(headerOverlay, 1, {
+                autoAlpha: 1,
+                top: "-100%",
+                ease: Expo.easeInOut,
+            }, {
+                    top: "100%",
+                    ease: Expo.easeInOut,
+                })
+            .from(header, 1, {
+                autoAlpha: 1,
+                top: "-100%",
+                ease: Expo.easeInOut,
+                onComplete: resolve
+            }, '-=1')
+            .to(header, 1, {
+                top: "100%",
+                ease: Expo.easeInOut
+            }, '-=0.2')
+            .set(header, {
+                visibility: "hidden",
+                top: 0
+            })
+            .timeScale(0.82);
+    });
 }
 
 // Return a promise
