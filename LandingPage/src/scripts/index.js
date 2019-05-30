@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", barbaInit);
 window.onload = windowOnLoad;
 
 function windowOnLoad() {
+    adjustWindowPathname();
     resetNavbarStyle();
     removeInlineStyleOnWindowLoad();
     disableCurrentPageReload();
