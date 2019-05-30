@@ -109,7 +109,7 @@
                 // Reset the justify-content property so that the flex column is accessible while scrolling
                 justify-content: unset;
                 padding-bottom: 2.5%;
-                overflow-y: scroll;
+                overflow-y: auto;
             }
 
             @media screen and (max-width: $tablet-max-width) {

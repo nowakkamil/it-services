@@ -38,7 +38,8 @@ a {
     -webkit-tap-highlight-color: transparent;
 }
 
-header {
+header,
+%header {
     z-index: 100;
     position: fixed;
     top: 0;
@@ -57,6 +58,12 @@ header {
 
     &--hidden {
         display: none;
+    }
+
+    &__overlay {
+        @extend %header;
+        z-index: 99;
+        background-color: $color-tundora;
     }
 
     &__logo {

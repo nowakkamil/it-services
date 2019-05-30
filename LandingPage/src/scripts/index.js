@@ -14,6 +14,7 @@ let windowPathname = window.location.pathname;
 const body = document.body;
 const navbar = document.querySelector('nav');
 const header = document.querySelector('.header');
+const headerOverlay = document.querySelector('.header__overlay');
 const headerLogo = document.querySelector('.header__logo-wrapper');
 const links = document.querySelectorAll('a[href]');
 
@@ -54,7 +55,7 @@ function hideheaderOnWindowLoad() {
     }
 }
 
-function unhdeHeader() {
+function unhideHeader() {
     if (header) {
         header.classList.remove('header--hidden');
         header.style.visibility = "visible";
@@ -207,21 +208,36 @@ function barbaInit() {
 
 // The 'async' callback is passed
 function containerOutAnimation(element, done) {
-    TweenMax.to(element, 1, { height: 0, y: "-200", autoAlpha: 0, onComplete: done });
+    // Timeout is used to enable execution of the next barba hook before this transition has finished
+    setTimeout(() => done(), 400);
+
+    TweenMax.to(element, 1, {
+        height: 0,
+        autoAlpha: 0,
+        ease: Power2.easeOut
+    });
 }
 
 // Return a promise
 function headerInAnimation() {
     return new Promise(resolve => {
-        unhdeHeader();
+        unhideHeader();
 
         new TimelineMax()
+            .fromTo(headerOverlay, 1, {
+                autoAlpha: 1,
+                top: "-100%",
+                ease: Expo.easeInOut,
+            }, {
+                    top: "100%",
+                    ease: Expo.easeInOut,
+                })
             .from(header, 1, {
                 autoAlpha: 1,
                 top: "-100%",
                 ease: Expo.easeInOut,
                 onComplete: resolve
-            })
+            }, '-=1')
             .to(header, 1, {
                 top: "100%",
                 ease: Expo.easeInOut
@@ -229,7 +245,8 @@ function headerInAnimation() {
             .set(header, {
                 visibility: "hidden",
                 top: 0
-            });
+            })
+            .timeScale(.8);
     });
 }
 
