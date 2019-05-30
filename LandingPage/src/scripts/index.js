@@ -246,7 +246,7 @@ function headerInAnimation() {
                 visibility: "hidden",
                 top: 0
             })
-            .timeScale(.8);
+            .timeScale(0.82);
     });
 }
 
