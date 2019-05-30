@@ -3,7 +3,7 @@ import '../styles/_variables.scss';
 import '../styles/_vertical-rhythm.scss';
 import '../styles/index.scss';
 import barba from '@barba/core';
-import { CSSPlugin, AttrPlugin, TweenMax, TimelineMax, Power4, Expo } from "gsap/all";
+import { CSSPlugin, AttrPlugin, TweenMax, TimelineMax, Power2, Power4, Expo } from "gsap/all";
 
 // Prevent the webpack from performing tree shaking
 const plugins = [CSSPlugin, AttrPlugin];
@@ -25,9 +25,9 @@ window.onload = windowOnLoad;
 function windowOnLoad() {
     resetNavbarStyle();
     removeInlineStyleOnWindowLoad();
-    hideheaderOnWindowLoad();
     disableCurrentPageReload();
-    animateOnWindowLoad();
+    hideheaderOnWindowLoad();
+    setTimeout(() => animateOnWindowLoad(), 360);
 }
 
 // Reset the style if the JavaScript is enabled
@@ -50,14 +50,23 @@ function removeInlineStyleOnWindowLoad() {
 }
 
 function hideheaderOnWindowLoad() {
-    if (header) {
-        header.classList.add('header--hidden');
-    }
+    new TimelineMax()
+        .set(headerOverlay, {
+            visibility: "hidden"
+        })
+        .to(header, 1, {
+            top: "110%",
+            clearProps: "all",
+            ease: Power2.easeIn
+        })
+        .set(header, {
+            visibility: "hidden",
+            top: 0
+        });
 }
 
 function unhideHeader() {
     if (header) {
-        header.classList.remove('header--hidden');
         header.style.visibility = "visible";
     }
 }
@@ -239,7 +248,7 @@ function headerInAnimation() {
                 onComplete: resolve
             }, '-=1')
             .to(header, 1, {
-                top: "100%",
+                top: "110%",
                 ease: Expo.easeInOut
             }, '-=0.2')
             .set(header, {
