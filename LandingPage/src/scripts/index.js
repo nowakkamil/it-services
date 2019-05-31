@@ -3,7 +3,7 @@ import '../styles/_variables.scss';
 import '../styles/_vertical-rhythm.scss';
 import '../styles/index.scss';
 import barba from '@barba/core';
-import { CSSPlugin, AttrPlugin, TweenMax, TimelineMax, Power2, Power4, Expo } from "gsap/all";
+import { CSSPlugin, AttrPlugin, TweenMax, TimelineMax, Power2, Power3, Power4, Expo } from "gsap/all";
 
 // Prevent the webpack from performing tree shaking
 const plugins = [CSSPlugin, AttrPlugin];
@@ -102,14 +102,17 @@ function animateOnWindowLoad() {
     // Display the landing section animation when the user enters the page for the first time
     if (windowPathname === '/') {
         unhideContent();
-        landingEnterPromise(document.querySelector('#landing'));
+        landingEnterPromise(document.querySelector('#landing'), null, false);
     } else if (windowPathname.includes('services')) {
         unhideContent();
-        servicesEnterPromise();
+        servicesEnterPromise(null, false);
+    } else if (windowPathname.includes('contact')) {
+        unhideContent();
+        contactEnterPromise(null, false);
     }
 }
 
-function landingEnterPromise(landing, resolve) {
+function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
     let rightColumn =
         document.querySelector('.landing-section-right');
     let rightColumnLeftText =
@@ -117,11 +120,13 @@ function landingEnterPromise(landing, resolve) {
     let bokeh =
         document.querySelector('.landing-section-left__image-overlay');
 
+    let timelineDelay = (isBarbaTriggering) ? null : "+=0.48";
+
     new TimelineMax()
         .from(landing, 2.2, {
             opacity: 0,
             ease: Power4.easeInOut
-        })
+        }, timelineDelay)
         .from(rightColumn, 1.5, {
             opacity: 0,
             x: 300,
@@ -142,9 +147,11 @@ function landingEnterPromise(landing, resolve) {
         }, "-=1");
 }
 
-function servicesEnterPromise(resolve) {
+function servicesEnterPromise(resolve, isBarbaTriggering = true) {
     let cards =
         document.querySelectorAll('.services-section__card');
+
+    let timelineDelay = (isBarbaTriggering) ? 0.62 : 0.86;
 
     new TimelineMax()
         .staggerFrom(cards, 1.4, {
@@ -154,7 +161,47 @@ function servicesEnterPromise(resolve) {
             stagger: 0.3,
             onComplete: resolve
         })
-        .delay(0.85);
+        .delay(timelineDelay);
+}
+
+function contactEnterPromise(resolve, isBarbaTriggering = true) {
+    let cards =
+        document.querySelectorAll('.contact-section__card');
+
+    let cardsContainer =
+        document.querySelectorAll('.contact-section__card-container');
+
+    let footer =
+        document.querySelectorAll('.contact-section__footer');
+
+    let timelineDelay = (isBarbaTriggering) ? "+=0.66" : "+=1.22";
+
+    let pricesCard = cards[0];
+    let contactCard = cards[1];
+
+    new TimelineMax()
+        .set(cardsContainer, {
+            overflowY: "hidden"
+        })
+        .from(pricesCard, 1.7, {
+            opacity: 0,
+            y: "-20%",
+            ease: Power3.easeOut,
+        }, timelineDelay)
+        .from(contactCard, 1.7, {
+            opacity: 0,
+            y: "20%",
+            ease: Power3.easeOut,
+            onComplete: resolve
+        }, "-=1.7")
+        .from(footer, 0.9, {
+            opacity: 0,
+            y: "100%",
+            ease: Power3.easeOut
+        }, "-=0.4")
+        .set(cardsContainer, {
+            clearProps: "all"
+        });
 }
 
 function barbaInit() {
@@ -226,7 +273,7 @@ function barbaInit() {
                 },
 
                 // Return a promise
-                enter: ({ next }) => containerInAnimation(next.container)
+                enter: () => contactEnterAnimation()
             }
         ],
         debug: true,
@@ -292,6 +339,10 @@ function landingEnterAnimation(element) {
 
 function servicesEnterAnimation() {
     return new Promise(resolve => servicesEnterPromise(resolve));
+}
+
+function contactEnterAnimation() {
+    return new Promise(resolve => contactEnterPromise(resolve));
 }
 
 function unhideContent() {
