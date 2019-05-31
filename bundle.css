@@ -907,213 +907,213 @@ template {
           .landing-section-left__image-overlay-bokeh:nth-child(1) {
             width: 13rem;
             height: 13rem;
-            top: 24%;
-            left: 77%;
-            color: #212121e6;
-            opacity: 0.7;
-            box-shadow: 18rem 0 0.73124rem currentColor;
-            transform-origin: 14rem -3rem;
-            animation-duration: 83s;
-            filter: brightness(229%); }
+            top: 60%;
+            left: 15%;
+            color: #2121218f;
+            opacity: 0.9;
+            box-shadow: 18rem 0 0.58998rem currentColor;
+            transform-origin: 18rem 12rem;
+            animation-duration: 59s;
+            filter: brightness(206%); }
           .landing-section-left__image-overlay-bokeh:nth-child(2) {
             width: 13rem;
             height: 13rem;
             top: 65%;
-            left: 54%;
-            color: #2121218f;
-            opacity: 0.7;
-            box-shadow: 18rem 0 0.70134rem currentColor;
-            transform-origin: 3rem 6rem;
-            animation-duration: 84s;
-            filter: brightness(294%); }
+            left: 94%;
+            color: #21212133;
+            opacity: 1;
+            box-shadow: 18rem 0 0.64751rem currentColor;
+            transform-origin: -18rem 1rem;
+            animation-duration: 76s;
+            filter: brightness(257%); }
           .landing-section-left__image-overlay-bokeh:nth-child(3) {
+            width: 11rem;
+            height: 11rem;
+            top: 8%;
+            left: 9%;
+            color: #2121218f;
+            opacity: 0.9;
+            box-shadow: 16rem 0 0.57354rem currentColor;
+            transform-origin: -1rem 14rem;
+            animation-duration: 62s;
+            filter: brightness(179%); }
+          .landing-section-left__image-overlay-bokeh:nth-child(4) {
             width: 13rem;
             height: 13rem;
-            top: 34%;
-            left: 9%;
-            color: #f2f2f21a;
-            opacity: 0.7;
-            box-shadow: 18rem 0 0.46397rem currentColor;
-            transform-origin: 15rem -4rem;
-            animation-duration: 84s;
-            filter: brightness(178%); }
-          .landing-section-left__image-overlay-bokeh:nth-child(4) {
-            width: 11rem;
-            height: 11rem;
-            top: 17%;
-            left: 24%;
+            top: -6%;
+            left: 26%;
             color: #f2f2f21a;
             opacity: 0.8;
-            box-shadow: 16rem 0 0.5404rem currentColor;
-            transform-origin: 2rem 18rem;
-            animation-duration: 85s;
-            filter: brightness(293%); }
+            box-shadow: 18rem 0 0.4356rem currentColor;
+            transform-origin: 16rem 13rem;
+            animation-duration: 58s;
+            filter: brightness(273%); }
           .landing-section-left__image-overlay-bokeh:nth-child(5) {
-            width: 11rem;
-            height: 11rem;
-            top: 10%;
-            left: 34%;
+            width: 13rem;
+            height: 13rem;
+            top: 21%;
+            left: 69%;
             color: #212121e6;
-            opacity: 0.8;
-            box-shadow: 16rem 0 0.67061rem currentColor;
-            transform-origin: 0rem 10rem;
-            animation-duration: 81s;
-            filter: brightness(195%); }
+            opacity: 0.7;
+            box-shadow: 18rem 0 0.80247rem currentColor;
+            transform-origin: 10rem 20rem;
+            animation-duration: 85s;
+            filter: brightness(158%); }
           .landing-section-left__image-overlay-bokeh:nth-child(6) {
             width: 12rem;
             height: 12rem;
-            top: -6%;
-            left: 6%;
-            color: #f2f2f21a;
-            opacity: 1;
-            box-shadow: 17rem 0 0.69445rem currentColor;
-            transform-origin: -1rem -13rem;
-            animation-duration: 60s;
-            filter: brightness(160%); }
-          .landing-section-left__image-overlay-bokeh:nth-child(7) {
-            width: 11rem;
-            height: 11rem;
-            top: 20%;
-            left: 76%;
-            color: #2121218f;
-            opacity: 0.9;
-            box-shadow: 16rem 0 0.75663rem currentColor;
-            transform-origin: -19rem -6rem;
-            animation-duration: 68s;
-            filter: brightness(299%); }
-          .landing-section-left__image-overlay-bokeh:nth-child(8) {
-            width: 11rem;
-            height: 11rem;
-            top: -35%;
-            left: 64%;
-            color: #212121e6;
-            opacity: 0.9;
-            box-shadow: 16rem 0 0.61169rem currentColor;
-            transform-origin: 4rem -12rem;
-            animation-duration: 61s;
-            filter: brightness(259%); }
-          .landing-section-left__image-overlay-bokeh:nth-child(9) {
-            width: 12rem;
-            height: 12rem;
-            top: 13%;
-            left: 38%;
-            color: #212121e6;
-            opacity: 0.9;
-            box-shadow: 17rem 0 0.41935rem currentColor;
-            transform-origin: -13rem 15rem;
-            animation-duration: 72s;
-            filter: brightness(164%); }
-          .landing-section-left__image-overlay-bokeh:nth-child(10) {
-            width: 12rem;
-            height: 12rem;
-            top: 25%;
+            top: 17%;
             left: 53%;
-            color: #2121218f;
-            opacity: 0.8;
-            box-shadow: 17rem 0 0.77293rem currentColor;
-            transform-origin: 17rem 16rem;
-            animation-duration: 61s;
-            filter: brightness(210%); }
-          .landing-section-left__image-overlay-bokeh:nth-child(11) {
-            width: 13rem;
-            height: 13rem;
-            top: 32%;
-            left: 84%;
             color: #21212133;
+            opacity: 0.9;
+            box-shadow: 17rem 0 0.67193rem currentColor;
+            transform-origin: 15rem -12rem;
+            animation-duration: 62s;
+            filter: brightness(183%); }
+          .landing-section-left__image-overlay-bokeh:nth-child(7) {
+            width: 12rem;
+            height: 12rem;
+            top: 26%;
+            left: 64%;
+            color: #f2f2f21a;
             opacity: 0.7;
-            box-shadow: 18rem 0 0.46067rem currentColor;
-            transform-origin: 8rem 2rem;
-            animation-duration: 68s;
-            filter: brightness(276%); }
-          .landing-section-left__image-overlay-bokeh:nth-child(12) {
-            width: 11rem;
-            height: 11rem;
-            top: 69%;
-            left: 36%;
-            color: #2121218f;
-            opacity: 0.8;
-            box-shadow: 16rem 0 0.60925rem currentColor;
-            transform-origin: 4rem -19rem;
-            animation-duration: 67s;
-            filter: brightness(157%); }
-          .landing-section-left__image-overlay-bokeh:nth-child(13) {
+            box-shadow: 17rem 0 0.81998rem currentColor;
+            transform-origin: -5rem -16rem;
+            animation-duration: 74s;
+            filter: brightness(201%); }
+          .landing-section-left__image-overlay-bokeh:nth-child(8) {
             width: 13rem;
             height: 13rem;
-            top: 95%;
-            left: 46%;
-            color: #2121218f;
-            opacity: 1;
-            box-shadow: 18rem 0 0.78758rem currentColor;
-            transform-origin: 2rem -2rem;
-            animation-duration: 67s;
-            filter: brightness(280%); }
-          .landing-section-left__image-overlay-bokeh:nth-child(14) {
-            width: 11rem;
-            height: 11rem;
-            top: 30%;
-            left: 13%;
+            top: 39%;
+            left: 83%;
             color: #f2f2f21a;
-            opacity: 0.7;
-            box-shadow: 16rem 0 0.71341rem currentColor;
-            transform-origin: -3rem -5rem;
-            animation-duration: 68s;
-            filter: brightness(168%); }
-          .landing-section-left__image-overlay-bokeh:nth-child(15) {
-            width: 11rem;
-            height: 11rem;
-            top: 41%;
-            left: 20%;
-            color: #f2f2f21a;
-            opacity: 1;
-            box-shadow: 16rem 0 0.48296rem currentColor;
-            transform-origin: 18rem 20rem;
-            animation-duration: 58s;
-            filter: brightness(283%); }
-          .landing-section-left__image-overlay-bokeh:nth-child(16) {
-            width: 11rem;
-            height: 11rem;
-            top: 79%;
-            left: 34%;
-            color: #2121218f;
             opacity: 0.8;
-            box-shadow: 16rem 0 0.52855rem currentColor;
-            transform-origin: 14rem -17rem;
-            animation-duration: 57s;
-            filter: brightness(274%); }
-          .landing-section-left__image-overlay-bokeh:nth-child(17) {
+            box-shadow: 18rem 0 0.67007rem currentColor;
+            transform-origin: -5rem 18rem;
+            animation-duration: 60s;
+            filter: brightness(215%); }
+          .landing-section-left__image-overlay-bokeh:nth-child(9) {
             width: 13rem;
             height: 13rem;
             top: -1%;
-            left: 83%;
+            left: 57%;
+            color: #21212133;
+            opacity: 1;
+            box-shadow: 18rem 0 0.52198rem currentColor;
+            transform-origin: -18rem -13rem;
+            animation-duration: 84s;
+            filter: brightness(255%); }
+          .landing-section-left__image-overlay-bokeh:nth-child(10) {
+            width: 12rem;
+            height: 12rem;
+            top: 26%;
+            left: 61%;
+            color: #21212133;
+            opacity: 0.7;
+            box-shadow: 17rem 0 0.5546rem currentColor;
+            transform-origin: -11rem 14rem;
+            animation-duration: 81s;
+            filter: brightness(282%); }
+          .landing-section-left__image-overlay-bokeh:nth-child(11) {
+            width: 13rem;
+            height: 13rem;
+            top: -3%;
+            left: 24%;
+            color: #21212133;
+            opacity: 0.7;
+            box-shadow: 18rem 0 0.54304rem currentColor;
+            transform-origin: -14rem 8rem;
+            animation-duration: 84s;
+            filter: brightness(270%); }
+          .landing-section-left__image-overlay-bokeh:nth-child(12) {
+            width: 11rem;
+            height: 11rem;
+            top: -27%;
+            left: 2%;
+            color: #2121218f;
+            opacity: 0.8;
+            box-shadow: 16rem 0 0.45095rem currentColor;
+            transform-origin: 5rem -11rem;
+            animation-duration: 79s;
+            filter: brightness(260%); }
+          .landing-section-left__image-overlay-bokeh:nth-child(13) {
+            width: 13rem;
+            height: 13rem;
+            top: 54%;
+            left: 13%;
+            color: #f2f2f21a;
+            opacity: 0.9;
+            box-shadow: 18rem 0 0.57467rem currentColor;
+            transform-origin: -12rem -3rem;
+            animation-duration: 71s;
+            filter: brightness(183%); }
+          .landing-section-left__image-overlay-bokeh:nth-child(14) {
+            width: 11rem;
+            height: 11rem;
+            top: -23%;
+            left: 28%;
             color: #212121e6;
             opacity: 1;
-            box-shadow: 18rem 0 0.45001rem currentColor;
-            transform-origin: 2rem 13rem;
-            animation-duration: 70s;
-            filter: brightness(246%); }
+            box-shadow: 16rem 0 0.51905rem currentColor;
+            transform-origin: -2rem -16rem;
+            animation-duration: 74s;
+            filter: brightness(191%); }
+          .landing-section-left__image-overlay-bokeh:nth-child(15) {
+            width: 13rem;
+            height: 13rem;
+            top: 1%;
+            left: 29%;
+            color: #21212133;
+            opacity: 1;
+            box-shadow: 18rem 0 0.45605rem currentColor;
+            transform-origin: 17rem 3rem;
+            animation-duration: 58s;
+            filter: brightness(229%); }
+          .landing-section-left__image-overlay-bokeh:nth-child(16) {
+            width: 13rem;
+            height: 13rem;
+            top: 58%;
+            left: 98%;
+            color: #2121218f;
+            opacity: 0.9;
+            box-shadow: 18rem 0 0.74027rem currentColor;
+            transform-origin: 13rem 19rem;
+            animation-duration: 56s;
+            filter: brightness(170%); }
+          .landing-section-left__image-overlay-bokeh:nth-child(17) {
+            width: 12rem;
+            height: 12rem;
+            top: 64%;
+            left: 21%;
+            color: #f2f2f21a;
+            opacity: 0.7;
+            box-shadow: 17rem 0 0.68463rem currentColor;
+            transform-origin: 13rem 4rem;
+            animation-duration: 83s;
+            filter: brightness(226%); }
           .landing-section-left__image-overlay-bokeh:nth-child(18) {
             width: 11rem;
             height: 11rem;
-            top: 23%;
-            left: 36%;
-            color: #2121218f;
-            opacity: 0.9;
-            box-shadow: 16rem 0 0.51266rem currentColor;
-            transform-origin: -13rem -8rem;
-            animation-duration: 75s;
-            filter: brightness(246%); }
+            top: 39%;
+            left: 56%;
+            color: #f2f2f21a;
+            opacity: 0.8;
+            box-shadow: 16rem 0 0.66081rem currentColor;
+            transform-origin: 0rem -16rem;
+            animation-duration: 68s;
+            filter: brightness(234%); }
           .landing-section-left__image-overlay-bokeh:nth-child(1) {
-            top: 37%;
-            left: 63%; }
+            top: 23%;
+            left: 57%; }
           .landing-section-left__image-overlay-bokeh:nth-child(2) {
-            top: 26%;
-            left: 63%; }
-          .landing-section-left__image-overlay-bokeh:nth-child(3) {
-            top: 11%;
-            left: 54%; }
-          .landing-section-left__image-overlay-bokeh:nth-child(4) {
-            top: 49%;
+            top: 54%;
             left: 66%; }
+          .landing-section-left__image-overlay-bokeh:nth-child(3) {
+            top: 53%;
+            left: 69%; }
+          .landing-section-left__image-overlay-bokeh:nth-child(4) {
+            top: 23%;
+            left: 73%; }
 
 @keyframes bokeh {
   100% {
