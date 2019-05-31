@@ -157,6 +157,15 @@
             }
         }
 
+        &:first-child,
+        &:last-child {
+            transform: scale(0.926);
+
+            @media screen and (max-width: $tablet-max-width) {
+                transform: initial;
+            }
+        }
+
         &:first-child {
             margin-left: 0;
         }
