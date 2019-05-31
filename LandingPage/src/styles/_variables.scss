@@ -112,6 +112,8 @@ $color-concrete-35-alpha: #f2f2f259;
 $color-concrete-50-alpha: #f2f2f28f;
 $color-concrete-80-alpha: #f2f2f2cc;
 $color-bright-sun: #ffda38;
+$color-supernova: #ffd109;
+$color-sunglow: #ffd729;
 $color-broom: #ffeb16;
 $color-broom-50-alpha: #ffeb168f;
 $color-golden-fizz: #fded3c;
@@ -129,7 +131,7 @@ $color-tundora: #454545;
 // The border variables used by custom elements.
 $staff-section-card-border-size: 12px;
 $staff-section-card-mobile-border-size: 6px;
-$staff-section-card-border-color: $color-golden-fizz;
+$staff-section-card-border-color: $color-bright-sun;
 
 // The variables used by the transitions of custom elements.
 $navbarIconTransitionDurationTimingFunction: 250ms ease-in-out;

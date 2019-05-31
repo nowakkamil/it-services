@@ -98,26 +98,42 @@ function adjustWindowPathname() {
     }
 }
 
+// Display an appropriate animation when the user enters the page for the first time
 function animateOnWindowLoad() {
-    // Display the landing section animation when the user enters the page for the first time
+    // Display the landing section animation
     if (windowPathname === '/') {
         unhideContent();
         landingEnterPromise(document.querySelector('#landing'), null, false);
-    } else if (windowPathname.includes('services')) {
+    }
+    // Display the services section animation
+    else if (windowPathname.includes('services')) {
         unhideContent();
         servicesEnterPromise(null, false);
-    } else if (windowPathname.includes('contact')) {
+    }
+    // Display the staff section animation
+    else if (windowPathname.includes('staff')) {
+        unhideContent();
+        staffEnterPromise(document.querySelector('#staff'), null, false);
+    }
+    // Display the contact section animation
+    else if (windowPathname.includes('contact')) {
         unhideContent();
         contactEnterPromise(null, false);
+    }
+    // Redirect the user to the landing section when the URL doesn't match any of the above paths
+    else {
+        window.location.pathname = '/';
     }
 }
 
 function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
-    let rightColumn =
+    const rightColumn =
         document.querySelector('.landing-section-right');
-    let rightColumnLeftText =
+
+    const rightColumnLeftText =
         document.querySelector('.landing-section-right__text-container-left');
-    let bokeh =
+
+    const bokeh =
         document.querySelector('.landing-section-left__image-overlay');
 
     let timelineDelay = (isBarbaTriggering) ? null : "+=0.48";
@@ -148,7 +164,7 @@ function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
 }
 
 function servicesEnterPromise(resolve, isBarbaTriggering = true) {
-    let cards =
+    const cards =
         document.querySelectorAll('.services-section__card');
 
     let timelineDelay = (isBarbaTriggering) ? 0.62 : 0.86;
@@ -158,26 +174,61 @@ function servicesEnterPromise(resolve, isBarbaTriggering = true) {
             opacity: 0,
             y: "-20%",
             ease: Power4.easeOut,
-            stagger: 0.3,
+            clearProps: "all",
             onComplete: resolve
-        })
+        }, 0.3)
         .delay(timelineDelay);
 }
 
+function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
+    const cardsContainer =
+        document.querySelector('.staff-section__card-staff-container');
+
+    const cards =
+        document.querySelectorAll('.staff-section__card-staff-member-container');
+
+    const title =
+        document.querySelector('.staff-section__title');
+
+    let timelineDelay = (isBarbaTriggering) ? 0.62 : 0.9;
+
+    new TimelineMax()
+        .from(staff, 4.86, {
+            opacity: 0,
+            ease: Power3.easeOut
+        }, timelineDelay)
+        .staggerFrom(cards, 1.5, {
+            opacity: 0,
+            y: "50%",
+            ease: Expo.easeOut
+        }, 0.3, "-=4.4")
+        .from(title, 2, {
+            opacity: 0,
+            y: "80%",
+            ease: Power4.easeOut,
+            clearProps: "all",
+            onComplete: resolve
+        }, "-=2.62")
+        .from(cardsContainer, 4, {
+            boxShadow: "none",
+            ease: Power3.easeInOut
+        }, "-=2.2");
+}
+
 function contactEnterPromise(resolve, isBarbaTriggering = true) {
-    let cards =
+    const cards =
         document.querySelectorAll('.contact-section__card');
 
-    let cardsContainer =
-        document.querySelectorAll('.contact-section__card-container');
+    const pricesCard = cards[0];
+    const contactCard = cards[1];
 
-    let footer =
-        document.querySelectorAll('.contact-section__footer');
+    const cardsContainer =
+        document.querySelector('.contact-section__card-container');
+
+    const footer =
+        document.querySelector('.contact-section__footer');
 
     let timelineDelay = (isBarbaTriggering) ? "+=0.66" : "+=1.22";
-
-    let pricesCard = cards[0];
-    let contactCard = cards[1];
 
     new TimelineMax()
         .set(cardsContainer, {
@@ -258,7 +309,7 @@ function barbaInit() {
                 },
 
                 // Return a promise
-                enter: ({ next }) => containerInAnimation(next.container)
+                enter: ({ next }) => staffEnterAnimation(next.container)
             },
             {
                 name: 'many-to-contact',
@@ -339,6 +390,10 @@ function landingEnterAnimation(element) {
 
 function servicesEnterAnimation() {
     return new Promise(resolve => servicesEnterPromise(resolve));
+}
+
+function staffEnterAnimation(element) {
+    return new Promise(resolve => staffEnterPromise(element, resolve));
 }
 
 function contactEnterAnimation() {
