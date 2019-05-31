@@ -28,7 +28,7 @@ function windowOnLoad() {
     removeInlineStyleOnWindowLoad();
     disableCurrentPageReload();
     hideheaderOnWindowLoad();
-    setTimeout(() => animateOnWindowLoad(), 360);
+    animateOnWindowLoad();
 }
 
 // Reset the style if the JavaScript is enabled
@@ -103,6 +103,9 @@ function animateOnWindowLoad() {
     if (windowPathname === '/') {
         unhideContent();
         landingEnterPromise(document.querySelector('#landing'));
+    } else if (windowPathname.includes('services')) {
+        unhideContent();
+        servicesEnterPromise();
     }
 }
 
@@ -115,7 +118,7 @@ function landingEnterPromise(landing, resolve) {
         document.querySelector('.landing-section-left__image-overlay');
 
     new TimelineMax()
-        .from(landing, 1.8, {
+        .from(landing, 2.2, {
             opacity: 0,
             ease: Power4.easeInOut
         })
@@ -137,6 +140,21 @@ function landingEnterPromise(landing, resolve) {
             ease: Expo.easeOut,
             clearProps: "all"
         }, "-=1");
+}
+
+function servicesEnterPromise(resolve) {
+    let cards =
+        document.querySelectorAll('.services-section__card');
+
+    new TimelineMax()
+        .staggerFrom(cards, 1.4, {
+            opacity: 0,
+            y: "-20%",
+            ease: Power4.easeOut,
+            stagger: 0.3,
+            onComplete: resolve
+        })
+        .delay(0.85);
 }
 
 function barbaInit() {
@@ -178,7 +196,7 @@ function barbaInit() {
                 },
 
                 // Return a promise
-                enter: ({ next }) => containerInAnimation(next.container)
+                enter: () => servicesEnterAnimation()
             },
             {
                 name: 'many-to-staff',
@@ -270,6 +288,10 @@ function containerInAnimation(element) {
 
 function landingEnterAnimation(element) {
     return new Promise(resolve => landingEnterPromise(element, resolve));
+}
+
+function servicesEnterAnimation() {
+    return new Promise(resolve => servicesEnterPromise(resolve));
 }
 
 function unhideContent() {
