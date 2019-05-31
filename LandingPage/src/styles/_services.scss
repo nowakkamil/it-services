@@ -164,5 +164,10 @@
         &:last-child {
             margin-right: 0;
         }
+
+        @media screen and (max-width: $tablet-max-width) {
+            margin-left: 0;
+            margin-right: 0;
+        }
     }
 }
