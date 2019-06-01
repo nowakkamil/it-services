@@ -2,21 +2,19 @@ import '../styles/_normalize.scss';
 import '../styles/_variables.scss';
 import '../styles/_vertical-rhythm.scss';
 import '../styles/index.scss';
-import barba from '@barba/core';
-import { CSSPlugin, AttrPlugin, TweenMax, TimelineMax, Power2, Power3, Power4, Expo } from "gsap/all";
+
+import { CSSPlugin, AttrPlugin } from "gsap/all";
+
+import { githubPagesRepo, body, navbar, header, headerLogo, links } from '../scripts/constants';
+import { barbaInit } from '../scripts/barba';
+import { hideheaderOnWindowLoad, landingEnterPromise, servicesEnterPromise, staffEnterPromise, contactEnterPromise } from '../scripts/gsap';
+import { unhideContent } from '../scripts/utils';
 
 // Prevent the webpack from performing tree shaking
 const plugins = [CSSPlugin, AttrPlugin];
-const githubPagesRepo = 'it-services';
-let windowPathname = window.location.pathname;
 
-// Elements of the DOM
-const body = document.body;
-const navbar = document.querySelector('nav');
-const header = document.querySelector('.header');
-const headerOverlay = document.querySelector('.header__overlay');
-const headerLogo = document.querySelector('.header__logo-wrapper');
-const links = document.querySelectorAll('a[href]');
+// Store window pathname in a separate variable to later normalize it if necessary
+let windowPathname = window.location.pathname;
 
 // Assign event handlers
 document.addEventListener("DOMContentLoaded", barbaInit);
@@ -29,6 +27,16 @@ function windowOnLoad() {
     disableCurrentPageReload();
     hideheaderOnWindowLoad();
     animateOnWindowLoad();
+}
+
+// Test for the URL scheme of GitHub Pages and normalize window path if necessary
+function adjustWindowPathname() {
+    if (windowPathname.includes(githubPagesRepo)) {
+        windowPathname =
+            windowPathname
+                .replace(/\//, '')
+                .replace(githubPagesRepo, '');
+    }
 }
 
 // Reset the style if the JavaScript is enabled
@@ -50,28 +58,6 @@ function removeInlineStyleOnWindowLoad() {
     }
 }
 
-function hideheaderOnWindowLoad() {
-    new TimelineMax()
-        .set(headerOverlay, {
-            visibility: "hidden"
-        })
-        .to(header, 1, {
-            top: "110%",
-            clearProps: "all",
-            ease: Power2.easeIn
-        })
-        .set(header, {
-            visibility: "hidden",
-            top: 0
-        });
-}
-
-function unhideHeader() {
-    if (header) {
-        header.style.visibility = "visible";
-    }
-}
-
 // Disable page reload when the user clicks on a link with the same url as the current page
 function disableCurrentPageReload() {
     let disableCurrentPageReload = function (e) {
@@ -85,16 +71,6 @@ function disableCurrentPageReload() {
         for (let index = 0; index < links.length; index++) {
             links[index].addEventListener('click', disableCurrentPageReload);
         }
-    }
-}
-
-// Test for the URL scheme of GitHub Pages and normalize window path if necessary
-function adjustWindowPathname() {
-    if (windowPathname.includes(githubPagesRepo)) {
-        windowPathname =
-            windowPathname
-                .replace(/\//, '')
-                .replace(githubPagesRepo, '');
     }
 }
 
@@ -123,321 +99,5 @@ function animateOnWindowLoad() {
     // Redirect the user to the landing section when the URL doesn't match any of the above paths
     else {
         window.location.pathname = '/';
-    }
-}
-
-function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
-    const rightColumn =
-        document.querySelector('.landing-section-right');
-
-    const rightColumnLeftText =
-        document.querySelector('.landing-section-right__text-container-left');
-
-    const bokeh =
-        document.querySelector('.landing-section-left__image-overlay');
-
-    let timelineDelay = (isBarbaTriggering) ? null : "+=0.48";
-
-    new TimelineMax()
-        .from(landing, 2.2, {
-            opacity: 0,
-            ease: Power4.easeInOut
-        }, timelineDelay)
-        .from(rightColumn, 1.5, {
-            opacity: 0,
-            x: 300,
-            ease: Power4.easeOut,
-            clearProps: "all"
-        }, "-=1")
-        .from(rightColumnLeftText, 1.5, {
-            opacity: 0,
-            left: 100,
-            ease: Power4.easeOut,
-            onComplete: resolve
-        }, "-=1")
-        .from(bokeh, 4, {
-            opacity: 0,
-            left: 300,
-            ease: Expo.easeOut,
-            clearProps: "all"
-        }, "-=1");
-}
-
-function servicesEnterPromise(resolve, isBarbaTriggering = true) {
-    const cards =
-        document.querySelectorAll('.services-section__card');
-
-    let timelineDelay = (isBarbaTriggering) ? 0.62 : 0.86;
-
-    new TimelineMax()
-        .staggerFrom(cards, 1.4, {
-            opacity: 0,
-            y: "-20%",
-            ease: Power4.easeOut,
-            clearProps: "all",
-            onComplete: resolve
-        }, 0.3)
-        .delay(timelineDelay);
-}
-
-function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
-    const cardsContainer =
-        document.querySelector('.staff-section__card-staff-container');
-
-    const cards =
-        document.querySelectorAll('.staff-section__card-staff-member-container');
-
-    const title =
-        document.querySelector('.staff-section__title');
-
-    let timelineDelay = (isBarbaTriggering) ? 0.62 : 0.9;
-
-    new TimelineMax()
-        .from(staff, 4.86, {
-            opacity: 0,
-            ease: Power3.easeOut
-        }, timelineDelay)
-        .staggerFrom(cards, 1.5, {
-            opacity: 0,
-            y: "50%",
-            ease: Expo.easeOut
-        }, 0.3, "-=4.4")
-        .from(title, 2, {
-            opacity: 0,
-            y: "80%",
-            ease: Power4.easeOut,
-            clearProps: "all",
-            onComplete: resolve
-        }, "-=2.62")
-        .from(cardsContainer, 4, {
-            boxShadow: "none",
-            ease: Power3.easeInOut
-        }, "-=2.2");
-}
-
-function contactEnterPromise(resolve, isBarbaTriggering = true) {
-    const cards =
-        document.querySelectorAll('.contact-section__card');
-
-    const pricesCard = cards[0];
-    const contactCard = cards[1];
-
-    const cardsContainer =
-        document.querySelector('.contact-section__card-container');
-
-    const footer =
-        document.querySelector('.contact-section__footer');
-
-    let timelineDelay = (isBarbaTriggering) ? "+=0.66" : "+=1.22";
-
-    new TimelineMax()
-        .set(cardsContainer, {
-            overflowY: "hidden"
-        })
-        .from(pricesCard, 1.7, {
-            opacity: 0,
-            y: "-20%",
-            ease: Power3.easeOut,
-        }, timelineDelay)
-        .from(contactCard, 1.7, {
-            opacity: 0,
-            y: "20%",
-            ease: Power3.easeOut,
-            onComplete: resolve
-        }, "-=1.7")
-        .from(footer, 0.9, {
-            opacity: 0,
-            y: "100%",
-            ease: Power3.easeOut
-        }, "-=0.4")
-        .set(cardsContainer, {
-            clearProps: "all"
-        });
-}
-
-function barbaInit() {
-    barba.hooks.leave(() => deactivateLinks());
-
-    barba.hooks.afterLeave(() => headerInAnimation());
-
-    barba.hooks.enter(() => unhideContent());
-
-    barba.hooks.afterEnter(() => reactivateLinks());
-
-    barba.init({
-        transitions: [
-            {
-                name: 'many-to-landing',
-
-                custom: ({ trigger }) => {
-                    return trigger.getAttribute("href") && trigger.getAttribute("href").includes("/");
-                },
-
-                // This does not return anything and uses the 'this.async()' pattern
-                leave({ current }) {
-                    containerOutAnimation(current.container, this.async());
-                },
-
-                // Return a promise
-                enter: ({ next }) => landingEnterAnimation(next.container)
-            },
-            {
-                name: 'many-to-services',
-
-                custom: ({ trigger }) => {
-                    return trigger.getAttribute("href") && trigger.getAttribute("href").includes("services");
-                },
-
-                // This does not return anything and uses the 'this.async()' pattern
-                leave({ current }) {
-                    containerOutAnimation(current.container, this.async());
-                },
-
-                // Return a promise
-                enter: () => servicesEnterAnimation()
-            },
-            {
-                name: 'many-to-staff',
-
-                custom: ({ trigger }) => {
-                    return trigger.getAttribute("href") && trigger.getAttribute("href").includes("staff");
-                },
-
-                // This does not return anything and uses the 'this.async()' pattern
-                leave({ current }) {
-                    containerOutAnimation(current.container, this.async());
-                },
-
-                // Return a promise
-                enter: ({ next }) => staffEnterAnimation(next.container)
-            },
-            {
-                name: 'many-to-contact',
-
-                custom: ({ trigger }) => {
-                    return trigger.getAttribute("href") && trigger.getAttribute("href").includes("contact");
-                },
-
-                // This does not return anything and uses the 'this.async()' pattern
-                leave({ current }) {
-                    containerOutAnimation(current.container, this.async());
-                },
-
-                // Return a promise
-                enter: () => contactEnterAnimation()
-            }
-        ],
-        debug: true,
-        logLevel: 4,
-    });
-}
-
-// The 'async' callback is passed
-function containerOutAnimation(element, done) {
-    // Timeout is used to enable execution of the next barba hook before this transition has finished
-    setTimeout(() => done(), 400);
-
-    TweenMax.to(element, 1, {
-        height: 0,
-        autoAlpha: 0,
-        ease: Power2.easeOut
-    });
-}
-
-// Return a promise
-function headerInAnimation() {
-    return new Promise(resolve => {
-        unhideHeader();
-
-        new TimelineMax()
-            .fromTo(headerOverlay, 1, {
-                autoAlpha: 1,
-                top: "-100%",
-                ease: Expo.easeInOut,
-            }, {
-                    top: "100%",
-                    ease: Expo.easeInOut,
-                })
-            .from(header, 1, {
-                autoAlpha: 1,
-                top: "-100%",
-                ease: Expo.easeInOut,
-                onComplete: resolve
-            }, '-=1')
-            .to(header, 1, {
-                top: "110%",
-                ease: Expo.easeInOut
-            }, '-=0.2')
-            .set(header, {
-                visibility: "hidden",
-                top: 0
-            })
-            .timeScale(0.82);
-    });
-}
-
-// Return a promise
-function containerInAnimation(element) {
-    return new Promise(resolve => {
-        new TimelineMax({ onComplete: resolve })
-            .fromTo(element, 1, { opacity: 0 }, { opacity: 1 });
-    });
-}
-
-function landingEnterAnimation(element) {
-    return new Promise(resolve => landingEnterPromise(element, resolve));
-}
-
-function servicesEnterAnimation() {
-    return new Promise(resolve => servicesEnterPromise(resolve));
-}
-
-function staffEnterAnimation(element) {
-    return new Promise(resolve => staffEnterPromise(element, resolve));
-}
-
-function contactEnterAnimation() {
-    return new Promise(resolve => contactEnterPromise(resolve));
-}
-
-function unhideContent() {
-    const landing = document.querySelector('#landing');
-    const services = document.querySelector('#services');
-    const staff = document.querySelector('#staff');
-    const contact = document.querySelector('#contact');
-    const video = document.querySelector('#video');
-
-    if (landing) {
-        landing.style.visibility = "visible";
-    }
-    if (services) {
-        services.style.visibility = "visible";
-    }
-    if (staff) {
-        staff.style.visibility = "visible";
-    }
-    if (contact) {
-        contact.style.visibility = "visible";
-    }
-    if (video) {
-        video.play();
-    }
-}
-
-// Prevent the links from being active during the transition effect
-function deactivateLinks() {
-    if (links) {
-        for (let index = 0; index < links.length; index++) {
-            links[index].style.pointerEvents = "none";
-        }
-    }
-}
-
-// Reactivate the links after the transition has taken place
-function reactivateLinks() {
-    if (links) {
-        for (let index = 0; index < links.length; index++) {
-            links[index].style.pointerEvents = "auto";
-        }
     }
 }
