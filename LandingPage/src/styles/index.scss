@@ -1,9 +1,10 @@
 @import "normalize";
-@import "fluid-typography";
-@import "landing";
-@import "services";
-@import "staff";
-@import "contact";
+@import "fluid_typography";
+
+@import "section/landing";
+@import "section/services";
+@import "section/staff";
+@import "section/contact";
 
 *,
 *::before,
