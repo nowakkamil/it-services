@@ -111,6 +111,38 @@
         }
 
         &__text {
+            @mixin panoramic-mobile-header() {
+                @media screen and (max-width: $mobile-max-width) and (max-height: $mobile-mid-width) {
+                    @include interpolate(
+                        font-size,
+                        $landing-section-header-mobile-font-size / $panoramic-responsive-font-size-factor,
+                        $landing-section-header-mobile-font-size,
+                        0,
+                        $desktop-max-width
+                    );
+                }
+            }
+
+            @mixin panoramic-tablet-header() {
+                @media screen and (min-width: $mobile-mid-width) and (max-width: $tablet-oversized-width) and (max-height: $mobile-mid-width) {
+                    @include interpolate(
+                        font-size,
+                        $landing-section-left-header-font-size / $panoramic-responsive-font-size-factor,
+                        $landing-section-left-header-font-size,
+                        0,
+                        $desktop-max-width
+                    );
+
+                    @include interpolate(
+                        line-height,
+                        $landing-section-header-line-height / $panoramic-responsive-font-size-factor,
+                        $landing-section-header-line-height,
+                        0,
+                        $desktop-max-width
+                    );
+                }
+            }
+
             &-mobile {
                 margin: -3% 0;
 
@@ -124,6 +156,8 @@
                         0
                     );
                     color: $color-bright-sun;
+
+                    @include panoramic-mobile-header();
                 }
 
                 &--grey-regular {
@@ -136,6 +170,8 @@
                         0
                     );
                     color: $color-scotch-mist-80-alpha;
+
+                    @include panoramic-mobile-header();
                 }
             }
 
@@ -185,6 +221,8 @@
                     letter-spacing: $landing-section-left-header-letter-spacing;
                     text-align: right;
                     color: $color-supernova;
+
+                    @include panoramic-tablet-header();
                 }
 
                 &-right {
@@ -201,6 +239,8 @@
                     );
                     text-align: left;
                     color: $color-mine-shaft-95-alfa;
+
+                    @include panoramic-tablet-header();
                 }
             }
 
