@@ -83,7 +83,7 @@ nav {
 }
 
 .nav--no-js {
-    background: $color-concrete-50-alpha;
+    background: $color-concrete-55-alpha;
 
     @media screen and (max-width: $tablet-max-width) {
         background: initial;
@@ -225,7 +225,6 @@ input {
     &__link {
         position: relative;
         display: inline-block;
-        height: 100%;
         @include interpolate((padding-top, padding-right, padding-bottom, padding-left), 18px, 25px, $tablet-max-width);
         @include interpolate(
             font-size,
@@ -233,7 +232,6 @@ input {
             $nav-link-font-size
         );
         text-decoration: none;
-        color: $color-mine-shaft-95-alfa;
         transition: color 300ms ease-in-out 50ms;
 
         &-wrapper {
@@ -268,15 +266,70 @@ input {
         }
 
         &:hover {
-            color: $color-mine-shaft-50-alfa;
-
             &::after {
                 width: 75.2%;
             }
 
             &:active {
-                color: $color-broom;
-                transition: color 80ms ease-in-out;
+                transition: color 90ms ease-in-out;
+            }
+        }
+
+        &--landing {
+            color: $color-mine-shaft-95-alfa;
+
+            &:hover {
+                color: $color-mine-shaft-50-alfa;
+
+                &:active {
+                    color: $color-broom;
+                }
+            }
+        }
+
+        &--services {
+            color: $color-mine-shaft-95-alfa;
+
+            &:hover {
+                &:active {
+                    color: $color-mine-shaft-50-alfa;
+                }
+            }
+
+            &::after {
+                background-color: white;
+            }
+        }
+
+        &--staff {
+            color: $color-concrete-65-alpha;
+
+            &:hover {
+                color: white;
+
+                &:active {
+                    color: $color-mine-shaft-50-alfa;
+                }
+            }
+
+            &::after {
+                background-color: $color-bright-sun;
+            }
+        }
+
+        &--contact {
+            color: $color-concrete-80-alpha;
+
+            &:hover {
+                color: white;
+
+                &:active {
+                    color: $color-mine-shaft-50-alfa;
+                }
+            }
+
+            &::after {
+                background-color: $color-broom;
             }
         }
     }

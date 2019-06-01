@@ -1,4 +1,4 @@
-import { header, links } from '../scripts/constants';
+import { header, links, navbarLinks } from '../scripts/constants';
 
 function unhideHeader() {
     if (header) {
@@ -48,9 +48,35 @@ function reactivateLinks() {
     }
 }
 
+// This method doesn't result in removing the ::after pseudo element of the navbar link.
+// The base class is intact
+function setNavbarLinkModifierClass(modifierClass) {
+    if (navbarLinks) {
+        navbarLinks.forEach(link => {
+            link.classList =
+                Array
+                    .from(link.classList)
+                    // Remove each modifier class from the link's classList collection
+                    .filter((className) => !className.includes('--'));
+
+            link.classList.add(modifierClass);
+        });
+    }
+}
+
+function addModifierClassToNavbarLink(modifierClass) {
+    if (navbarLinks) {
+        navbarLinks.forEach(link => {
+            link.classList.add(modifierClass);
+        });
+    }
+}
+
 export {
     unhideHeader,
     unhideContent,
     deactivateLinks,
-    reactivateLinks
+    reactivateLinks,
+    setNavbarLinkModifierClass,
+    addModifierClassToNavbarLink
 };
