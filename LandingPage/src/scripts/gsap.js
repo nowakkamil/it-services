@@ -1,9 +1,9 @@
 import { TweenMax, TimelineMax, Power2, Power3, Power4, Expo } from "gsap/all";
 
-import { header, headerOverlay } from '../scripts/constants';
-import { unhideHeader } from '../scripts/utils';
+import { navbarOverlay, navbarLinks, header, headerOverlay } from '../scripts/constants';
+import { unhideHeader, toggleNavbarTogglerDisability } from '../scripts/utils';
 
-function hideheaderOnWindowLoad() {
+function headerOutAnimation() {
     new TimelineMax()
         .set(headerOverlay, {
             visibility: "hidden"
@@ -17,6 +17,23 @@ function hideheaderOnWindowLoad() {
             visibility: "hidden",
             top: 0
         });
+}
+
+function navbarOverlayInAnimation() {
+    new TimelineMax()
+        .from(navbarOverlay, 1, {
+            y: "-100%",
+            ease: Power3.easeOut
+        })
+        .staggerFrom(navbarLinks, 1.2, {
+            autoAlpha: 0,
+            y: "-68%",
+            ease: Power4.easeOut
+        }, 0.2, "-=0.5")
+        .set([navbarOverlay, navbarLinks], {
+            clearProps: "all"
+        })
+        .call(toggleNavbarTogglerDisability);
 }
 
 function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
@@ -193,7 +210,8 @@ function headerInAnimation() {
 }
 
 export {
-    hideheaderOnWindowLoad,
+    headerOutAnimation,
+    navbarOverlayInAnimation,
     landingEnterPromise,
     servicesEnterPromise,
     staffEnterPromise,

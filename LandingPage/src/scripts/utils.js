@@ -1,4 +1,38 @@
-import { header, links, navbarLinks } from '../scripts/constants';
+import { navbarToggler, navbarOverlay, header, links, navbarLinks, navbarLinkOverlayClass } from '../scripts/constants';
+import { headerOutAnimation, navbarOverlayInAnimation } from '../scripts/gsap';
+
+function isNavbarTogglerChecked() {
+    if (navbarToggler) {
+        return navbarToggler.checked;
+    }
+}
+
+function unhideNavbarOverlayIfHidden() {
+    if (isNavbarTogglerChecked()) {
+        toggleNavbarTogglerDisability();
+        addModifierClassToNavbarLink(navbarLinkOverlayClass);
+        navbarOverlayInAnimation();
+    } else {
+        removeModifierClassFromNavbarLink(navbarLinkOverlayClass);
+    }
+}
+
+function hideNavbarOverlayIfVisible() {
+    if (navbarToggler && window.getComputedStyle(navbarOverlay, null).display !== "none") {
+        navbarToggler.click();
+        removeModifierClassFromNavbarLink(navbarLinkOverlayClass);
+    }
+}
+
+function toggleNavbarTogglerDisability() {
+    if (navbarToggler) {
+        navbarToggler.disabled = !navbarToggler.disabled;
+    }
+}
+
+function hideheaderOnWindowLoad() {
+    headerOutAnimation();
+}
 
 function unhideHeader() {
     if (header) {
@@ -72,11 +106,27 @@ function addModifierClassToNavbarLink(modifierClass) {
     }
 }
 
+function removeModifierClassFromNavbarLink(modifierClass) {
+    if (navbarLinks) {
+        navbarLinks.forEach(link => {
+            if (link.classList.contains(modifierClass)) {
+                link.classList.remove(modifierClass);
+            }
+        });
+    }
+}
+
 export {
+    isNavbarTogglerChecked,
+    unhideNavbarOverlayIfHidden,
+    hideNavbarOverlayIfVisible,
+    toggleNavbarTogglerDisability,
+    hideheaderOnWindowLoad,
     unhideHeader,
     unhideContent,
     deactivateLinks,
     reactivateLinks,
     setNavbarLinkModifierClass,
-    addModifierClassToNavbarLink
+    addModifierClassToNavbarLink,
+    removeModifierClassFromNavbarLink
 };

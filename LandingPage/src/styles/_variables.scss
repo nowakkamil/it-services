@@ -20,8 +20,10 @@ $laptop-min-width: 1024px;
 $laptop-mid-width: 1280px;
 $desktop-min-width: 1440px;
 $desktop-mid-width: 1920px;
+$desktop-max-width: 2560px;
 
 // The variables used to obtain fluid typography.
+$panoramic-responsive-font-size-factor: 6;
 $very-aggressive-responsive-font-size-factor: 4.5;
 $aggressive-responsive-font-size-factor: 3;
 $standard-responsive-font-size-factor: 2;

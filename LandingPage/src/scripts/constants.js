@@ -4,6 +4,9 @@ const githubPagesRepo = 'it-services';
 // Elements of the DOM
 const body = document.body;
 const navbar = document.querySelector('nav');
+const navbarToggler = document.querySelector('.nav__toggler');
+const navbarOverlay = document.querySelector('.nav__overlay');
+const navbarLinksWrapper = document.querySelector('.nav__link-wrapper-container');
 const header = document.querySelector('.header');
 const headerOverlay = document.querySelector('.header__overlay');
 const headerLogo = document.querySelector('.header__logo-wrapper');
@@ -19,11 +22,15 @@ const navbarLinkLandingClass = 'nav__link--landing';
 const navbarLinkServicesClass = 'nav__link--services';
 const navbarLinkStaffClass = 'nav__link--staff';
 const navbarLinkContactClass = 'nav__link--contact';
+const navbarLinkOverlayClass = 'nav__link--overlay';
 
 export {
     githubPagesRepo,
     body,
     navbar,
+    navbarToggler,
+    navbarOverlay,
+    navbarLinksWrapper,
     header,
     headerOverlay,
     headerLogo,
@@ -32,5 +39,6 @@ export {
     navbarLinkLandingClass,
     navbarLinkServicesClass,
     navbarLinkStaffClass,
-    navbarLinkContactClass
+    navbarLinkContactClass,
+    navbarLinkOverlayClass
 };

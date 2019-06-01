@@ -2,12 +2,14 @@ import barba from '@barba/core';
 
 import { navbarLinkLandingClass, navbarLinkServicesClass, navbarLinkStaffClass, navbarLinkContactClass } from './constants';
 import { landingEnterPromise, servicesEnterPromise, staffEnterPromise, contactEnterPromise, containerOutAnimation, headerInAnimation } from '../scripts/gsap';
-import { unhideContent, deactivateLinks, reactivateLinks, setNavbarLinkModifierClass } from '../scripts/utils';
+import { unhideContent, hideNavbarOverlayIfVisible, deactivateLinks, reactivateLinks, setNavbarLinkModifierClass } from '../scripts/utils';
 
 function barbaInit() {
     barba.hooks.leave(() => deactivateLinks());
 
     barba.hooks.afterLeave(() => headerInAnimation());
+
+    barba.hooks.beforeEnter(() => hideNavbarOverlayIfVisible());
 
     barba.hooks.enter(() => unhideContent());
 

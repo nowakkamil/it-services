@@ -159,7 +159,7 @@ input {
         pointer-events: none;
 
         &-wrapper {
-            z-index: 21;
+            z-index: 22;
             position: absolute;
             display: block;
             height: 70px;
@@ -272,6 +272,19 @@ input {
 
             &:active {
                 transition: color 90ms ease-in-out;
+            }
+        }
+
+        // An important rule is used to prevent the section's modifier class from applying its rulesets
+        &--overlay {
+            color: $color-mine-shaft-95-alfa !important;
+
+            &:hover {
+                color: $color-mine-shaft-50-alfa !important;
+
+                &:active {
+                    color: $color-broom !important;
+                }
             }
         }
 
