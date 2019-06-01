@@ -4,6 +4,7 @@ const githubPagesRepo = 'it-services';
 // Elements of the DOM
 const body = document.body;
 const navbar = document.querySelector('nav');
+const navbarLogoWrapper = document.querySelector('.nav__logo-wrapper');
 const navbarToggler = document.querySelector('.nav__toggler');
 const navbarOverlay = document.querySelector('.nav__overlay');
 const navbarLinksWrapper = document.querySelector('.nav__link-wrapper-container');
@@ -28,6 +29,7 @@ export {
     githubPagesRepo,
     body,
     navbar,
+    navbarLogoWrapper,
     navbarToggler,
     navbarOverlay,
     navbarLinksWrapper,
