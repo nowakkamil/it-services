@@ -1,14 +1,11 @@
-import '../styles/_normalize.scss';
-import '../styles/_variables.scss';
-import '../styles/_vertical-rhythm.scss';
 import '../styles/index.scss';
 
 import { CSSPlugin, AttrPlugin } from "gsap/all";
 
-import { githubPagesRepo, body, navbar, header, headerLogo, links } from '../scripts/constants';
+import { githubPagesRepo, body, navbar, header, headerLogo, links, navbarLinkLandingClass, navbarLinkServicesClass, navbarLinkStaffClass, navbarLinkContactClass } from '../scripts/constants';
 import { barbaInit } from '../scripts/barba';
 import { hideheaderOnWindowLoad, landingEnterPromise, servicesEnterPromise, staffEnterPromise, contactEnterPromise } from '../scripts/gsap';
-import { unhideContent } from '../scripts/utils';
+import { unhideContent, addModifierClassToNavbarLink } from '../scripts/utils';
 
 // Prevent the webpack from performing tree shaking
 const plugins = [CSSPlugin, AttrPlugin];
@@ -78,21 +75,25 @@ function disableCurrentPageReload() {
 function animateOnWindowLoad() {
     // Display the landing section animation
     if (windowPathname === '/') {
+        addModifierClassToNavbarLink(navbarLinkLandingClass);
         unhideContent();
         landingEnterPromise(document.querySelector('#landing'), null, false);
     }
     // Display the services section animation
     else if (windowPathname.includes('services')) {
+        addModifierClassToNavbarLink(navbarLinkServicesClass);
         unhideContent();
         servicesEnterPromise(null, false);
     }
     // Display the staff section animation
     else if (windowPathname.includes('staff')) {
+        addModifierClassToNavbarLink(navbarLinkStaffClass);
         unhideContent();
         staffEnterPromise(document.querySelector('#staff'), null, false);
     }
     // Display the contact section animation
     else if (windowPathname.includes('contact')) {
+        addModifierClassToNavbarLink(navbarLinkContactClass);
         unhideContent();
         contactEnterPromise(null, false);
     }

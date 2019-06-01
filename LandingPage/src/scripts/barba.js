@@ -1,7 +1,8 @@
 import barba from '@barba/core';
 
+import { navbarLinkLandingClass, navbarLinkServicesClass, navbarLinkStaffClass, navbarLinkContactClass } from './constants';
 import { landingEnterPromise, servicesEnterPromise, staffEnterPromise, contactEnterPromise, containerOutAnimation, headerInAnimation } from '../scripts/gsap';
-import { unhideContent, deactivateLinks, reactivateLinks } from '../scripts/utils';
+import { unhideContent, deactivateLinks, reactivateLinks, setNavbarLinkModifierClass } from '../scripts/utils';
 
 function barbaInit() {
     barba.hooks.leave(() => deactivateLinks());
@@ -26,6 +27,8 @@ function barbaInit() {
                     containerOutAnimation(current.container, this.async());
                 },
 
+                beforeEnter: () => setNavbarLinkModifierClass(navbarLinkLandingClass),
+
                 // Return a promise
                 enter: ({ next }) => landingEnterAnimation(next.container)
             },
@@ -40,6 +43,8 @@ function barbaInit() {
                 leave({ current }) {
                     containerOutAnimation(current.container, this.async());
                 },
+
+                beforeEnter: () => setNavbarLinkModifierClass(navbarLinkServicesClass),
 
                 // Return a promise
                 enter: () => servicesEnterAnimation()
@@ -56,6 +61,8 @@ function barbaInit() {
                     containerOutAnimation(current.container, this.async());
                 },
 
+                beforeEnter: () => setNavbarLinkModifierClass(navbarLinkStaffClass),
+
                 // Return a promise
                 enter: ({ next }) => staffEnterAnimation(next.container)
             },
@@ -70,6 +77,8 @@ function barbaInit() {
                 leave({ current }) {
                     containerOutAnimation(current.container, this.async());
                 },
+
+                beforeEnter: () => setNavbarLinkModifierClass(navbarLinkContactClass),
 
                 // Return a promise
                 enter: () => contactEnterAnimation()
