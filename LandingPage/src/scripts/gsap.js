@@ -1,6 +1,6 @@
 import { TweenMax, TimelineMax, Power2, Power3, Power4, Expo } from "gsap/all";
 
-import { navbarOverlay, navbarLinksWrapper, header, headerOverlay } from '../scripts/constants';
+import { navbarOverlay, navbarLinks, header, headerOverlay } from '../scripts/constants';
 import { unhideHeader, toggleNavbarTogglerDisability } from '../scripts/utils';
 
 function headerOutAnimation() {
@@ -21,17 +21,16 @@ function headerOutAnimation() {
 
 function navbarOverlayInAnimation() {
     new TimelineMax()
-        .from(navbarOverlay, 0.6, {
-            autoAlpha: 0,
-            y: "-20%",
-            ease: Power4.easeOut
-        })
-        .from(navbarLinksWrapper, 1, {
-            autoAlpha: 0,
-            y: "-16%",
+        .from(navbarOverlay, 1, {
+            y: "-100%",
             ease: Power3.easeOut
-        }, '-=0.36')
-        .set([navbarOverlay, navbarLinksWrapper], {
+        })
+        .staggerFrom(navbarLinks, 1.2, {
+            autoAlpha: 0,
+            y: "-68%",
+            ease: Power4.easeOut
+        }, 0.2, "-=0.5")
+        .set([navbarOverlay, navbarLinks], {
             clearProps: "all"
         })
         .call(toggleNavbarTogglerDisability);
