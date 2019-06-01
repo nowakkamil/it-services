@@ -4,8 +4,8 @@ import { CSSPlugin, AttrPlugin } from "gsap/all";
 
 import { githubPagesRepo, body, navbar, navbarToggler, header, headerLogo, links, navbarLinkLandingClass, navbarLinkServicesClass, navbarLinkStaffClass, navbarLinkContactClass } from '../scripts/constants';
 import { barbaInit } from '../scripts/barba';
-import { hideheaderOnWindowLoad, unhideNavbarOverlayIfHidden, landingEnterPromise, servicesEnterPromise, staffEnterPromise, contactEnterPromise } from '../scripts/gsap';
-import { unhideContent, addModifierClassToNavbarLink } from '../scripts/utils';
+import { landingEnterPromise, servicesEnterPromise, staffEnterPromise, contactEnterPromise } from '../scripts/gsap';
+import { unhideNavbarOverlayIfHidden, hideheaderOnWindowLoad, unhideContent, addModifierClassToNavbarLink } from '../scripts/utils';
 
 // Prevent the webpack from performing tree shaking
 const plugins = [CSSPlugin, AttrPlugin];

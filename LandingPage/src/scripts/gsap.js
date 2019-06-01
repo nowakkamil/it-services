@@ -1,9 +1,9 @@
 import { TweenMax, TimelineMax, Power2, Power3, Power4, Expo } from "gsap/all";
 
-import { navbarOverlay, navbarLinksWrapper, header, headerOverlay, navbarLinkOverlayClass } from '../scripts/constants';
-import { isNavbarTogglerChecked, unhideHeader, toggleNavbarTogglerDisability, addModifierClassToNavbarLink, removeModifierClassFromNavbarLink } from '../scripts/utils';
+import { navbarOverlay, navbarLinksWrapper, header, headerOverlay } from '../scripts/constants';
+import { unhideHeader, toggleNavbarTogglerDisability } from '../scripts/utils';
 
-function hideheaderOnWindowLoad() {
+function headerOutAnimation() {
     new TimelineMax()
         .set(headerOverlay, {
             visibility: "hidden"
@@ -19,29 +19,22 @@ function hideheaderOnWindowLoad() {
         });
 }
 
-function unhideNavbarOverlayIfHidden() {
-    if (isNavbarTogglerChecked()) {
-        toggleNavbarTogglerDisability();
-        addModifierClassToNavbarLink(navbarLinkOverlayClass);
-
-        new TimelineMax()
-            .from(navbarOverlay, 0.6, {
-                autoAlpha: 0,
-                y: "-20%",
-                ease: Power4.easeOut
-            })
-            .from(navbarLinksWrapper, 1, {
-                autoAlpha: 0,
-                y: "-16%",
-                ease: Power3.easeOut
-            }, '-=0.36')
-            .set([navbarOverlay, navbarLinksWrapper], {
-                clearProps: "all"
-            })
-            .call(toggleNavbarTogglerDisability);
-    } else {
-        removeModifierClassFromNavbarLink(navbarLinkOverlayClass);
-    }
+function navbarOverlayInAnimation() {
+    new TimelineMax()
+        .from(navbarOverlay, 0.6, {
+            autoAlpha: 0,
+            y: "-20%",
+            ease: Power4.easeOut
+        })
+        .from(navbarLinksWrapper, 1, {
+            autoAlpha: 0,
+            y: "-16%",
+            ease: Power3.easeOut
+        }, '-=0.36')
+        .set([navbarOverlay, navbarLinksWrapper], {
+            clearProps: "all"
+        })
+        .call(toggleNavbarTogglerDisability);
 }
 
 function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
@@ -218,8 +211,8 @@ function headerInAnimation() {
 }
 
 export {
-    hideheaderOnWindowLoad,
-    unhideNavbarOverlayIfHidden,
+    headerOutAnimation,
+    navbarOverlayInAnimation,
     landingEnterPromise,
     servicesEnterPromise,
     staffEnterPromise,

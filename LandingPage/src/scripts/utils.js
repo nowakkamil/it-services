@@ -1,4 +1,5 @@
 import { navbarToggler, navbarOverlay, header, links, navbarLinks, navbarLinkOverlayClass } from '../scripts/constants';
+import { headerOutAnimation, navbarOverlayInAnimation } from '../scripts/gsap';
 
 function isNavbarTogglerChecked() {
     if (navbarToggler) {
@@ -6,9 +7,17 @@ function isNavbarTogglerChecked() {
     }
 }
 
-function hideNavbarOverlayIfVisible() {
-    console.log('hideNavbarOverlayIfVisible');
+function unhideNavbarOverlayIfHidden() {
+    if (isNavbarTogglerChecked()) {
+        toggleNavbarTogglerDisability();
+        addModifierClassToNavbarLink(navbarLinkOverlayClass);
+        navbarOverlayInAnimation();
+    } else {
+        removeModifierClassFromNavbarLink(navbarLinkOverlayClass);
+    }
+}
 
+function hideNavbarOverlayIfVisible() {
     if (navbarToggler && window.getComputedStyle(navbarOverlay, null).display !== "none") {
         navbarToggler.click();
         removeModifierClassFromNavbarLink(navbarLinkOverlayClass);
@@ -19,6 +28,10 @@ function toggleNavbarTogglerDisability() {
     if (navbarToggler) {
         navbarToggler.disabled = !navbarToggler.disabled;
     }
+}
+
+function hideheaderOnWindowLoad() {
+    headerOutAnimation();
 }
 
 function unhideHeader() {
@@ -105,8 +118,10 @@ function removeModifierClassFromNavbarLink(modifierClass) {
 
 export {
     isNavbarTogglerChecked,
+    unhideNavbarOverlayIfHidden,
     hideNavbarOverlayIfVisible,
     toggleNavbarTogglerDisability,
+    hideheaderOnWindowLoad,
     unhideHeader,
     unhideContent,
     deactivateLinks,
