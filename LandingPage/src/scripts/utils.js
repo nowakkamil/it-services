@@ -1,4 +1,25 @@
-import { header, links, navbarLinks } from '../scripts/constants';
+import { navbarToggler, navbarOverlay, header, links, navbarLinks, navbarLinkOverlayClass } from '../scripts/constants';
+
+function isNavbarTogglerChecked() {
+    if (navbarToggler) {
+        return navbarToggler.checked;
+    }
+}
+
+function hideNavbarOverlayIfVisible() {
+    console.log('hideNavbarOverlayIfVisible');
+
+    if (navbarToggler && window.getComputedStyle(navbarOverlay, null).display !== "none") {
+        navbarToggler.click();
+        removeModifierClassFromNavbarLink(navbarLinkOverlayClass);
+    }
+}
+
+function toggleNavbarTogglerDisability() {
+    if (navbarToggler) {
+        navbarToggler.disabled = !navbarToggler.disabled;
+    }
+}
 
 function unhideHeader() {
     if (header) {
@@ -72,11 +93,25 @@ function addModifierClassToNavbarLink(modifierClass) {
     }
 }
 
+function removeModifierClassFromNavbarLink(modifierClass) {
+    if (navbarLinks) {
+        navbarLinks.forEach(link => {
+            if (link.classList.contains(modifierClass)) {
+                link.classList.remove(modifierClass);
+            }
+        });
+    }
+}
+
 export {
+    isNavbarTogglerChecked,
+    hideNavbarOverlayIfVisible,
+    toggleNavbarTogglerDisability,
     unhideHeader,
     unhideContent,
     deactivateLinks,
     reactivateLinks,
     setNavbarLinkModifierClass,
-    addModifierClassToNavbarLink
+    addModifierClassToNavbarLink,
+    removeModifierClassFromNavbarLink
 };
