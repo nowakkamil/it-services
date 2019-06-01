@@ -1,6 +1,6 @@
 import { TweenMax, TimelineMax, Power2, Power3, Power4, Expo } from "gsap/all";
 
-import { navbarOverlay, navbarLinks, header, headerOverlay } from '../scripts/constants';
+import { navbarLogoWrapper, navbarOverlay, navbarLinks, header, headerOverlay } from '../scripts/constants';
 import { unhideHeader, toggleNavbarTogglerDisability } from '../scripts/utils';
 
 function headerOutAnimation() {
@@ -37,40 +37,108 @@ function navbarOverlayInAnimation() {
 }
 
 function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
-    const rightColumn =
-        document.querySelector('.landing-section-right');
+    if (document.documentElement.clientWidth > 600) {
+        const rightColumn =
+            document.querySelector('.landing-section-right');
 
-    const rightColumnLeftText =
-        document.querySelector('.landing-section-right__text-container-left');
+        const rightColumnLeftText =
+            document.querySelector('.landing-section-right__text-container-left');
 
-    const bokeh =
-        document.querySelector('.landing-section-left__image-overlay');
+        const rightColumnDescriptionText =
+            document.querySelector('.landing-section-right__text-description');
 
-    let timelineDelay = (isBarbaTriggering) ? null : "+=0.48";
+        const rightColumnRightText =
+            document.querySelector('.landing-section-right__text-container-right');
 
-    new TimelineMax()
-        .from(landing, 2.2, {
-            opacity: 0,
-            ease: Power4.easeInOut
-        }, timelineDelay)
-        .from(rightColumn, 1.5, {
-            opacity: 0,
-            x: 300,
-            ease: Power4.easeOut,
-            clearProps: "all"
-        }, "-=1")
-        .from(rightColumnLeftText, 1.5, {
-            opacity: 0,
-            left: 100,
-            ease: Power4.easeOut,
-            onComplete: resolve
-        }, "-=1")
-        .from(bokeh, 4, {
-            opacity: 0,
-            left: 300,
-            ease: Expo.easeOut,
-            clearProps: "all"
-        }, "-=1");
+        const rightColumnReadMoreContainer =
+            document.querySelector('.landing-section-right__read-more-container');
+
+        const bokeh =
+            document.querySelector('.landing-section-left__image-overlay');
+
+        let timelineDelay = (isBarbaTriggering) ? null : "+=0.48";
+
+        new TimelineMax()
+            .from(landing, 2.2, {
+                opacity: 0,
+                ease: Power4.easeInOut
+            }, timelineDelay)
+            .from(rightColumn, 1.5, {
+                opacity: 0,
+                x: 300,
+                ease: Power4.easeOut,
+                clearProps: "all"
+            }, "-=1")
+            .addLabel("headerStart", "-=1")
+            .from(rightColumnLeftText, 1.5, {
+                opacity: 0,
+                y: "-100%",
+                ease: Power3.easeOut,
+                clearProps: "all"
+            }, "headerStart")
+            .from(rightColumnRightText, 1.5, {
+                opacity: 0,
+                y: "2%",
+                ease: Power4.easeOut,
+                clearProps: "all"
+            }, "headerStart")
+            .staggerFrom(navbarLinks, 1.2, {
+                opacity: 0,
+                left: 80,
+                ease: Power4.easeOut,
+                onComplete: resolve,
+                clearProps: "all"
+            }, -0.2, "-=1")
+            .addLabel("rightColumnText", "-=1")
+            .from(rightColumnDescriptionText, 1.6, {
+                opacity: 0,
+                x: "-30%",
+                ease: Power3.easeOut,
+                clearProps: "all"
+            }, "rightColumnText")
+            .from(rightColumnReadMoreContainer, 1.6, {
+                opacity: 0,
+                x: "-30%",
+                ease: Power3.easeOut,
+                clearProps: "all"
+            }, "rightColumnText")
+            .from(navbarLogoWrapper, 2, {
+                opacity: 0,
+                x: 10,
+                ease: Power2.easeOut,
+                clearProps: "all"
+            }, "rightColumnText+=0.4")
+            .from(bokeh, 4, {
+                opacity: 0,
+                left: 300,
+                ease: Expo.easeOut,
+                clearProps: "all"
+            }, "rightColumnText")
+            .timeScale(1.02);
+    } else {
+        const mobileText =
+            document.querySelector('.landing-section-right__text-container-mobile');
+
+        const mobileDescriptionText =
+            document.querySelector('.landing-section-right__text-description-wrapper');
+
+        let mobileTimelineDelay = (isBarbaTriggering) ? "+=0.6" : "+=0.9";
+
+        new TimelineMax()
+            .from(mobileText, 1.4, {
+                opacity: 0,
+                y: "-140%",
+                ease: Power3.easeOut,
+                clearProps: "all"
+            }, mobileTimelineDelay)
+            .from(mobileDescriptionText, 1.1, {
+                opacity: 0,
+                y: "100%",
+                ease: Power4.easeOut,
+                onComplete: resolve,
+                clearProps: "all"
+            }, "-=0.7");
+    }
 }
 
 function servicesEnterPromise(resolve, isBarbaTriggering = true) {
