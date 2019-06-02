@@ -1,6 +1,6 @@
 import barba from '@barba/core';
 
-import { navbarLinkLandingClass, navbarLinkServicesClass, navbarLinkStaffClass, navbarLinkContactClass } from './constants';
+import { githubPagesRepo, navbarLinkLandingClass, navbarLinkServicesClass, navbarLinkStaffClass, navbarLinkContactClass } from './constants';
 import { landingEnterPromise, servicesEnterPromise, staffEnterPromise, contactEnterPromise, containerOutAnimation, headerInAnimation } from '../scripts/gsap';
 import { unhideContent, hideNavbarOverlayIfVisible, deactivateLinks, reactivateLinks, setNavbarLinkModifierClass } from '../scripts/utils';
 
@@ -21,7 +21,8 @@ function barbaInit() {
                 name: 'many-to-landing',
 
                 custom: ({ trigger }) => {
-                    return trigger.getAttribute("href") && trigger.getAttribute("href").includes("/");
+                    return trigger.getAttribute("href")
+                        && (trigger.getAttribute("href") === "/" || trigger.getAttribute("href") === githubPagesRepo);
                 },
 
                 // This does not return anything and uses the 'this.async()' pattern
