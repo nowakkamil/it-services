@@ -147,7 +147,6 @@ function servicesEnterPromise(resolve, isBarbaTriggering = true) {
     let timelineDelay = (isBarbaTriggering) ? "+=0.62" : "+=0.86";
 
     new TimelineMax()
-        // .set()
         .staggerFrom(cards, 1.8, {
             opacity: 0,
             y: "-34%",
