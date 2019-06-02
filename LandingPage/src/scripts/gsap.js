@@ -113,8 +113,7 @@ function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
                 left: 300,
                 ease: Expo.easeOut,
                 clearProps: "all"
-            }, "rightColumnText")
-            .timeScale(1.02);
+            }, "rightColumnText");
     } else {
         const mobileText =
             document.querySelector('.landing-section-right__text-container-mobile');
@@ -168,6 +167,9 @@ function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
     const title =
         document.querySelector('.staff-section__title');
 
+    let isOnMobile = document.documentElement.clientWidth <= 600;
+    let staggerOrder = isOnMobile ? -0.3 : 0.3;
+
     let timelineDelay = (isBarbaTriggering) ? 0.62 : 0.9;
 
     new TimelineMax()
@@ -179,7 +181,7 @@ function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
             opacity: 0,
             y: "50%",
             ease: Expo.easeOut
-        }, 0.3, "-=4.4")
+        }, staggerOrder, "-=4.4")
         .from(title, 2, {
             opacity: 0,
             y: "80%",
@@ -187,10 +189,24 @@ function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
             clearProps: "all",
             onComplete: resolve
         }, "-=2.62")
+        .addLabel("titleStart", "-=1.8")
         .from(cardsContainer, 4, {
             boxShadow: "none",
             ease: Power3.easeInOut
-        }, "-=2.2");
+        }, "-=2.2")
+        .staggerFrom(navbarLinks, 1.4, {
+            opacity: 0,
+            y: "40%",
+            ease: Power4.easeOut,
+            onComplete: resolve,
+            clearProps: "all"
+        }, 0.24, "titleStart")
+        .from(navbarLogoWrapper, 2, {
+            opacity: 0,
+            y: 16,
+            ease: Power4.easeOut,
+            clearProps: "all"
+        }, "titleStart+=0.8");
 }
 
 function contactEnterPromise(resolve, isBarbaTriggering = true) {

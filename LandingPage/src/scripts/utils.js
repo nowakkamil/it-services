@@ -71,7 +71,6 @@ function normaliseTrigger(trigger) {
         normalisedTrigger =
             normalisedTrigger
                 .replace(githubPagesRepo, '/');
-
     }
 
     return normalisedTrigger;
