@@ -1,4 +1,4 @@
-import { navbarToggler, navbarOverlay, header, links, navbarLinks, navbarLinkOverlayClass } from '../scripts/constants';
+import { githubPagesRepo, navbarToggler, navbarOverlay, header, links, navbarLinks, navbarLinkOverlayClass } from '../scripts/constants';
 import { headerOutAnimation, navbarOverlayInAnimation } from '../scripts/gsap';
 
 function isNavbarTogglerChecked() {
@@ -64,6 +64,19 @@ function unhideContent() {
     }
 }
 
+function normaliseTrigger(trigger) {
+    let normalisedTrigger = trigger.getAttribute("href");
+
+    if (normalisedTrigger.includes(githubPagesRepo)) {
+        normalisedTrigger =
+            normalisedTrigger
+                .replace(githubPagesRepo, '/');
+
+    }
+
+    return normalisedTrigger;
+}
+
 // Prevent the links from being active during the transition effect
 function deactivateLinks() {
     if (links) {
@@ -124,6 +137,7 @@ export {
     hideheaderOnWindowLoad,
     unhideHeader,
     unhideContent,
+    normaliseTrigger,
     deactivateLinks,
     reactivateLinks,
     setNavbarLinkModifierClass,

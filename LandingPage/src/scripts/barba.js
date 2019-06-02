@@ -2,7 +2,7 @@ import barba from '@barba/core';
 
 import { githubPagesRepo, navbarLinkLandingClass, navbarLinkServicesClass, navbarLinkStaffClass, navbarLinkContactClass } from './constants';
 import { landingEnterPromise, servicesEnterPromise, staffEnterPromise, contactEnterPromise, containerOutAnimation, headerInAnimation } from '../scripts/gsap';
-import { unhideContent, hideNavbarOverlayIfVisible, deactivateLinks, reactivateLinks, setNavbarLinkModifierClass } from '../scripts/utils';
+import { unhideContent, hideNavbarOverlayIfVisible, normaliseTrigger, deactivateLinks, reactivateLinks, setNavbarLinkModifierClass } from '../scripts/utils';
 
 function barbaInit() {
     barba.hooks.leave(() => deactivateLinks());
@@ -21,8 +21,10 @@ function barbaInit() {
                 name: 'many-to-landing',
 
                 custom: ({ trigger }) => {
-                    return trigger.getAttribute("href")
-                        && (trigger.getAttribute("href") === "/" || trigger.getAttribute("href") === githubPagesRepo);
+                    let normalisedTrigger = normaliseTrigger(trigger);
+                    console.log(normalisedTrigger);
+
+                    return normalisedTrigger === "/" || normalisedTrigger === githubPagesRepo;
                 },
 
                 // This does not return anything and uses the 'this.async()' pattern
@@ -39,7 +41,10 @@ function barbaInit() {
                 name: 'many-to-services',
 
                 custom: ({ trigger }) => {
-                    return trigger.getAttribute("href") && trigger.getAttribute("href").includes("services");
+                    let normalisedTrigger = normaliseTrigger(trigger);
+                    console.log(normalisedTrigger);
+
+                    return normalisedTrigger.includes("services");
                 },
 
                 // This does not return anything and uses the 'this.async()' pattern
@@ -56,7 +61,10 @@ function barbaInit() {
                 name: 'many-to-staff',
 
                 custom: ({ trigger }) => {
-                    return trigger.getAttribute("href") && trigger.getAttribute("href").includes("staff");
+                    let normalisedTrigger = normaliseTrigger(trigger);
+                    console.log(normalisedTrigger);
+
+                    return normalisedTrigger.includes("staff");
                 },
 
                 // This does not return anything and uses the 'this.async()' pattern
@@ -73,7 +81,10 @@ function barbaInit() {
                 name: 'many-to-contact',
 
                 custom: ({ trigger }) => {
-                    return trigger.getAttribute("href") && trigger.getAttribute("href").includes("contact");
+                    let normalisedTrigger = normaliseTrigger(trigger);
+                    console.log(normalisedTrigger);
+
+                    return normalisedTrigger.includes("contact");
                 },
 
                 // This does not return anything and uses the 'this.async()' pattern
