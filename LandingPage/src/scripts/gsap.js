@@ -257,7 +257,26 @@ function contactEnterPromise(resolve, isBarbaTriggering = true) {
         }, "-=0.4")
         .set(cardsContainer, {
             clearProps: "all"
-        });
+        })
+        .addLabel("navbarStart", "-=1.22")
+        .staggerFrom(navbarLinks, 1.46, {
+            opacity: 0,
+            y: "-160%",
+            ease: Power4.easeOut,
+            clearProps: "all"
+        }, 0.3, "navbarStart")
+        .from(navbarLogoWrapper, 2.4, {
+            opacity: 0,
+            y: "-60%",
+            ease: Power4.easeOut,
+            clearProps: "all"
+        }, "navbarStart+=1.12")
+        .staggerTo(navbarLinks, 1.2, {
+            color: "#fff",
+            textShadow: "0px 0px 0px #fff",
+            ease: Expo.easeOut,
+            clearProps: "all"
+        }, 0.34, "navbarStart+=2");
 }
 
 // The 'async' callback is passed
