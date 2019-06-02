@@ -2,7 +2,7 @@ import barba from '@barba/core';
 
 import { githubPagesRepo, navbarLinkLandingClass, navbarLinkServicesClass, navbarLinkStaffClass, navbarLinkContactClass } from './constants';
 import { landingEnterPromise, servicesEnterPromise, staffEnterPromise, contactEnterPromise, containerOutAnimation, headerInAnimation } from '../scripts/gsap';
-import { unhideContent, hideNavbarOverlayIfVisible, normaliseTrigger, deactivateLinks, reactivateLinks, setNavbarLinkModifierClass } from '../scripts/utils';
+import { unhideContent, hideNavbarOverlayIfVisible, normaliseTrigger, normaliseServicesLink, deactivateLinks, reactivateLinks, setNavbarLinkModifierClass } from '../scripts/utils';
 
 function barbaInit() {
     barba.hooks.leave(() => deactivateLinks());
@@ -31,7 +31,10 @@ function barbaInit() {
                     containerOutAnimation(current.container, this.async());
                 },
 
-                beforeEnter: () => setNavbarLinkModifierClass(navbarLinkLandingClass),
+                beforeEnter: () => {
+                    setNavbarLinkModifierClass(navbarLinkLandingClass);
+                    normaliseServicesLink();
+                },
 
                 // Return a promise
                 enter: ({ next }) => landingEnterAnimation(next.container)
