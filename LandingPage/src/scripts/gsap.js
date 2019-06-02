@@ -168,6 +168,9 @@ function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
     const title =
         document.querySelector('.staff-section__title');
 
+    let isOnMobile = document.documentElement.clientWidth <= 600;
+    let staggerOrder = isOnMobile ? -0.3 : 0.3;
+
     let timelineDelay = (isBarbaTriggering) ? 0.62 : 0.9;
 
     new TimelineMax()
@@ -179,7 +182,7 @@ function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
             opacity: 0,
             y: "50%",
             ease: Expo.easeOut
-        }, 0.3, "-=4.4")
+        }, staggerOrder, "-=4.4")
         .from(title, 2, {
             opacity: 0,
             y: "80%",
