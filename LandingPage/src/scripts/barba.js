@@ -22,7 +22,6 @@ function barbaInit() {
 
                 custom: ({ trigger }) => {
                     let normalisedTrigger = normaliseTrigger(trigger);
-                    console.log(normalisedTrigger);
 
                     return normalisedTrigger === "/" || normalisedTrigger === githubPagesRepo;
                 },
@@ -42,7 +41,6 @@ function barbaInit() {
 
                 custom: ({ trigger }) => {
                     let normalisedTrigger = normaliseTrigger(trigger);
-                    console.log(normalisedTrigger);
 
                     return normalisedTrigger.includes("services");
                 },
@@ -62,7 +60,6 @@ function barbaInit() {
 
                 custom: ({ trigger }) => {
                     let normalisedTrigger = normaliseTrigger(trigger);
-                    console.log(normalisedTrigger);
 
                     return normalisedTrigger.includes("staff");
                 },
@@ -82,7 +79,6 @@ function barbaInit() {
 
                 custom: ({ trigger }) => {
                     let normalisedTrigger = normaliseTrigger(trigger);
-                    console.log(normalisedTrigger);
 
                     return normalisedTrigger.includes("contact");
                 },
