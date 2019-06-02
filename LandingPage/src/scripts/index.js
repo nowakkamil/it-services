@@ -12,6 +12,7 @@ const plugins = [CSSPlugin, AttrPlugin];
 
 // Store window pathname in a separate variable to later normalize it if necessary
 let windowPathname = window.location.pathname;
+console.log('original pathname: ', window.location.pathname);
 
 // Assign event handlers
 document.addEventListener("DOMContentLoaded", barbaInit);
@@ -39,6 +40,8 @@ function adjustWindowPathname() {
         windowPathname =
             windowPathname
                 .replace(githubPagesRepo, '/');
+
+        console.log('normalized pathname: ', windowPathname);
     }
 }
 
@@ -51,6 +54,7 @@ function adjustSectionLinks() {
             if (linkHrefAttribute.includes('/')) {
                 link.setAttribute('href', githubPagesRepo);
 
+                console.log('updated landing section href: ', link.getAttribute('href'));
                 return;
             }
 
@@ -98,6 +102,8 @@ function disableCurrentPageReload() {
 
 // Display an appropriate animation when the user enters the page for the first time
 function animateOnWindowLoad() {
+    console.log('pathname in animateOnWindowLoad(): ', windowPathname);
+
     // Display the landing section animation
     if (windowPathname === '/') {
         addModifierClassToNavbarLink(navbarLinkLandingClass);
