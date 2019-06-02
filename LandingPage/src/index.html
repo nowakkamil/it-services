@@ -90,7 +90,16 @@
                     </div>
 
                     <div class="landing-section-left__image-wrapper">
-                        <img class="landing-section-left__image" src="public/desktop.png">
+                        <img class="landing-section-left__image"
+                             srcset="public/desktop-768w.png 768w,
+                                     public/desktop-1440w.png 1440w,
+                                     public/desktop-1920w.png 1920w,
+                                     public/desktop-3154w.png 3154w"
+                             sizes="(max-width: 768px) 768px,
+                                    (max-width: 1440px) 1440px,
+                                    (max-width: 1920px) 1920px,
+                                    3154px"
+                            src="public/desktop-large.png">
                     </div>
                 </div>
 
