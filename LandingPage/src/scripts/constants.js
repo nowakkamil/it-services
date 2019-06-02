@@ -15,6 +15,7 @@ const headerLogo = document.querySelector('.header__logo-wrapper');
 const links = document.querySelectorAll('a[href]');
 const linkLanding = document.querySelector('#link-landing');
 const linkServices = document.querySelector('#link-services');
+const linkServicesFromLanding = document.querySelector('.landing-section-right__link-services');
 const linkStaff = document.querySelector('#link-staff');
 const linkContact = document.querySelector('#link-contact');
 const sectionLinks = [linkLanding, linkServices, linkStaff, linkContact];
@@ -46,6 +47,7 @@ export {
     links,
     linkLanding,
     linkServices,
+    linkServicesFromLanding,
     linkStaff,
     linkContact,
     sectionLinks,

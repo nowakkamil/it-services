@@ -1,4 +1,4 @@
-import { githubPagesRepo, navbarToggler, navbarOverlay, header, links, navbarLinks, navbarLinkOverlayClass } from '../scripts/constants';
+import { githubPagesRepo, navbarToggler, navbarOverlay, header, links, linkServicesFromLanding, navbarLinks, navbarLinkOverlayClass } from '../scripts/constants';
 import { headerOutAnimation, navbarOverlayInAnimation } from '../scripts/gsap';
 
 function isNavbarTogglerChecked() {
@@ -76,6 +76,17 @@ function normaliseTrigger(trigger) {
     return normalisedTrigger;
 }
 
+function normaliseServicesLink() {
+    if (linkServicesFromLanding
+        && window.location.pathname.includes(githubPagesRepo)) {
+        let linkHrefAttribute = linkServicesFromLanding.getAttribute('href');
+
+        if (linkHrefAttribute.includes('.html')) {
+            linkServicesFromLanding.setAttribute('href', linkHrefAttribute.replace('.html', ''));
+        }
+    }
+}
+
 // Prevent the links from being active during the transition effect
 function deactivateLinks() {
     if (links) {
@@ -137,6 +148,7 @@ export {
     unhideHeader,
     unhideContent,
     normaliseTrigger,
+    normaliseServicesLink,
     deactivateLinks,
     reactivateLinks,
     setNavbarLinkModifierClass,
