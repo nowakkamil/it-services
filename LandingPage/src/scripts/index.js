@@ -117,26 +117,32 @@ function animateOnWindowLoad() {
 
     // Display the landing section animation
     if (window.location.pathname === '/' || window.location.pathname === githubPagesRepo) {
+        console.log('landing animation');
         addModifierClassToNavbarLink(navbarLinkLandingClass);
         unhideContent();
         landingEnterPromise(document.querySelector('#landing'), null, false);
     }
     // Display the services section animation
     else if (window.location.pathname.includes('services')) {
+        console.log('services animation');
         addModifierClassToNavbarLink(navbarLinkServicesClass);
         unhideContent();
         servicesEnterPromise(null, false);
     }
     // Display the staff section animation
     else if (window.location.pathname.includes('staff')) {
+        console.log('staff animation');
         addModifierClassToNavbarLink(navbarLinkStaffClass);
         unhideContent();
         staffEnterPromise(document.querySelector('#staff'), null, false);
     }
     // Display the contact section animation
     else if (window.location.pathname.includes('contact')) {
+        console.log('contact animation');
         addModifierClassToNavbarLink(navbarLinkContactClass);
         unhideContent();
         contactEnterPromise(null, false);
     }
+
+    console.log('animation not found');
 }
