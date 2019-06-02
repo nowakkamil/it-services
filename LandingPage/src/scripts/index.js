@@ -2,7 +2,7 @@ import '../styles/index.scss';
 
 import { CSSPlugin, AttrPlugin } from "gsap/all";
 
-import { githubPagesRepo, body, navbar, navbarToggler, header, headerLogo, links, navbarLinkLandingClass, navbarLinkServicesClass, navbarLinkStaffClass, navbarLinkContactClass } from '../scripts/constants';
+import { githubPagesRepo, body, navbar, navbarToggler, header, headerLogo, links, sectionLinks, navbarLinkLandingClass, navbarLinkServicesClass, navbarLinkStaffClass, navbarLinkContactClass } from '../scripts/constants';
 import { barbaInit } from '../scripts/barba';
 import { landingEnterPromise, servicesEnterPromise, staffEnterPromise, contactEnterPromise } from '../scripts/gsap';
 import { unhideNavbarOverlayIfHidden, hideheaderOnWindowLoad, unhideContent, addModifierClassToNavbarLink } from '../scripts/utils';
@@ -19,12 +19,18 @@ window.onload = windowOnLoad;
 navbarToggler.addEventListener("click", unhideNavbarOverlayIfHidden);
 
 function windowOnLoad() {
+    hideAddressBar();
+    adjustSectionLinks();
     adjustWindowPathname();
     resetNavbarStyle();
     removeInlineStyleOnWindowLoad();
     disableCurrentPageReload();
     hideheaderOnWindowLoad();
     animateOnWindowLoad();
+}
+
+function hideAddressBar() {
+    window.scrollTo(0, 1);
 }
 
 // Test for the URL scheme of GitHub Pages and normalize window path if necessary
@@ -34,6 +40,25 @@ function adjustWindowPathname() {
             windowPathname
                 .replace(/\//, '')
                 .replace(githubPagesRepo, '');
+    }
+}
+
+// Test for the URL scheme of GitHub Pages and make necessary adjustments
+function adjustSectionLinks() {
+    if (window.location.pathname.includes(githubPagesRepo)) {
+        sectionLinks.forEach((link) => {
+            let linkHrefAttribute = link.getAttribute('href');
+
+            if (linkHrefAttribute.includes('/')) {
+                link.setAttribute('href', githubPagesRepo);
+
+                return;
+            }
+
+            if (linkHrefAttribute.includes('.html')) {
+                link.setAttribute('href', linkHrefAttribute.replace('.html', ''));
+            }
+        });
     }
 }
 
@@ -97,9 +122,5 @@ function animateOnWindowLoad() {
         addModifierClassToNavbarLink(navbarLinkContactClass);
         unhideContent();
         contactEnterPromise(null, false);
-    }
-    // Redirect the user to the landing section when the URL doesn't match any of the above paths
-    else {
-        window.location.pathname = '/';
     }
 }
