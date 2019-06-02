@@ -1,4 +1,5 @@
 // GitHub Pages URL scheme
+const githubPagesHostname = 'nowakkamil.github.io';
 const githubPagesRepo = 'it-services';
 
 // Elements of the DOM
@@ -12,6 +13,11 @@ const header = document.querySelector('.header');
 const headerOverlay = document.querySelector('.header__overlay');
 const headerLogo = document.querySelector('.header__logo-wrapper');
 const links = document.querySelectorAll('a[href]');
+const linkLanding = document.querySelector('#link-landing');
+const linkServices = document.querySelector('#link-services');
+const linkStaff = document.querySelector('#link-staff');
+const linkContact = document.querySelector('#link-contact');
+const sectionLinks = [linkLanding, linkServices, linkStaff, linkContact];
 const navbarLinks =
     Array
         .from(navbar.querySelectorAll('a[href]'))
@@ -26,6 +32,7 @@ const navbarLinkContactClass = 'nav__link--contact';
 const navbarLinkOverlayClass = 'nav__link--overlay';
 
 export {
+    githubPagesHostname,
     githubPagesRepo,
     body,
     navbar,
@@ -37,6 +44,11 @@ export {
     headerOverlay,
     headerLogo,
     links,
+    linkLanding,
+    linkServices,
+    linkStaff,
+    linkContact,
+    sectionLinks,
     navbarLinks,
     navbarLinkLandingClass,
     navbarLinkServicesClass,
