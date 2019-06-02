@@ -11,7 +11,7 @@ import { unhideNavbarOverlayIfHidden, hideheaderOnWindowLoad, unhideContent, add
 const plugins = [CSSPlugin, AttrPlugin];
 
 // Store window pathname in a separate variable to later normalize it if necessary
-let windowPathname = window.location.pathname;
+// let windowPathname = window.location.pathname;
 let isWindowPathnameNormalised = false;
 console.log('original pathname: ', window.location.pathname);
 
@@ -23,7 +23,7 @@ navbarToggler.addEventListener("click", unhideNavbarOverlayIfHidden);
 function windowOnLoad() {
     hideAddressBar();
     adjustSectionLinks();
-    adjustWindowPathname();
+    // adjustWindowPathname();
     resetNavbarStyle();
     removeInlineStyleOnWindowLoad();
     disableCurrentPageReload();
@@ -42,7 +42,7 @@ function adjustWindowPathname() {
             windowPathname
                 .replace(githubPagesRepo, '');
 
-        isWindowPathnameNormalised = true;
+        // isWindowPathnameNormalised = true;
         console.log('normalised pathname: ', windowPathname);
     }
 }
@@ -53,7 +53,8 @@ function adjustSectionLinks() {
         console.log('before adjustSectionLinks(): ', link.getAttribute('href'));
     });
 
-    if (!isWindowPathnameNormalised && window.location.pathname.includes(githubPagesRepo)) {
+    // if (!isWindowPathnameNormalised && window.location.pathname.includes(githubPagesRepo)) {
+    if (window.location.pathname.includes(githubPagesRepo)) {
         sectionLinks.forEach((link) => {
             let linkHrefAttribute = link.getAttribute('href');
 
@@ -112,28 +113,28 @@ function disableCurrentPageReload() {
 
 // Display an appropriate animation when the user enters the page for the first time
 function animateOnWindowLoad() {
-    console.log('pathname in animateOnWindowLoad(): ', windowPathname);
+    console.log('pathname in animateOnWindowLoad(): ', window.location.pathname);
 
     // Display the landing section animation
-    if (windowPathname === '/') {
+    if (window.location.pathname === '/' || window.location.pathname === githubPagesRepo) {
         addModifierClassToNavbarLink(navbarLinkLandingClass);
         unhideContent();
         landingEnterPromise(document.querySelector('#landing'), null, false);
     }
     // Display the services section animation
-    else if (windowPathname.includes('services')) {
+    else if (window.location.pathname.includes('services')) {
         addModifierClassToNavbarLink(navbarLinkServicesClass);
         unhideContent();
         servicesEnterPromise(null, false);
     }
     // Display the staff section animation
-    else if (windowPathname.includes('staff')) {
+    else if (window.location.pathname.includes('staff')) {
         addModifierClassToNavbarLink(navbarLinkStaffClass);
         unhideContent();
         staffEnterPromise(document.querySelector('#staff'), null, false);
     }
     // Display the contact section animation
-    else if (windowPathname.includes('contact')) {
+    else if (window.location.pathname.includes('contact')) {
         addModifierClassToNavbarLink(navbarLinkContactClass);
         unhideContent();
         contactEnterPromise(null, false);
