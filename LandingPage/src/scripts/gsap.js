@@ -144,17 +144,30 @@ function servicesEnterPromise(resolve, isBarbaTriggering = true) {
     const cards =
         document.querySelectorAll('.services-section__card');
 
-    let timelineDelay = (isBarbaTriggering) ? 0.62 : 0.86;
+    let timelineDelay = (isBarbaTriggering) ? "+=0.62" : "+=0.86";
 
     new TimelineMax()
-        .staggerFrom(cards, 1.4, {
+        // .set()
+        .staggerFrom(cards, 1.8, {
             opacity: 0,
-            y: "-20%",
+            y: "-34%",
             ease: Power4.easeOut,
             clearProps: "all",
             onComplete: resolve
-        }, 0.3)
-        .delay(timelineDelay);
+        }, 0.38, timelineDelay)
+        .addLabel("navbarStart", "-=1.16")
+        .staggerFrom(navbarLinks, 1.4, {
+            opacity: 0,
+            y: "-160%",
+            ease: Power4.easeOut,
+            clearProps: "all"
+        }, 0.28, "navbarStart")
+        .from(navbarLogoWrapper, 2.4, {
+            opacity: 0,
+            y: "-60%",
+            ease: Power4.easeOut,
+            clearProps: "all"
+        }, "navbarStart+=0.82");
 }
 
 function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
@@ -186,8 +199,7 @@ function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
             opacity: 0,
             y: "80%",
             ease: Power4.easeOut,
-            clearProps: "all",
-            onComplete: resolve
+            clearProps: "all"
         }, "-=2.62")
         .addLabel("titleStart", "-=1.8")
         .from(cardsContainer, 4, {
