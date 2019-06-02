@@ -11,8 +11,7 @@ import { unhideNavbarOverlayIfHidden, hideheaderOnWindowLoad, unhideContent, add
 const plugins = [CSSPlugin, AttrPlugin];
 
 // Store window pathname in a separate variable to later normalize it if necessary
-// let windowPathname = window.location.pathname;
-let isWindowPathnameNormalised = false;
+let windowPathname = window.location.pathname;
 console.log('original pathname: ', window.location.pathname);
 
 // Assign event handlers
@@ -23,11 +22,11 @@ navbarToggler.addEventListener("click", unhideNavbarOverlayIfHidden);
 function windowOnLoad() {
     hideAddressBar();
     adjustSectionLinks();
-    // adjustWindowPathname();
     resetNavbarStyle();
     removeInlineStyleOnWindowLoad();
     disableCurrentPageReload();
     hideheaderOnWindowLoad();
+    adjustWindowPathname();
     animateOnWindowLoad();
 }
 
@@ -40,7 +39,7 @@ function adjustWindowPathname() {
     if (windowPathname.includes(githubPagesRepo)) {
         windowPathname =
             windowPathname
-                .replace(githubPagesRepo, '');
+                .replace(githubPagesRepo, '/');
 
         // isWindowPathnameNormalised = true;
         console.log('normalised pathname: ', windowPathname);
@@ -113,31 +112,31 @@ function disableCurrentPageReload() {
 
 // Display an appropriate animation when the user enters the page for the first time
 function animateOnWindowLoad() {
-    console.log('pathname in animateOnWindowLoad(): ', window.location.pathname);
+    console.log('pathname in animateOnWindowLoad(): ', windowPathname);
 
     // Display the landing section animation
-    if (window.location.pathname === '/' || window.location.pathname === githubPagesRepo) {
+    if (windowPathname === '/') {
         console.log('landing animation');
         addModifierClassToNavbarLink(navbarLinkLandingClass);
         unhideContent();
         landingEnterPromise(document.querySelector('#landing'), null, false);
     }
     // Display the services section animation
-    else if (window.location.pathname.includes('services')) {
+    else if (windowPathname.includes('services')) {
         console.log('services animation');
         addModifierClassToNavbarLink(navbarLinkServicesClass);
         unhideContent();
         servicesEnterPromise(null, false);
     }
     // Display the staff section animation
-    else if (window.location.pathname.includes('staff')) {
+    else if (windowPathname.includes('staff')) {
         console.log('staff animation');
         addModifierClassToNavbarLink(navbarLinkStaffClass);
         unhideContent();
         staffEnterPromise(document.querySelector('#staff'), null, false);
     }
     // Display the contact section animation
-    else if (window.location.pathname.includes('contact')) {
+    else if (windowPathname.includes('contact')) {
         console.log('contact animation');
         addModifierClassToNavbarLink(navbarLinkContactClass);
         unhideContent();
