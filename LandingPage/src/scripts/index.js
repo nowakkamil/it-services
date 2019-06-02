@@ -100,7 +100,7 @@ function disableCurrentPageReload() {
 // Display an appropriate animation when the user enters the page for the first time
 function animateOnWindowLoad() {
     // Display the landing section animation
-    if (windowPathname === '/') {
+    if (windowPathname === '/' || windowPathname === githubPagesRepo) {
         addModifierClassToNavbarLink(navbarLinkLandingClass);
         unhideContent();
         landingEnterPromise(document.querySelector('#landing'), null, false);
