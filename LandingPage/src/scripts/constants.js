@@ -1,6 +1,6 @@
 // GitHub Pages URL scheme
 const githubPagesHostname = 'nowakkamil.github.io';
-const githubPagesRepo = 'it-services';
+const githubPagesRepo = '/it-services';
 
 // Elements of the DOM
 const body = document.body;
