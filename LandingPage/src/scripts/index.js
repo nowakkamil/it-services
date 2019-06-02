@@ -38,8 +38,7 @@ function adjustWindowPathname() {
     if (windowPathname.includes(githubPagesRepo)) {
         windowPathname =
             windowPathname
-                .replace(/\//, '')
-                .replace(githubPagesRepo, '');
+                .replace(githubPagesRepo, '/');
     }
 }
 
@@ -100,7 +99,7 @@ function disableCurrentPageReload() {
 // Display an appropriate animation when the user enters the page for the first time
 function animateOnWindowLoad() {
     // Display the landing section animation
-    if (windowPathname === '/' || windowPathname === githubPagesRepo) {
+    if (windowPathname === '/') {
         addModifierClassToNavbarLink(navbarLinkLandingClass);
         unhideContent();
         landingEnterPromise(document.querySelector('#landing'), null, false);
