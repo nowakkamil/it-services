@@ -12,6 +12,7 @@ const plugins = [CSSPlugin, AttrPlugin];
 
 // Store window pathname in a separate variable to later normalize it if necessary
 let windowPathname = window.location.pathname;
+let isWindowPathnameNormalised = false;
 console.log('original pathname: ', window.location.pathname);
 
 // Assign event handlers
@@ -34,20 +35,25 @@ function hideAddressBar() {
     window.scrollTo(0, 1);
 }
 
-// Test for the URL scheme of GitHub Pages and normalize window path if necessary
+// Test for the URL scheme of GitHub Pages and normalise window path if necessary
 function adjustWindowPathname() {
     if (windowPathname.includes(githubPagesRepo)) {
         windowPathname =
             windowPathname
                 .replace(githubPagesRepo, '');
 
-        console.log('normalized pathname: ', windowPathname);
+        isWindowPathnameNormalised = true;
+        console.log('normalised pathname: ', windowPathname);
     }
 }
 
 // Test for the URL scheme of GitHub Pages and make necessary adjustments
 function adjustSectionLinks() {
-    if (window.location.pathname.includes(githubPagesRepo)) {
+    sectionLinks.forEach((link) => {
+        console.log('before adjustSectionLinks(): ', link.getAttribute('href'));
+    });
+
+    if (!isWindowPathnameNormalised && window.location.pathname.includes(githubPagesRepo)) {
         sectionLinks.forEach((link) => {
             let linkHrefAttribute = link.getAttribute('href');
 
@@ -63,6 +69,10 @@ function adjustSectionLinks() {
             }
         });
     }
+
+    sectionLinks.forEach((link) => {
+        console.log('after adjustSectionLinks(): ', link.getAttribute('href'));
+    });
 }
 
 // Reset the style if the JavaScript is enabled
