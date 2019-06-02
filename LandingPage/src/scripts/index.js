@@ -39,7 +39,7 @@ function adjustWindowPathname() {
     if (windowPathname.includes(githubPagesRepo)) {
         windowPathname =
             windowPathname
-                .replace(githubPagesRepo, '/');
+                .replace(githubPagesRepo, '');
 
         console.log('normalized pathname: ', windowPathname);
     }
