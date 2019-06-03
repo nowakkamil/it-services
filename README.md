@@ -25,7 +25,7 @@
   
 </p>
 
-# IT Services [![Build Status](https://travis-ci.com/nowakkamil/it-services.svg?branch=dev%2Fmaster)](https://travis-ci.com/nowakkamil/it-services) [![Renovate Enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8831c3d687284b248abbc715ee82e5a2)](https://www.codacy.com/app/nowakkamil/it-services?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nowakkamil/it-services&amp;utm_campaign=Badge_Grade)
+# IT Services [[LIVE](http://nowakkamil.github.io/it-services)] [![Build Status](https://travis-ci.com/nowakkamil/it-services.svg?branch=dev%2Fmaster)](https://travis-ci.com/nowakkamil/it-services) [![Renovate Enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8831c3d687284b248abbc715ee82e5a2)](https://www.codacy.com/app/nowakkamil/it-services?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nowakkamil/it-services&amp;utm_campaign=Badge_Grade)
 
 ###### A customer-oriented solution for the IT Services company.
 
@@ -35,7 +35,7 @@ The second goal was to provide a vibrant yet harmonious _experience_ for the _us
 
 ## Development
 
-As far as the development is concerned, I have followed the **BEM** convention and taken advantage of all perks that come from working with **SCSS** files. The **babel** compiler made it possible for me to write in _ES6_ syntax. **ESLint**, as well as **Codacy**, takes care of the quality of the source code. **Travis CI** made it incredibly convenient to control the current build status. I have also taken leverage of **GitHub Pages** and its compatibility with _Travis_ to quickly deploy the project. **Renovate** bot ensures that no dependency is outdated. The **webpack** serves as a bundler.
+As far as the development is concerned, I have followed the **BEM** convention and taken advantage of all perks that come from working with **SCSS** files. The **babel** compiler made it possible for me to write in _ES6_ syntax. **ESLint**, as well as **Codacy**, takes care of the quality of the source code. **Travis CI** made it incredibly convenient to control the current build status. I have also taken leverage of **GitHub Pages** and its compatibility with _Travis_ to quickly deploy the project. **Renovate** bot ensures that no dependency is outdated. The **webpack** serves as a bundler. What's more, this website is fully **responsive**.
 
 ## External Libraries / Tools / Conventions
 * [barba.js](https://github.com/barbajs/barba) - Barba is a small and easy-to-use library that helps you creating fluid and smooth transitions between your website's pages
