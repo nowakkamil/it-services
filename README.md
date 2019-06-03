@@ -25,7 +25,7 @@
   
 </p>
 
-# IT Services [[live](http://nowakkamil.github.io/it-services)] [![Build Status](https://travis-ci.com/nowakkamil/it-services.svg?branch=dev%2Fmaster)](https://travis-ci.com/nowakkamil/it-services) [![Renovate Enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8831c3d687284b248abbc715ee82e5a2)](https://www.codacy.com/app/nowakkamil/it-services?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nowakkamil/it-services&amp;utm_campaign=Badge_Grade)
+# IT Services [[LIVE](http://nowakkamil.github.io/it-services)] [![Build Status](https://travis-ci.com/nowakkamil/it-services.svg?branch=dev%2Fmaster)](https://travis-ci.com/nowakkamil/it-services) [![Renovate Enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8831c3d687284b248abbc715ee82e5a2)](https://www.codacy.com/app/nowakkamil/it-services?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nowakkamil/it-services&amp;utm_campaign=Badge_Grade)
 
 ###### A customer-oriented solution for the IT Services company.
 
