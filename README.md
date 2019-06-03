@@ -2,6 +2,29 @@
   <img src="https://raw.githubusercontent.com/nowakkamil/it-services/dev/master/LandingPage/public/logo-876w.png" width="220" />
 </p>
 
+<p align="center">
+  
+  <a href="https://forthebadge.com">
+		<img src="https://forthebadge.com/images/badges/uses-html.svg">
+	</a>
+  <a href="https://forthebadge.com">
+		<img src="https://forthebadge.com/images/badges/uses-css.svg">
+	</a>
+  <a href="https://forthebadge.com">
+		<img src="https://forthebadge.com/images/badges/made-with-javascript.svg">
+	</a>
+  
+  <br>
+  
+  <a href="https://forthebadge.com">
+      <img src="https://forthebadge.com/images/badges/check-it-out.svg">
+	</a>
+  <a href="https://forthebadge.com">
+      <img src="https://forthebadge.com/images/badges/built-with-love.svg">
+	</a>
+  
+</p>
+
 # IT Services [![Build Status](https://travis-ci.com/nowakkamil/it-services.svg?branch=dev%2Fmaster)](https://travis-ci.com/nowakkamil/it-services) [![Renovate Enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8831c3d687284b248abbc715ee82e5a2)](https://www.codacy.com/app/nowakkamil/it-services?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nowakkamil/it-services&amp;utm_campaign=Badge_Grade)
 
 ###### A customer-oriented solution for the IT Services company.
