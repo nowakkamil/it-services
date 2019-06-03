@@ -35,7 +35,7 @@ The second goal was to provide a vibrant yet harmonious _experience_ for the _us
 
 ## Development
 
-As far as the development is concerned, I have followed the **BEM** convention and taken advantage of all perks that come from working with **SCSS** files. The **babel** compiler made it possible for me to write in _ES6_ syntax. **ESLint**, as well as **Codacy**, takes care of the quality of the source code. **Travis CI** made it incredibly convenient to control the current build status. I have also taken leverage of **GitHub Pages** and its compatibility with _Travis_ to quickly deploy the project. **Renovate** bot ensures that no dependency is outdated. The **webpack** serves as a bundler. What's more, this website is fully **responsive**.
+As far as the sole development is concerned, I have followed the **BEM** convention and taken advantage of all perks that come from working with **SCSS** files. The **babel** compiler made it possible for me to write in _ES6_ syntax. **ESLint**, as well as **Codacy**, takes care of the quality of the source code. **Travis CI** made it incredibly convenient to control the current build status. I have also taken leverage of **GitHub Pages** and its compatibility with _Travis_ to quickly deploy the project. **Renovate** bot ensures that no dependency is outdated. The **webpack** serves as a bundler. What's more, this website is fully **responsive**.
 
 ## External Libraries / Tools / Conventions
 * [barba.js](https://github.com/barbajs/barba) - Barba is a small and easy-to-use library that helps you creating fluid and smooth transitions between your website's pages
