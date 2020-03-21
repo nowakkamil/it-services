@@ -5,7 +5,9 @@ import { CSSPlugin, AttrPlugin } from "gsap/all";
 import { githubPagesRepo, body, navbar, navbarToggler, header, headerLogo, links, sectionLinks, navbarLinkLandingClass, navbarLinkServicesClass, navbarLinkStaffClass, navbarLinkContactClass } from '../scripts/constants';
 import { barbaInit } from '../scripts/barba';
 import { landingEnterPromise, servicesEnterPromise, staffEnterPromise, contactEnterPromise } from '../scripts/gsap';
-import { unhideNavbarOverlayIfHidden, hideheaderOnWindowLoad, unhideContent, normaliseServicesLink, addModifierClassToNavbarLink } from '../scripts/utils';
+import { unhideNavbarOverlayIfHidden, hideheaderOnWindowLoad, unhideContent, normaliseServicesLink, addModifierClassToNavbarLink, adjustThemeColor } from '../scripts/utils';
+
+import colors from '../styles/_variables.scss';
 
 // Prevent the webpack from performing tree shaking
 const plugins = [CSSPlugin, AttrPlugin];
@@ -104,23 +106,27 @@ function animateOnWindowLoad() {
         addModifierClassToNavbarLink(navbarLinkLandingClass);
         unhideContent();
         landingEnterPromise(document.querySelector('#landing'), null, false);
+        adjustThemeColor(colors.mineShaftDarker);
     }
     // Display the services section animation
     else if (windowPathname.includes('services')) {
         addModifierClassToNavbarLink(navbarLinkServicesClass);
         unhideContent();
         servicesEnterPromise(null, false);
+        adjustThemeColor(colors.brightSun);
     }
     // Display the staff section animation
     else if (windowPathname.includes('staff')) {
         addModifierClassToNavbarLink(navbarLinkStaffClass);
         unhideContent();
         staffEnterPromise(document.querySelector('#staff'), null, false);
+        adjustThemeColor(colors.mineShaft);
     }
     // Display the contact section animation
     else if (windowPathname.includes('contact')) {
         addModifierClassToNavbarLink(navbarLinkContactClass);
         unhideContent();
         contactEnterPromise(null, false);
+        adjustThemeColor(colors.black);
     }
 }

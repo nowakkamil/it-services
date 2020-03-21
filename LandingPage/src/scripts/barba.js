@@ -1,8 +1,31 @@
 import barba from '@barba/core';
 
-import { githubPagesRepo, navbarLinkLandingClass, navbarLinkServicesClass, navbarLinkStaffClass, navbarLinkContactClass } from './constants';
-import { landingEnterPromise, servicesEnterPromise, staffEnterPromise, contactEnterPromise, containerOutAnimation, headerInAnimation } from '../scripts/gsap';
-import { unhideContent, hideNavbarOverlayIfVisible, normaliseTrigger, normaliseServicesLink, deactivateLinks, reactivateLinks, setNavbarLinkModifierClass } from '../scripts/utils';
+import {
+    githubPagesRepo,
+    navbarLinkLandingClass,
+    navbarLinkServicesClass,
+    navbarLinkStaffClass,
+    navbarLinkContactClass
+} from './constants';
+import {
+    landingEnterPromise,
+    servicesEnterPromise,
+    staffEnterPromise,
+    contactEnterPromise,
+    containerOutAnimation,
+    headerInAnimation
+} from '../scripts/gsap';
+import {
+    unhideContent,
+    hideNavbarOverlayIfVisible,
+    normaliseTrigger,
+    normaliseServicesLink,
+    deactivateLinks,
+    reactivateLinks,
+    setNavbarLinkModifierClass,
+    adjustThemeColor
+} from '../scripts/utils';
+import colors from './../styles/_variables.scss';
 
 function barbaInit() {
     barba.hooks.leave(() => deactivateLinks());
@@ -37,7 +60,9 @@ function barbaInit() {
                 },
 
                 // Return a promise
-                enter: ({ next }) => landingEnterAnimation(next.container)
+                enter: ({ next }) => landingEnterAnimation(next.container),
+
+                after: () => adjustThemeColor(colors.mineShaftDarker)
             },
             {
                 name: 'many-to-services',
@@ -56,7 +81,9 @@ function barbaInit() {
                 beforeEnter: () => setNavbarLinkModifierClass(navbarLinkServicesClass),
 
                 // Return a promise
-                enter: () => servicesEnterAnimation()
+                enter: () => servicesEnterAnimation(),
+
+                after: () => adjustThemeColor(colors.brightSun)
             },
             {
                 name: 'many-to-staff',
@@ -75,7 +102,9 @@ function barbaInit() {
                 beforeEnter: () => setNavbarLinkModifierClass(navbarLinkStaffClass),
 
                 // Return a promise
-                enter: ({ next }) => staffEnterAnimation(next.container)
+                enter: ({ next }) => staffEnterAnimation(next.container),
+
+                after: () => adjustThemeColor(colors.mineShaft)
             },
             {
                 name: 'many-to-contact',
@@ -94,7 +123,9 @@ function barbaInit() {
                 beforeEnter: () => setNavbarLinkModifierClass(navbarLinkContactClass),
 
                 // Return a promise
-                enter: () => contactEnterAnimation()
+                enter: () => contactEnterAnimation(),
+
+                after: () => adjustThemeColor(colors.black)
             }
         ],
         debug: true,

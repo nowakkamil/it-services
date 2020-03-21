@@ -163,3 +163,10 @@ $colorSet: (
     $color-mine-shaft-50-alfa,
     $color-mine-shaft-90-alfa
 );
+
+:export {
+    brightSun: $color-bright-sun;
+    mineShaft: $color-mine-shaft;
+    mineShaftDarker: $color-mine-shaft-darker;
+    black: black;
+}

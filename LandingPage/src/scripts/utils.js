@@ -139,6 +139,10 @@ function removeModifierClassFromNavbarLink(modifierClass) {
     }
 }
 
+function adjustThemeColor(color) {
+    document.querySelector('meta[name="theme-color"]').setAttribute("content", color);
+}
+
 export {
     isNavbarTogglerChecked,
     unhideNavbarOverlayIfHidden,
@@ -153,5 +157,6 @@ export {
     reactivateLinks,
     setNavbarLinkModifierClass,
     addModifierClassToNavbarLink,
-    removeModifierClassFromNavbarLink
+    removeModifierClassFromNavbarLink,
+    adjustThemeColor
 };
