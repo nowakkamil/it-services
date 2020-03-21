@@ -57,12 +57,11 @@ function barbaInit() {
                 beforeEnter: () => {
                     setNavbarLinkModifierClass(navbarLinkLandingClass);
                     normaliseServicesLink();
+                    adjustThemeColor(colors.mineShaftDarker);
                 },
 
                 // Return a promise
-                enter: ({ next }) => landingEnterAnimation(next.container),
-
-                after: () => adjustThemeColor(colors.mineShaftDarker)
+                enter: ({ next }) => landingEnterAnimation(next.container)
             },
             {
                 name: 'many-to-services',
@@ -78,12 +77,13 @@ function barbaInit() {
                     containerOutAnimation(current.container, this.async());
                 },
 
-                beforeEnter: () => setNavbarLinkModifierClass(navbarLinkServicesClass),
+                beforeEnter: () => {
+                    setNavbarLinkModifierClass(navbarLinkServicesClass);
+                    adjustThemeColor(colors.brightSun);
+                },
 
                 // Return a promise
-                enter: () => servicesEnterAnimation(),
-
-                after: () => adjustThemeColor(colors.brightSun)
+                enter: () => servicesEnterAnimation()
             },
             {
                 name: 'many-to-staff',
@@ -99,12 +99,13 @@ function barbaInit() {
                     containerOutAnimation(current.container, this.async());
                 },
 
-                beforeEnter: () => setNavbarLinkModifierClass(navbarLinkStaffClass),
+                beforeEnter: () => {
+                    setNavbarLinkModifierClass(navbarLinkStaffClass);
+                    adjustThemeColor(colors.mineShaft);
+                },
 
                 // Return a promise
-                enter: ({ next }) => staffEnterAnimation(next.container),
-
-                after: () => adjustThemeColor(colors.mineShaft)
+                enter: ({ next }) => staffEnterAnimation(next.container)
             },
             {
                 name: 'many-to-contact',
@@ -120,12 +121,13 @@ function barbaInit() {
                     containerOutAnimation(current.container, this.async());
                 },
 
-                beforeEnter: () => setNavbarLinkModifierClass(navbarLinkContactClass),
+                beforeEnter: () => {
+                    setNavbarLinkModifierClass(navbarLinkContactClass);
+                    adjustThemeColor(colors.black);
+                },
 
                 // Return a promise
-                enter: () => contactEnterAnimation(),
-
-                after: () => adjustThemeColor(colors.black)
+                enter: () => contactEnterAnimation()
             }
         ],
         debug: true,
