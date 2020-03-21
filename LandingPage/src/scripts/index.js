@@ -21,7 +21,7 @@ window.onload = windowOnLoad;
 navbarToggler.addEventListener("click", unhideNavbarOverlayIfHidden);
 
 function windowOnLoad() {
-    hideAddressBar();
+    hideAddressBar(window);
     adjustSectionLinks();
     resetNavbarStyle();
     removeInlineStyleOnWindowLoad();
@@ -31,8 +31,41 @@ function windowOnLoad() {
     animateOnWindowLoad();
 }
 
-function hideAddressBar() {
-    window.scrollTo(0, 1);
+function hideAddressBar(win) {
+    let doc = win.document;
+
+    // If there's a hash, or addEventListener is undefined, stop here
+    if (win.navigator.standalone || location.hash || !win.addEventListener) {
+        return;
+    }
+
+    // Scroll to 1
+    win.scrollTo(0, 1);
+    let scrollTop = 1;
+    let getScrollTop = () =>
+        win.pageYOffset || doc.compatMode === "CSS1Compat"
+        && doc.documentElement.scrollTop || doc.body.scrollTop || 0;
+
+    // Reset to 0 on bodyready, if needed
+    let bodycheck = setInterval(() => {
+        if (!doc.body) {
+            return;
+        }
+
+        clearInterval(bodycheck);
+        scrollTop = getScrollTop();
+        win.scrollTo(0, scrollTop === 1 ? 0 : 1);
+    }, 15);
+
+    win.addEventListener("load", () => {
+        setTimeout(() => {
+            // At load, if user hasn't scrolled more than 20
+            if (getScrollTop() < 20) {
+                // Reset to hide address bar at onload
+                win.scrollTo(0, scrollTop === 1 ? 0 : 1);
+            }
+        }, 0);
+    }, false);
 }
 
 // Test for the URL scheme of GitHub Pages and normalise window path if necessary
