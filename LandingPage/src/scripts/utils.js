@@ -1,4 +1,4 @@
-import { githubPagesRepo, navbarToggler, navbarOverlay, header, links, linkServicesFromLanding, navbarLinks, navbarLinkOverlayClass } from '../scripts/constants';
+import { githubPagesRepo, navbarToggler, navbarOverlay, header, links, linkServicesFromLanding, navbarLinksWithoutLogo, navbarLinkOverlayClass } from '../scripts/constants';
 import { headerOutAnimation, navbarOverlayInAnimation, timelines } from '../scripts/gsap';
 
 function isNavbarTogglerChecked() {
@@ -108,8 +108,8 @@ function reactivateLinks() {
 // This method doesn't result in removing the ::after pseudo element of the navbar link.
 // The base class is intact
 function setNavbarLinkModifierClass(modifierClass) {
-    if (navbarLinks) {
-        navbarLinks.forEach(link => {
+    if (navbarLinksWithoutLogo) {
+        navbarLinksWithoutLogo.forEach(link => {
             link.classList =
                 Array
                     .from(link.classList)
@@ -122,21 +122,43 @@ function setNavbarLinkModifierClass(modifierClass) {
 }
 
 function addModifierClassToNavbarLink(modifierClass) {
-    if (navbarLinks) {
-        navbarLinks.forEach(link => {
+    if (navbarLinksWithoutLogo) {
+        navbarLinksWithoutLogo.forEach(link => {
             link.classList.add(modifierClass);
         });
     }
 }
 
 function removeModifierClassFromNavbarLink(modifierClass) {
-    if (navbarLinks) {
-        navbarLinks.forEach(link => {
+    if (navbarLinksWithoutLogo) {
+        navbarLinksWithoutLogo.forEach(link => {
             if (link.classList.contains(modifierClass)) {
                 link.classList.remove(modifierClass);
             }
         });
     }
+}
+
+function closeNavbarOverlayIfTargetMatchesCurrent(e) {
+    let { target } = e;
+    let linkHrefAttribute = target.getAttribute("href");
+    let windowPathname = adjustWindowPathname(window.location.pathname);
+
+    if (isNavbarTogglerChecked()
+        && windowPathname.includes(linkHrefAttribute)) {
+        navbarToggler.click();
+    }
+}
+
+// Test for the URL scheme of GitHub Pages and normalise window path if necessary
+function adjustWindowPathname(windowPathname) {
+    if (windowPathname.includes(githubPagesRepo)) {
+        windowPathname =
+            windowPathname
+                .replace(githubPagesRepo, '/');
+    }
+
+    return windowPathname;
 }
 
 function adjustThemeColor(color) {
@@ -173,6 +195,7 @@ export {
     setNavbarLinkModifierClass,
     addModifierClassToNavbarLink,
     removeModifierClassFromNavbarLink,
+    closeNavbarOverlayIfTargetMatchesCurrent,
     adjustThemeColor,
     completeAllAnimations,
     completeEachSectionAnimation

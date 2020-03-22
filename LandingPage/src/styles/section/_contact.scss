@@ -27,6 +27,9 @@
 
             @media screen and (max-width: $tablet-max-width) {
                 margin-top: -4vh;
+            }
+
+            @media screen and (max-width: $tablet-max-width) and (max-height: $mobile-max-width) {
                 height: 90vh;
             }
 

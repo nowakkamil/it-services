@@ -2,10 +2,10 @@ import '../styles/index.scss';
 
 import { CSSPlugin, AttrPlugin } from "gsap/all";
 
-import { githubPagesRepo, body, navbar, navbarToggler, header, headerLogo, links, sectionLinks, navbarLinkLandingClass, navbarLinkServicesClass, navbarLinkStaffClass, navbarLinkContactClass } from '../scripts/constants';
+import { githubPagesRepo, body, navbar, navbarToggler, header, headerLogo, links, sectionLinks, navbarLinkLandingClass, navbarLinks, navbarLinkServicesClass, navbarLinkStaffClass, navbarLinkContactClass } from '../scripts/constants';
 import { barbaInit } from '../scripts/barba';
 import { landingEnterPromise, servicesEnterPromise, staffEnterPromise, contactEnterPromise } from '../scripts/gsap';
-import { unhideNavbarOverlayIfHidden, hideheaderOnWindowLoad, unhideContent, normaliseServicesLink, addModifierClassToNavbarLink, adjustThemeColor } from '../scripts/utils';
+import { unhideNavbarOverlayIfHidden, hideheaderOnWindowLoad, unhideContent, normaliseServicesLink, closeNavbarOverlayIfTargetMatchesCurrent, addModifierClassToNavbarLink, adjustThemeColor } from '../scripts/utils';
 
 import colors from '../styles/_variables.scss';
 
@@ -29,6 +29,7 @@ function windowOnLoad() {
     hideheaderOnWindowLoad();
     adjustWindowPathname();
     animateOnWindowLoad();
+    addEventListenerToNavbarLinks();
 }
 
 function hideAddressBar(win) {
@@ -68,7 +69,8 @@ function hideAddressBar(win) {
     }, false);
 }
 
-// Test for the URL scheme of GitHub Pages and normalise window path if necessary
+// Test for the URL scheme of GitHub Pages and normalise window path if necessary.
+// Run only once
 function adjustWindowPathname() {
     if (windowPathname.includes(githubPagesRepo)) {
         windowPathname =
@@ -129,6 +131,10 @@ function disableCurrentPageReload() {
             links[index].addEventListener('click', disableCurrentPageReload);
         }
     }
+}
+
+function addEventListenerToNavbarLinks() {
+    navbarLinks.forEach(n => n.addEventListener("click", closeNavbarOverlayIfTargetMatchesCurrent));
 }
 
 // Display an appropriate animation when the user enters the page for the first time

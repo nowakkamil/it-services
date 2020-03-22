@@ -1,6 +1,6 @@
 import { TweenMax, TimelineMax, Power2, Power3, Power4, Expo } from "gsap/all";
 
-import { navbarLogoWrapper, navbarOverlay, navbarLinks, header, headerOverlay, isDesktop } from '../scripts/constants';
+import { navbarLogoWrapper, navbarOverlay, navbarLinksWithoutLogo, header, headerOverlay, isDesktop } from '../scripts/constants';
 import { unhideHeader, toggleNavbarTogglerDisability, completeAllAnimations } from '../scripts/utils';
 
 let timelines = {
@@ -48,12 +48,12 @@ function navbarOverlayInAnimation() {
             y: "-100%",
             ease: Power3.easeOut
         })
-        .staggerFrom(navbarLinks, 1.2, {
+        .staggerFrom(navbarLinksWithoutLogo, 1.2, {
             autoAlpha: 0,
             y: "-68%",
             ease: Power4.easeOut
         }, 0.2, "-=0.5")
-        .set([navbarOverlay, navbarLinks], {
+        .set([navbarOverlay, navbarLinksWithoutLogo], {
             clearProps: "all"
         })
         .call(toggleNavbarTogglerDisability);
@@ -105,7 +105,7 @@ function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
                 ease: Power4.easeOut,
                 clearProps: "all"
             }, "headerStart")
-            .staggerFrom(navbarLinks, 1.2, {
+            .staggerFrom(navbarLinksWithoutLogo, 1.2, {
                 opacity: 0,
                 left: 80,
                 ease: Power4.easeOut,
@@ -178,7 +178,7 @@ function servicesEnterPromise(resolve, isBarbaTriggering = true) {
             onComplete: resolve
         }, 0.38, timelineDelay)
         .addLabel("navbarStart", "-=1.16")
-        .staggerFrom(navbarLinks, 1.4, {
+        .staggerFrom(navbarLinksWithoutLogo, 1.4, {
             opacity: 0,
             y: "-160%",
             ease: Power4.easeOut,
@@ -233,7 +233,7 @@ function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
             boxShadow: "none",
             ease: Power3.easeInOut
         }, "-=2.2")
-        .staggerFrom(navbarLinks, 1.4, {
+        .staggerFrom(navbarLinksWithoutLogo, 1.4, {
             opacity: 0,
             y: "40%",
             ease: Power4.easeOut,
@@ -292,13 +292,13 @@ function contactEnterPromise(resolve, isBarbaTriggering = true) {
             clearProps: "all"
         })
         .addLabel("navbarStart", "-=1.22")
-        .staggerFrom(navbarLinks, 1.46, {
+        .staggerFrom(navbarLinksWithoutLogo, 1.46, {
             opacity: 0,
             y: "-160%",
             ease: Power4.easeOut,
             clearProps: "all"
         }, 0.3, "navbarStart")
-        .staggerTo(navbarLinks, 1.2, {
+        .staggerTo(navbarLinksWithoutLogo, 1.2, {
             color: "#fff",
             textShadow: "0px 0px 0px #fff",
             ease: Expo.easeOut,

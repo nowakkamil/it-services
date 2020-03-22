@@ -21,8 +21,11 @@ const linkContact = document.querySelector('#link-contact');
 const sectionLinks = [linkLanding, linkServices, linkStaff, linkContact];
 const navbarLinks =
     Array
+        .from(navbar.querySelectorAll('a[href]'));
+const navbarLinksWithoutLogo =
+    Array
         .from(navbar.querySelectorAll('a[href]'))
-        // Remove clickable logo link from the navbarLinks collection
+        // Remove clickable logo link from the navbarLinksWithoutLogo collection
         .filter((link) => !link.className.includes('logo'));
 
 // Modifier classes
@@ -55,6 +58,7 @@ export {
     linkContact,
     sectionLinks,
     navbarLinks,
+    navbarLinksWithoutLogo,
     navbarLinkLandingClass,
     navbarLinkServicesClass,
     navbarLinkStaffClass,
