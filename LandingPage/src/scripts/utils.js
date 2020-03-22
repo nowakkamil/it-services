@@ -140,19 +140,35 @@ function removeModifierClassFromNavbarLink(modifierClass) {
 }
 
 function closeNavbarOverlayIfTargetMatchesCurrent(e) {
+    if (!isNavbarTogglerChecked()) {
+        return;
+    }
+
     let { target } = e;
     let linkHrefAttribute = target.getAttribute("href");
     let windowPathname = adjustWindowPathname(window.location.pathname);
 
-    if (isNavbarTogglerChecked()
-        && windowPathname.includes(linkHrefAttribute)) {
+    let targetMatchesLandingAfterAdjustment =
+        windowPathnameAdjustmentRequired(windowPathname)
+        && CheckIfTargetMatchesCurrent(window.location.pathname, linkHrefAttribute);
+
+    if (CheckIfTargetMatchesCurrent(windowPathname, linkHrefAttribute)
+        || targetMatchesLandingAfterAdjustment) {
         navbarToggler.click();
     }
 }
 
+function CheckIfTargetMatchesCurrent(windowPathname, linkHrefAttribute) {
+    return windowPathname.includes(linkHrefAttribute);
+}
+
+function windowPathnameAdjustmentRequired(windowPathname) {
+    return windowPathname.includes(githubPagesRepo);
+}
+
 // Test for the URL scheme of GitHub Pages and normalise window path if necessary
 function adjustWindowPathname(windowPathname) {
-    if (windowPathname.includes(githubPagesRepo)) {
+    if (windowPathnameAdjustmentRequired(windowPathname)) {
         windowPathname =
             windowPathname
                 .replace(githubPagesRepo, '/');
