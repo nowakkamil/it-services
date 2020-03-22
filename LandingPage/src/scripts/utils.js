@@ -148,6 +148,10 @@ function closeNavbarOverlayIfTargetMatchesCurrent(e) {
     let linkHrefAttribute = target.getAttribute("href");
     let windowPathname = adjustWindowPathname(window.location.pathname);
 
+    console.log(`linkHrefAttribute: ${linkHrefAttribute}`);
+    console.log(`windowPathname:    ${windowPathname}`);
+    console.log(`location.pathname: ${window.location.pathname}`);
+
     let targetMatchesLandingAfterAdjustment =
         windowPathnameAdjustmentRequired(windowPathname)
         && CheckIfTargetMatchesCurrent(window.location.pathname, linkHrefAttribute);
