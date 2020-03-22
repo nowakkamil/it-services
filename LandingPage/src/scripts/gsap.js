@@ -3,8 +3,10 @@ import { TweenMax, TimelineMax, Power2, Power3, Power4, Expo } from "gsap/all";
 import { navbarLogoWrapper, navbarOverlay, navbarLinks, header, headerOverlay } from '../scripts/constants';
 import { unhideHeader, toggleNavbarTogglerDisability } from '../scripts/utils';
 
+let master = new TimelineMax();
+
 function headerOutAnimation() {
-    new TimelineMax()
+    master.add(new TimelineMax()
         .set(headerOverlay, {
             visibility: "hidden"
         })
@@ -16,11 +18,15 @@ function headerOutAnimation() {
         .set(header, {
             visibility: "hidden",
             top: 0
-        });
+        }));
 }
 
 function navbarOverlayInAnimation() {
-    new TimelineMax()
+    // Complete all the animations so far, so that the animated elements in this method
+    // won't get interfered by the previous animations (that otherwise might still be playing out)
+    master.time(master.duration());
+
+    master.add(new TimelineMax()
         .from(navbarOverlay, 1, {
             y: "-100%",
             ease: Power3.easeOut
@@ -33,7 +39,7 @@ function navbarOverlayInAnimation() {
         .set([navbarOverlay, navbarLinks], {
             clearProps: "all"
         })
-        .call(toggleNavbarTogglerDisability);
+        .call(toggleNavbarTogglerDisability));
 }
 
 function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
@@ -58,7 +64,7 @@ function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
 
         let timelineDelay = (isBarbaTriggering) ? null : "+=0.48";
 
-        new TimelineMax()
+        master.add(new TimelineMax()
             .from(landing, 2.2, {
                 opacity: 0,
                 ease: Power4.easeInOut
@@ -113,7 +119,7 @@ function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
                 left: 300,
                 ease: Expo.easeOut,
                 clearProps: "all"
-            }, "rightColumnText");
+            }, "rightColumnText"));
     } else {
         const mobileText =
             document.querySelector('.landing-section-right__text-container-mobile');
@@ -123,7 +129,7 @@ function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
 
         let mobileTimelineDelay = (isBarbaTriggering) ? "+=0.6" : "+=0.9";
 
-        new TimelineMax()
+        master.add(new TimelineMax()
             .from(mobileText, 1.4, {
                 opacity: 0,
                 y: "-140%",
@@ -136,7 +142,7 @@ function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
                 ease: Power4.easeOut,
                 onComplete: resolve,
                 clearProps: "all"
-            }, "-=0.7");
+            }, "-=0.7"));
     }
 }
 
@@ -146,7 +152,7 @@ function servicesEnterPromise(resolve, isBarbaTriggering = true) {
 
     let timelineDelay = (isBarbaTriggering) ? "+=0.62" : "+=0.86";
 
-    new TimelineMax()
+    master.add(new TimelineMax()
         .staggerFrom(cards, 1.8, {
             opacity: 0,
             y: "-34%",
@@ -166,7 +172,7 @@ function servicesEnterPromise(resolve, isBarbaTriggering = true) {
             y: "-60%",
             ease: Power4.easeOut,
             clearProps: "all"
-        }, "navbarStart+=0.82");
+        }, "navbarStart+=0.82"));
 }
 
 function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
@@ -184,7 +190,7 @@ function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
 
     let timelineDelay = (isBarbaTriggering) ? 0.62 : 0.9;
 
-    new TimelineMax()
+    master.add(new TimelineMax()
         .from(staff, 4.86, {
             opacity: 0,
             ease: Power3.easeOut
@@ -217,7 +223,7 @@ function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
             y: 16,
             ease: Power4.easeOut,
             clearProps: "all"
-        }, "titleStart+=0.8");
+        }, "titleStart+=0.8"));
 }
 
 function contactEnterPromise(resolve, isBarbaTriggering = true) {
@@ -235,7 +241,7 @@ function contactEnterPromise(resolve, isBarbaTriggering = true) {
 
     let timelineDelay = (isBarbaTriggering) ? "+=0.66" : "+=1.22";
 
-    new TimelineMax()
+    master.add(new TimelineMax()
         .set(cardsContainer, {
             overflowY: "hidden"
         })
@@ -276,7 +282,7 @@ function contactEnterPromise(resolve, isBarbaTriggering = true) {
             textShadow: "0px 0px 0px #fff",
             ease: Expo.easeOut,
             clearProps: "all"
-        }, 0.34, "navbarStart+=2");
+        }, 0.34, "navbarStart+=2"));
 }
 
 // The 'async' callback is passed
@@ -296,15 +302,15 @@ function headerInAnimation() {
     return new Promise(resolve => {
         unhideHeader();
 
-        new TimelineMax()
+        master.add(new TimelineMax()
             .fromTo(headerOverlay, 1, {
                 autoAlpha: 1,
                 top: "-100%",
                 ease: Expo.easeInOut,
             }, {
-                    top: "100%",
-                    ease: Expo.easeInOut,
-                })
+                top: "100%",
+                ease: Expo.easeInOut,
+            })
             .from(header, 1, {
                 autoAlpha: 1,
                 top: "-100%",
@@ -319,7 +325,7 @@ function headerInAnimation() {
                 visibility: "hidden",
                 top: 0
             })
-            .timeScale(0.82);
+            .timeScale(0.82));
     });
 }
 
