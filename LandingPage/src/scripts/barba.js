@@ -23,7 +23,8 @@ import {
     deactivateLinks,
     reactivateLinks,
     setNavbarLinkModifierClass,
-    adjustThemeColor
+    adjustThemeColor,
+    completeEachSectionAnimation
 } from '../scripts/utils';
 import colors from './../styles/_variables.scss';
 
@@ -32,7 +33,10 @@ function barbaInit() {
 
     barba.hooks.afterLeave(() => headerInAnimation());
 
-    barba.hooks.beforeEnter(() => hideNavbarOverlayIfVisible());
+    barba.hooks.beforeEnter(() => {
+        hideNavbarOverlayIfVisible();
+        completeEachSectionAnimation();
+    });
 
     barba.hooks.enter(() => unhideContent());
 

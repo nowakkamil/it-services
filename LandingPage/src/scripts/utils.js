@@ -1,5 +1,5 @@
 import { githubPagesRepo, navbarToggler, navbarOverlay, header, links, linkServicesFromLanding, navbarLinks, navbarLinkOverlayClass } from '../scripts/constants';
-import { headerOutAnimation, navbarOverlayInAnimation } from '../scripts/gsap';
+import { headerOutAnimation, navbarOverlayInAnimation, timelines } from '../scripts/gsap';
 
 function isNavbarTogglerChecked() {
     if (navbarToggler) {
@@ -143,6 +143,21 @@ function adjustThemeColor(color) {
     document.querySelector('meta[name="theme-color"]').setAttribute("content", color);
 }
 
+// Complete all the animations so far, so that the to-be-animated elements won't get
+// interfered by the previous animations (that otherwise might still be playing out)
+function completeAllAnimations() {
+    Object.values(timelines)
+        .forEach(t => t.timeline.time(t.timeline.duration()));
+}
+
+// Complete each section animation, so that the to-be-animated elements won't get
+// interfered by the previous animation (that otherwise might still be playing out)
+function completeEachSectionAnimation() {
+    Object.keys(timelines)
+        .filter(key => !key.includes('header'))
+        .forEach(key => timelines[key].timeline.time(timelines[key].timeline.duration()));
+}
+
 export {
     isNavbarTogglerChecked,
     unhideNavbarOverlayIfHidden,
@@ -158,5 +173,7 @@ export {
     setNavbarLinkModifierClass,
     addModifierClassToNavbarLink,
     removeModifierClassFromNavbarLink,
-    adjustThemeColor
+    adjustThemeColor,
+    completeAllAnimations,
+    completeEachSectionAnimation
 };
