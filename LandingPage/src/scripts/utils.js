@@ -146,39 +146,36 @@ function closeNavbarOverlayIfTargetMatchesCurrent(e) {
 
     let { target } = e;
     let linkHrefAttribute = target.getAttribute("href");
-    let windowPathname = adjustWindowPathname(window.location.pathname);
+    let windowPathnameAdjustmentRequired = checkIfWindowPathnameAdjustmentRequired(window.location.pathname);
+    let windowPathname = windowPathnameAdjustmentRequired
+        ? adjustWindowPathname(window.location.pathname)
+        : window.location.pathname;
 
     console.log(`linkHrefAttribute: ${linkHrefAttribute}`);
     console.log(`windowPathname:    ${windowPathname}`);
     console.log(`location.pathname: ${window.location.pathname}`);
 
     let targetMatchesLandingAfterAdjustment =
-        windowPathnameAdjustmentRequired(windowPathname)
-        && CheckIfTargetMatchesCurrent(window.location.pathname, linkHrefAttribute);
+        windowPathnameAdjustmentRequired
+        && checkIfTargetMatchesCurrent(window.location.pathname, linkHrefAttribute);
 
-    if (CheckIfTargetMatchesCurrent(windowPathname, linkHrefAttribute)
+    if (checkIfTargetMatchesCurrent(windowPathname, linkHrefAttribute)
         || targetMatchesLandingAfterAdjustment) {
         navbarToggler.click();
     }
 }
 
-function CheckIfTargetMatchesCurrent(windowPathname, linkHrefAttribute) {
+function checkIfTargetMatchesCurrent(windowPathname, linkHrefAttribute) {
     return windowPathname.includes(linkHrefAttribute);
 }
 
-function windowPathnameAdjustmentRequired(windowPathname) {
+function checkIfWindowPathnameAdjustmentRequired(windowPathname) {
     return windowPathname.includes(githubPagesRepo);
 }
 
 // Test for the URL scheme of GitHub Pages and normalise window path if necessary
 function adjustWindowPathname(windowPathname) {
-    if (windowPathnameAdjustmentRequired(windowPathname)) {
-        windowPathname =
-            windowPathname
-                .replace(githubPagesRepo, '/');
-    }
-
-    return windowPathname;
+    return windowPathname.replace(githubPagesRepo, '/');
 }
 
 function adjustThemeColor(color) {
