@@ -1,5 +1,14 @@
 {
   "extends": [
     "config:base"
+  ],
+  "labels": [
+    "configuration"
+  ],
+  "assignees": [
+    "nowakkamil@yahoo.com"
+  ],
+  "reviewers": [
+    "nowakkamil@yahoo.com"
   ]
 }
