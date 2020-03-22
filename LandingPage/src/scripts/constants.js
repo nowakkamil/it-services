@@ -32,6 +32,9 @@ const navbarLinkStaffClass = 'nav__link--staff';
 const navbarLinkContactClass = 'nav__link--contact';
 const navbarLinkOverlayClass = 'nav__link--overlay';
 
+// Client properties
+const isDesktop = () => document.documentElement.clientWidth > 600;
+
 export {
     githubPagesHostname,
     githubPagesRepo,
@@ -56,5 +59,6 @@ export {
     navbarLinkServicesClass,
     navbarLinkStaffClass,
     navbarLinkContactClass,
-    navbarLinkOverlayClass
+    navbarLinkOverlayClass,
+    isDesktop
 };

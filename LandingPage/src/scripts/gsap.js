@@ -1,6 +1,6 @@
 import { TweenMax, TimelineMax, Power2, Power3, Power4, Expo } from "gsap/all";
 
-import { navbarLogoWrapper, navbarOverlay, navbarLinks, header, headerOverlay } from '../scripts/constants';
+import { navbarLogoWrapper, navbarOverlay, navbarLinks, header, headerOverlay, isDesktop } from '../scripts/constants';
 import { unhideHeader, toggleNavbarTogglerDisability, completeAllAnimations } from '../scripts/utils';
 
 let timelines = {
@@ -60,7 +60,7 @@ function navbarOverlayInAnimation() {
 }
 
 function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
-    if (document.documentElement.clientWidth > 600) {
+    if (isDesktop()) {
         const rightColumn =
             document.querySelector('.landing-section-right');
 
@@ -169,7 +169,7 @@ function servicesEnterPromise(resolve, isBarbaTriggering = true) {
 
     let timelineDelay = (isBarbaTriggering) ? "+=0.62" : "+=0.86";
 
-    timelines.services.timeline = new TimelineMax()
+    let timeline = new TimelineMax()
         .staggerFrom(cards, 1.8, {
             opacity: 0,
             y: "-34%",
@@ -183,13 +183,18 @@ function servicesEnterPromise(resolve, isBarbaTriggering = true) {
             y: "-160%",
             ease: Power4.easeOut,
             clearProps: "all"
-        }, 0.28, "navbarStart")
-        .from(navbarLogoWrapper, 2.4, {
+        }, 0.28, "navbarStart");
+
+    if (isDesktop()) {
+        timeline.from(navbarLogoWrapper, 2.4, {
             opacity: 0,
             y: "-60%",
             ease: Power4.easeOut,
             clearProps: "all"
         }, "navbarStart+=0.82");
+    }
+
+    timelines.services.timeline = timeline;
 }
 
 function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
@@ -207,7 +212,7 @@ function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
 
     let timelineDelay = (isBarbaTriggering) ? 0.62 : 0.9;
 
-    timelines.staff.timeline = new TimelineMax()
+    let timeline = new TimelineMax()
         .from(staff, 4.86, {
             opacity: 0,
             ease: Power3.easeOut
@@ -234,13 +239,18 @@ function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
             ease: Power4.easeOut,
             onComplete: resolve,
             clearProps: "all"
-        }, 0.24, "titleStart")
-        .from(navbarLogoWrapper, 2, {
+        }, 0.24, "titleStart");
+
+    if (isDesktop()) {
+        timeline.from(navbarLogoWrapper, 2, {
             opacity: 0,
             y: 16,
             ease: Power4.easeOut,
             clearProps: "all"
         }, "titleStart+=0.8");
+    }
+
+    timelines.staff.timeline = timeline;
 }
 
 function contactEnterPromise(resolve, isBarbaTriggering = true) {
@@ -258,21 +268,21 @@ function contactEnterPromise(resolve, isBarbaTriggering = true) {
 
     let timelineDelay = (isBarbaTriggering) ? "+=0.66" : "+=1.22";
 
-    timelines.contact.timeline = new TimelineMax()
+    let timeline = new TimelineMax()
         .set(cardsContainer, {
             overflowY: "hidden"
         })
         .from(pricesCard, 1.7, {
             opacity: 0,
-            y: "-20%",
+            y: isDesktop() ? "-20%" : "-26%",
             ease: Power3.easeOut,
         }, timelineDelay)
-        .from(contactCard, 1.7, {
+        .from(contactCard, isDesktop() ? 1.7 : 1.8, {
             opacity: 0,
-            y: "20%",
-            ease: Power3.easeOut,
+            y: isDesktop() ? "20%" : "-32%",
+            ease: isDesktop() ? Power3.easeOut : Power2.easeOut,
             onComplete: resolve
-        }, "-=1.7")
+        }, isDesktop() ? "-=1.7" : "-=1.44")
         .from(footer, 0.9, {
             opacity: 0,
             y: "100%",
@@ -288,18 +298,23 @@ function contactEnterPromise(resolve, isBarbaTriggering = true) {
             ease: Power4.easeOut,
             clearProps: "all"
         }, 0.3, "navbarStart")
-        .from(navbarLogoWrapper, 2.4, {
-            opacity: 0,
-            y: "-60%",
-            ease: Power4.easeOut,
-            clearProps: "all"
-        }, "navbarStart+=1.12")
         .staggerTo(navbarLinks, 1.2, {
             color: "#fff",
             textShadow: "0px 0px 0px #fff",
             ease: Expo.easeOut,
             clearProps: "all"
         }, 0.34, "navbarStart+=2");
+
+    if (isDesktop()) {
+        timeline.from(navbarLogoWrapper, 2.4, {
+            opacity: 0,
+            y: "-60%",
+            ease: Power4.easeOut,
+            clearProps: "all"
+        }, "navbarStart+=1.12");
+    }
+
+    timelines.contact.timeline = timeline;
 }
 
 // The 'async' callback is passed

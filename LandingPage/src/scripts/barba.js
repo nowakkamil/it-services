@@ -133,9 +133,10 @@ function barbaInit() {
                 // Return a promise
                 enter: () => contactEnterAnimation()
             }
-        ],
-        debug: true,
-        logLevel: 4,
+        ]
+        // Uncomment the following two lines to enable logging
+        // debug: true,
+        // logLevel: 4,
     });
 }
 
