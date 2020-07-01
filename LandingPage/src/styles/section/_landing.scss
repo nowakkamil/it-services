@@ -281,7 +281,7 @@
 
                 &-wrapper {
                     @media screen and (max-width: $mobile-max-width) {
-                        position: absolute;
+                        position: fixed;
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
@@ -289,6 +289,19 @@
                         width: 100vw;
                         height: 18vh;
                         background: white;
+                    }
+
+                    &-wrapper {
+                        @media screen and (max-width: $mobile-max-width) {
+                            position: fixed;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            bottom: -18vh;
+                            width: 100vw;
+                            height: 18vh;
+                            background: white;
+                        }
                     }
                 }
 
@@ -321,6 +334,12 @@
                 right: 2.5%;
                 margin: 0;
                 padding: 0;
+                @include interpolate(
+                    padding-left,
+                    $landing-section-services-link-font-size / $standard-responsive-font-size-factor,
+                    $landing-section-services-link-font-size,
+                    0
+                );
                 @include interpolate(
                     font-size,
                     $landing-section-services-link-font-size / $standard-responsive-font-size-factor,
