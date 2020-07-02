@@ -123,7 +123,7 @@
     }
 
     &__footer {
-        position: absolute;
+        position: fixed;
         bottom: 1.1%;
         left: 0;
         width: 100%;
@@ -134,5 +134,14 @@
         );
         text-align: center;
         color: $color-concrete-15-alpha;
+        overflow: hidden;
+
+        &-wrapper {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+        }
     }
 }
