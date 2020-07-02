@@ -124,7 +124,7 @@
 
     &__footer {
         position: fixed;
-        bottom: 1.1%;
+        bottom: 1.1vh;
         left: 0;
         width: 100%;
         @include interpolate(
