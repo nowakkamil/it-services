@@ -12,6 +12,7 @@ const navbarLinksWrapper = document.querySelector('.nav__link-wrapper-container'
 const header = document.querySelector('.header');
 const headerOverlay = document.querySelector('.header__overlay');
 const headerLogo = document.querySelector('.header__logo-wrapper');
+const scrollIndicator = document.querySelector('.scroll-indicator');
 const links = document.querySelectorAll('a[href]');
 const linkLanding = document.querySelector('#link-landing');
 const linkServices = document.querySelector('#link-services');
@@ -50,6 +51,7 @@ export {
     header,
     headerOverlay,
     headerLogo,
+    scrollIndicator,
     links,
     linkLanding,
     linkServices,

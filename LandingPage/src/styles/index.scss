@@ -372,3 +372,80 @@ section {
         background: black;
     }
 }
+
+.scroll-indicator {
+    z-index: 10;
+    position: fixed;
+    left: 20px;
+    bottom: 18px;
+    width: 30px;
+    height: 45px;
+    border: solid 2px $color-scotch-mist-50-alpha;
+    border-radius: 16px;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+
+    @media screen and (max-width: $mobile-max-width) {
+        border-color: transparent;
+    }
+
+    &-arrow {
+        position: absolute;
+        display: block;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        width: 3px;
+        height: 6px;
+        border-radius: 45%;
+        background-color: $color-scotch-mist-50-alpha;
+        animation: 1.8s ease infinite scroll-indicator;
+
+        @media screen and (max-width: $mobile-max-width) {
+            background-color: transparent;
+        }
+    }
+
+    &::before {
+        position: fixed;
+        content: "╲╱";
+        right: 1.8rem;
+        bottom: 1.5rem;
+        color: $color-mine-shaft-darker;
+        line-height: 180%;
+        font-weight: 900;
+        animation: bounce 1.8s ease-in-out infinite;
+
+        @media screen and (min-width: $mobile-max-width-inclusive) {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+}
+
+@keyframes scroll-indicator {
+    0% {
+        margin-top: 20px;
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        margin-top: 2px;
+        opacity: 0;
+    }
+}
+
+@keyframes bounce {
+    50% {
+        transform: translateY(-50%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
