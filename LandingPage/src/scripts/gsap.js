@@ -109,8 +109,7 @@ function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
             .staggerFrom(navbarLinksWithoutLogo, 1.2, {
                 opacity: 0,
                 left: 80,
-                ease: Power4.easeOut,
-                clearProps: "all"
+                ease: Power4.easeOut
             }, -0.2, "-=1")
             .addLabel("rightColumnText", "-=1")
             .from(rightColumnDescriptionText, 1.6, {
@@ -128,8 +127,7 @@ function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
             .from(navbarLogoWrapper, 2, {
                 opacity: 0,
                 x: 10,
-                ease: Power2.easeOut,
-                clearProps: "all"
+                ease: Power2.easeOut
             }, "rightColumnText+=0.4")
             .from(bokeh, 4, {
                 opacity: 0,
@@ -181,7 +179,6 @@ function servicesEnterPromise(resolve, isBarbaTriggering = true) {
             opacity: 0,
             y: "-160%",
             ease: Power4.easeOut,
-            clearProps: "all",
             onComplete: resolve
         }, 0.28, "navbarStart");
 
@@ -190,8 +187,7 @@ function servicesEnterPromise(resolve, isBarbaTriggering = true) {
             opacity: 0,
             y: "-60%",
             ease: Power4.easeOut,
-            onComplete: resolve,
-            clearProps: "all"
+            onComplete: resolve
         }, "navbarStart+=0.82");
     }
 
@@ -241,16 +237,14 @@ function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
             opacity: 0,
             y: "40%",
             ease: Power4.easeOut,
-            onComplete: resolve,
-            clearProps: "all"
+            onComplete: resolve
         }, 0.24, "titleStart");
 
     if (isDesktop()) {
         timeline.from(navbarLogoWrapper, 2, {
             opacity: 0,
             y: 16,
-            ease: Power4.easeOut,
-            clearProps: "all"
+            ease: Power4.easeOut
         }, "titleStart+=0.8");
     }
 
@@ -300,22 +294,19 @@ function contactEnterPromise(resolve, isBarbaTriggering = true) {
             opacity: 0,
             y: "-160%",
             ease: Power4.easeOut,
-            onComplete: resolve,
-            clearProps: "all"
+            onComplete: resolve
         }, 0.3, "navbarStart")
         .staggerTo(navbarLinksWithoutLogo, 1.2, {
             color: "#fff",
             textShadow: "0px 0px 0px #fff",
-            ease: Expo.easeOut,
-            clearProps: "all"
+            ease: Expo.easeOut
         }, 0.34, "navbarStart+=2");
 
     if (isDesktop()) {
         timeline.from(navbarLogoWrapper, 2.4, {
             opacity: 0,
             y: "-60%",
-            ease: Power4.easeOut,
-            clearProps: "all"
+            ease: Power4.easeOut
         }, "navbarStart+=1.12");
     }
 
