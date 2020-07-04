@@ -1,4 +1,4 @@
-import { githubPagesRepo, navbarToggler, navbarOverlay, header, links, linkServicesFromLanding, navbarLinksWithoutLogo, navbarLinkOverlayClass, sectionLinks } from '../scripts/constants';
+import { githubPagesRepo, navbarToggler, navbarOverlay, header, scrollIndicator, links, linkServicesFromLanding, navbarLinksWithoutLogo, navbarLinkOverlayClass, sectionLinks } from '../scripts/constants';
 import { headerOutAnimation, navbarOverlayInAnimation, timelines } from '../scripts/gsap';
 
 function isNavbarTogglerChecked() {
@@ -274,6 +274,18 @@ function activateOnSwipe() {
     window.addEventListener('touchmove', handleTouchMove, false);
 }
 
+function activateScrollIndicator() {
+    scrollIndicator.style.opacity = "1";
+    scrollIndicator.style.visibility = "visible";
+
+    scrollIndicator.addEventListener('click', deactivateScrollIndicator);
+}
+
+function deactivateScrollIndicator() {
+    scrollIndicator.style.opacity = "0";
+    setTimeout(() => scrollIndicator.style = null, 1000);
+}
+
 export {
     isNavbarTogglerChecked,
     unhideNavbarOverlayIfHidden,
@@ -296,5 +308,7 @@ export {
     deactivateOnWheel,
     activateOnWheel,
     deactivateOnSwipe,
-    activateOnSwipe
+    activateOnSwipe,
+    activateScrollIndicator,
+    deactivateScrollIndicator
 };

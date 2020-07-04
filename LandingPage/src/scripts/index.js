@@ -33,7 +33,8 @@ import {
     addModifierClassToNavbarLink,
     adjustThemeColor,
     activateOnWheel,
-    activateOnSwipe
+    activateOnSwipe,
+    activateScrollIndicator
 } from '../scripts/utils';
 
 import colors from '../styles/_variables.scss';
@@ -61,6 +62,7 @@ async function windowOnLoad() {
     addEventListenerToNavbarLinks();
     activateOnWheel();
     activateOnSwipe();
+    activateScrollIndicator();
 }
 
 function hideAddressBar(win) {

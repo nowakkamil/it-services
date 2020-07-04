@@ -28,7 +28,8 @@ import {
     deactivateOnWheel,
     activateOnWheel,
     deactivateOnSwipe,
-    activateOnSwipe
+    activateOnSwipe,
+    deactivateScrollIndicator
 } from '../scripts/utils';
 import colors from './../styles/_variables.scss';
 
@@ -36,6 +37,7 @@ function barbaInit() {
     barba.hooks.beforeLeave(() => {
         deactivateOnWheel();
         deactivateOnSwipe();
+        deactivateScrollIndicator();
     });
 
     barba.hooks.leave(() => deactivateLinks());
