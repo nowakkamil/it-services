@@ -34,13 +34,13 @@ import {
 import colors from './../styles/_variables.scss';
 
 function barbaInit() {
+    barba.hooks.before(() => deactivateLinks());
+
     barba.hooks.beforeLeave(() => {
         deactivateOnWheel();
         deactivateOnSwipe();
         deactivateScrollIndicator();
     });
-
-    barba.hooks.leave(() => deactivateLinks());
 
     barba.hooks.afterLeave(() => headerInAnimation());
 
@@ -51,11 +51,10 @@ function barbaInit() {
 
     barba.hooks.enter(() => unhideContent());
 
-    barba.hooks.afterEnter(() => reactivateLinks());
-
     barba.hooks.after(() => {
         activateOnWheel();
         activateOnSwipe();
+        reactivateLinks();
     });
 
     barba.init({
