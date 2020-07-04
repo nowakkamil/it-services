@@ -190,6 +190,7 @@ function servicesEnterPromise(resolve, isBarbaTriggering = true) {
             opacity: 0,
             y: "-60%",
             ease: Power4.easeOut,
+            onComplete: resolve,
             clearProps: "all"
         }, "navbarStart+=0.82");
     }
@@ -288,7 +289,8 @@ function contactEnterPromise(resolve, isBarbaTriggering = true) {
         .from(footer, 0.9, {
             opacity: 0,
             y: "100%",
-            ease: Power3.easeOut
+            ease: Power3.easeOut,
+            onComplete: resolve
         }, "-=0.4")
         .set(cardsContainer, {
             clearProps: "all"

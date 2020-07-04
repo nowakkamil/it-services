@@ -193,24 +193,22 @@ function completeEachSectionAnimation() {
         .forEach(key => timelines[key].timeline.time(timelines[key].timeline.duration()));
 }
 
-function handleWindowOnWheel(e) {
-    let deltaThreshold = 50;
+function getSubstringAfterLastHyphen(input) {
+    return input.split('-').pop();
+}
 
-    if (Math.abs(e.deltaY) <= deltaThreshold) {
-        return;
-    }
-
+function redirectToAppropriateSection(delta, threshold) {
     let sectionElement = document.querySelector('section');
     let sectionName = getSubstringAfterLastHyphen(sectionElement.id);
     let linkIndex = sectionLinks.findIndex(link => getSubstringAfterLastHyphen(link.id) === sectionName);
 
-    if (e.deltaY < -deltaThreshold) {
+    if (delta < -threshold) {
         if (linkIndex === 0) {
             linkIndex = sectionLinks.length - 1;
         } else {
             --linkIndex;
         }
-    } else if (e.deltaY > deltaThreshold) {
+    } else if (delta > threshold) {
         if (linkIndex === sectionLinks.length - 1) {
             linkIndex = 0;
         } else {
@@ -219,6 +217,16 @@ function handleWindowOnWheel(e) {
     }
 
     sectionLinks[linkIndex].click();
+}
+
+function handleWindowOnWheel(e) {
+    let deltaThreshold = 50;
+
+    if (Math.abs(e.deltaY) <= deltaThreshold) {
+        return;
+    }
+
+    redirectToAppropriateSection(e.deltaY, deltaThreshold);
 }
 
 // This variable is used to handle the swipe movement and shared
@@ -243,30 +251,9 @@ function handleTouchMove(evt) {
         return;
     }
 
-    let sectionElement = document.querySelector('section');
-    let sectionName = getSubstringAfterLastHyphen(sectionElement.id);
-    let linkIndex = sectionLinks.findIndex(link => getSubstringAfterLastHyphen(link.id) === sectionName);
+    redirectToAppropriateSection(yDiff, deltaThreshold);
 
-    if (yDiff < -deltaThreshold) {
-        if (linkIndex === 0) {
-            linkIndex = sectionLinks.length - 1;
-        } else {
-            --linkIndex;
-        }
-    } else if (yDiff > deltaThreshold) {
-        if (linkIndex === sectionLinks.length - 1) {
-            linkIndex = 0;
-        } else {
-            ++linkIndex;
-        }
-    }
-
-    sectionLinks[linkIndex].click();
     yDown = null;
-}
-
-function getSubstringAfterLastHyphen(input) {
-    return input.split('-').pop();
 }
 
 function deactivateOnWheel() {
