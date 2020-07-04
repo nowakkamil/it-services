@@ -115,6 +115,7 @@
                 position: absolute;
                 width: 100%;
                 height: 100%;
+                z-index: 1;
             }
         }
 
@@ -343,7 +344,7 @@
                 );
                 @include interpolate(
                     font-size,
-                    $landing-section-services-link-font-size / $standard-responsive-font-size-factor,
+                    $landing-section-services-link-font-size / $aggressive-responsive-font-size-factor,
                     $landing-section-services-link-font-size,
                     0
                 );
@@ -370,6 +371,10 @@
                 left: 0;
                 height: 5.5%;
                 width: 71%;
+
+                @media screen and (max-width: $laptop-undersized-width) {
+                    width: 80%;
+                }
 
                 @media screen and (max-width: $mobile-max-width) {
                     display: none;
