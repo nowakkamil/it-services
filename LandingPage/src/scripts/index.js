@@ -32,7 +32,8 @@ import {
     closeNavbarOverlayIfTargetMatchesCurrent,
     addModifierClassToNavbarLink,
     adjustThemeColor,
-    activateOnWheel
+    activateOnWheel,
+    activateOnSwipe
 } from '../scripts/utils';
 
 import colors from '../styles/_variables.scss';
@@ -59,6 +60,7 @@ async function windowOnLoad() {
     await animateOnWindowLoad();
     addEventListenerToNavbarLinks();
     activateOnWheel();
+    activateOnSwipe();
 }
 
 function hideAddressBar(win) {

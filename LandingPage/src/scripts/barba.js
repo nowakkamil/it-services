@@ -26,12 +26,17 @@ import {
     adjustThemeColor,
     completeEachSectionAnimation,
     deactivateOnWheel,
-    activateOnWheel
+    activateOnWheel,
+    deactivateOnSwipe,
+    activateOnSwipe
 } from '../scripts/utils';
 import colors from './../styles/_variables.scss';
 
 function barbaInit() {
-    barba.hooks.beforeLeave(() => deactivateOnWheel());
+    barba.hooks.beforeLeave(() => {
+        deactivateOnWheel();
+        deactivateOnSwipe();
+    });
 
     barba.hooks.leave(() => deactivateLinks());
 
@@ -46,7 +51,10 @@ function barbaInit() {
 
     barba.hooks.afterEnter(() => reactivateLinks());
 
-    barba.hooks.after(() => activateOnWheel());
+    barba.hooks.after(() => {
+        activateOnWheel();
+        activateOnSwipe();
+    });
 
     barba.init({
         transitions: [
