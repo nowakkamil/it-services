@@ -1,4 +1,4 @@
-import { githubPagesRepo, navbarToggler, navbarOverlay, header, links, linkServicesFromLanding, navbarLinksWithoutLogo, navbarLinkOverlayClass } from '../scripts/constants';
+import { githubPagesRepo, navbarToggler, navbarOverlay, header, links, linkServicesFromLanding, navbarLinksWithoutLogo, navbarLinkOverlayClass, sectionLinks } from '../scripts/constants';
 import { headerOutAnimation, navbarOverlayInAnimation, timelines } from '../scripts/gsap';
 
 function isNavbarTogglerChecked() {
@@ -193,6 +193,87 @@ function completeEachSectionAnimation() {
         .forEach(key => timelines[key].timeline.time(timelines[key].timeline.duration()));
 }
 
+function getSubstringAfterLastHyphen(input) {
+    return input.split('-').pop();
+}
+
+function redirectToAppropriateSection(delta, threshold) {
+    let sectionElement = document.querySelector('section');
+    let sectionName = getSubstringAfterLastHyphen(sectionElement.id);
+    let linkIndex = sectionLinks.findIndex(link => getSubstringAfterLastHyphen(link.id) === sectionName);
+
+    if (delta < -threshold) {
+        if (linkIndex === 0) {
+            linkIndex = sectionLinks.length - 1;
+        } else {
+            --linkIndex;
+        }
+    } else if (delta > threshold) {
+        if (linkIndex === sectionLinks.length - 1) {
+            linkIndex = 0;
+        } else {
+            ++linkIndex;
+        }
+    }
+
+    sectionLinks[linkIndex].click();
+}
+
+function handleWindowOnWheel(e) {
+    let deltaThreshold = 50;
+
+    if (Math.abs(e.deltaY) <= deltaThreshold) {
+        return;
+    }
+
+    redirectToAppropriateSection(e.deltaY, deltaThreshold);
+}
+
+// This variable is used to handle the swipe movement and shared
+// between 'touchstart' and 'touchmove' event handlers
+var yDown = null;
+
+function handleTouchStart(evt) {
+    const firstTouch = evt.touches[0];
+    yDown = firstTouch.clientY;
+}
+
+function handleTouchMove(evt) {
+    if (!yDown) {
+        return;
+    }
+
+    var yUp = evt.touches[0].clientY;
+    var yDiff = yDown - yUp;
+    let deltaThreshold = 80;
+
+    if (Math.abs(yDiff) <= deltaThreshold) {
+        return;
+    }
+
+    redirectToAppropriateSection(yDiff, deltaThreshold);
+
+    yDown = null;
+}
+
+function deactivateOnWheel() {
+    window.onwheel = null;
+}
+
+function deactivateOnSwipe() {
+    window.removeEventListener('touchstart', handleTouchStart, false);
+    window.removeEventListener('touchmove', handleTouchMove, false);
+}
+
+function activateOnWheel() {
+    window.onwheel = handleWindowOnWheel;
+}
+
+function activateOnSwipe() {
+    window.addEventListener('touchstart', handleTouchStart, false);
+    window.addEventListener('touchmove', handleTouchMove, false);
+}
+
 export {
     isNavbarTogglerChecked,
     unhideNavbarOverlayIfHidden,
@@ -211,5 +292,9 @@ export {
     closeNavbarOverlayIfTargetMatchesCurrent,
     adjustThemeColor,
     completeAllAnimations,
-    completeEachSectionAnimation
+    completeEachSectionAnimation,
+    deactivateOnWheel,
+    activateOnWheel,
+    deactivateOnSwipe,
+    activateOnSwipe
 };

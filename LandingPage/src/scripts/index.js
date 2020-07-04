@@ -1,16 +1,45 @@
 import '../styles/index.scss';
 
-import { CSSPlugin, AttrPlugin } from "gsap/all";
+import { CSSPlugin } from "gsap/all";
 
-import { githubPagesRepo, body, navbar, navbarToggler, header, headerLogo, links, sectionLinks, navbarLinkLandingClass, navbarLinks, navbarLinkServicesClass, navbarLinkStaffClass, navbarLinkContactClass } from '../scripts/constants';
-import { barbaInit } from '../scripts/barba';
-import { landingEnterPromise, servicesEnterPromise, staffEnterPromise, contactEnterPromise } from '../scripts/gsap';
-import { unhideNavbarOverlayIfHidden, hideheaderOnWindowLoad, unhideContent, normaliseServicesLink, closeNavbarOverlayIfTargetMatchesCurrent, addModifierClassToNavbarLink, adjustThemeColor } from '../scripts/utils';
+import {
+    githubPagesRepo,
+    body,
+    navbar,
+    navbarToggler,
+    header,
+    headerLogo,
+    links,
+    sectionLinks,
+    navbarLinkLandingClass,
+    navbarLinks,
+    navbarLinkServicesClass,
+    navbarLinkStaffClass,
+    navbarLinkContactClass
+} from '../scripts/constants';
+import {
+    barbaInit,
+    landingEnterAnimation,
+    servicesEnterAnimation,
+    staffEnterAnimation,
+    contactEnterAnimation
+} from '../scripts/barba';
+import {
+    unhideNavbarOverlayIfHidden,
+    hideheaderOnWindowLoad,
+    unhideContent,
+    normaliseServicesLink,
+    closeNavbarOverlayIfTargetMatchesCurrent,
+    addModifierClassToNavbarLink,
+    adjustThemeColor,
+    activateOnWheel,
+    activateOnSwipe
+} from '../scripts/utils';
 
 import colors from '../styles/_variables.scss';
 
 // Prevent the webpack from performing tree shaking
-const plugins = [CSSPlugin, AttrPlugin];
+const plugin = CSSPlugin;
 
 // Store window pathname in a separate variable to later normalize it if necessary
 let windowPathname = window.location.pathname;
@@ -20,7 +49,7 @@ document.addEventListener("DOMContentLoaded", barbaInit);
 window.onload = windowOnLoad;
 navbarToggler.addEventListener("click", unhideNavbarOverlayIfHidden);
 
-function windowOnLoad() {
+async function windowOnLoad() {
     hideAddressBar(window);
     adjustSectionLinks();
     resetNavbarStyle();
@@ -28,8 +57,10 @@ function windowOnLoad() {
     disableCurrentPageReload();
     hideheaderOnWindowLoad();
     adjustWindowPathname();
-    animateOnWindowLoad();
+    await animateOnWindowLoad();
     addEventListenerToNavbarLinks();
+    activateOnWheel();
+    activateOnSwipe();
 }
 
 function hideAddressBar(win) {
@@ -138,34 +169,34 @@ function addEventListenerToNavbarLinks() {
 }
 
 // Display an appropriate animation when the user enters the page for the first time
-function animateOnWindowLoad() {
+async function animateOnWindowLoad() {
     // Display the landing section animation
     if (windowPathname === '/') {
         normaliseServicesLink();
         addModifierClassToNavbarLink(navbarLinkLandingClass);
         unhideContent();
-        landingEnterPromise(document.querySelector('#landing'), null, false);
+        await landingEnterAnimation(document.querySelector('#landing'));
         adjustThemeColor(colors.mineShaftDarker);
     }
     // Display the services section animation
     else if (windowPathname.includes('services')) {
         addModifierClassToNavbarLink(navbarLinkServicesClass);
         unhideContent();
-        servicesEnterPromise(null, false);
+        await servicesEnterAnimation();
         adjustThemeColor(colors.brightSun);
     }
     // Display the staff section animation
     else if (windowPathname.includes('staff')) {
         addModifierClassToNavbarLink(navbarLinkStaffClass);
         unhideContent();
-        staffEnterPromise(document.querySelector('#staff'), null, false);
+        await staffEnterAnimation(document.querySelector('#staff'));
         adjustThemeColor(colors.mineShaft);
     }
     // Display the contact section animation
     else if (windowPathname.includes('contact')) {
         addModifierClassToNavbarLink(navbarLinkContactClass);
         unhideContent();
-        contactEnterPromise(null, false);
+        await contactEnterAnimation();
         adjustThemeColor(colors.black);
     }
 }

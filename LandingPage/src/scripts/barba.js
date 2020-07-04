@@ -24,11 +24,20 @@ import {
     reactivateLinks,
     setNavbarLinkModifierClass,
     adjustThemeColor,
-    completeEachSectionAnimation
+    completeEachSectionAnimation,
+    deactivateOnWheel,
+    activateOnWheel,
+    deactivateOnSwipe,
+    activateOnSwipe
 } from '../scripts/utils';
 import colors from './../styles/_variables.scss';
 
 function barbaInit() {
+    barba.hooks.beforeLeave(() => {
+        deactivateOnWheel();
+        deactivateOnSwipe();
+    });
+
     barba.hooks.leave(() => deactivateLinks());
 
     barba.hooks.afterLeave(() => headerInAnimation());
@@ -41,6 +50,11 @@ function barbaInit() {
     barba.hooks.enter(() => unhideContent());
 
     barba.hooks.afterEnter(() => reactivateLinks());
+
+    barba.hooks.after(() => {
+        activateOnWheel();
+        activateOnSwipe();
+    });
 
     barba.init({
         transitions: [
@@ -157,5 +171,9 @@ function contactEnterAnimation() {
 }
 
 export {
-    barbaInit
+    barbaInit,
+    landingEnterAnimation,
+    servicesEnterAnimation,
+    staffEnterAnimation,
+    contactEnterAnimation
 };
