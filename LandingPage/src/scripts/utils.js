@@ -1,4 +1,4 @@
-import { githubPagesRepo, navbarToggler, navbarOverlay, header, scrollIndicator, links, linkServicesFromLanding, navbarLinksWithoutLogo, navbarLinkOverlayClass, sectionLinks } from '../scripts/constants';
+import { githubPagesRepo, navbarToggler, navbarOverlay, header, scrollIndicator, links, linkServicesFromLanding, navbarLinksWithoutLogo, navbarLinkOverlayClass, sectionLinks, isDesktop } from '../scripts/constants';
 import { headerOutAnimation, navbarOverlayInAnimation, timelines } from '../scripts/gsap';
 
 function isNavbarTogglerChecked() {
@@ -219,10 +219,35 @@ function redirectToAppropriateSection(delta, threshold) {
     sectionLinks[linkIndex].click();
 }
 
+function isScrollable(delta) {
+    let servicesSectionCardContainer = document.querySelector('.services-section__card-container');
+
+    if (!servicesSectionCardContainer) {
+        return false;
+    }
+
+    let difference = servicesSectionCardContainer.scrollHeight - servicesSectionCardContainer.clientHeight;
+
+    let isScrollPositionOnTopAndPositiveDelta = delta > 0
+        && 0 === servicesSectionCardContainer.scrollTop;
+    let isScrollPositionOnBottomAndNegativeDelta = delta < 0
+        && servicesSectionCardContainer.scrollTop === difference;
+    let isScrollPositionInRange = 0 < servicesSectionCardContainer.scrollTop
+        && servicesSectionCardContainer.scrollTop < difference;
+
+    return isScrollPositionOnTopAndPositiveDelta
+        || isScrollPositionOnBottomAndNegativeDelta
+        || isScrollPositionInRange;
+}
+
 function handleWindowOnWheel(e) {
     let deltaThreshold = 50;
 
     if (Math.abs(e.deltaY) <= deltaThreshold) {
+        return;
+    }
+
+    if (!isDesktop() && isScrollable(e.deltaY)) {
         return;
     }
 
@@ -243,8 +268,8 @@ function handleTouchMove(evt) {
         return;
     }
 
-    var yUp = evt.touches[0].clientY;
-    var yDiff = yDown - yUp;
+    let yUp = evt.touches[0].clientY;
+    let yDiff = yDown - yUp;
     let deltaThreshold = 80;
 
     if (Math.abs(yDiff) <= deltaThreshold) {
