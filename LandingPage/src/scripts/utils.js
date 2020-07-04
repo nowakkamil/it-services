@@ -277,13 +277,13 @@ function activateOnSwipe() {
 function activateScrollIndicator() {
     scrollIndicator.style.opacity = "1";
     scrollIndicator.style.visibility = "visible";
-
-    scrollIndicator.addEventListener('click', deactivateScrollIndicator);
+    window.addEventListener('click', deactivateScrollIndicator);
 }
 
 function deactivateScrollIndicator() {
     scrollIndicator.style.opacity = "0";
     setTimeout(() => scrollIndicator.style = null, 1000);
+    window.removeEventListener('click', deactivateScrollIndicator);
 }
 
 export {

@@ -387,7 +387,7 @@ section {
     visibility: hidden;
 
     @media screen and (max-width: $mobile-max-width) {
-        display: none;
+        border-color: transparent;
     }
 
     &-arrow {
@@ -401,6 +401,26 @@ section {
         border-radius: 45%;
         background-color: $color-scotch-mist-50-alpha;
         animation: 1.8s ease infinite scroll-indicator;
+
+        @media screen and (max-width: $mobile-max-width) {
+            background-color: transparent;
+        }
+    }
+
+    &::before {
+        position: fixed;
+        content: "╲╱";
+        right: 1.8rem;
+        bottom: 1.5rem;
+        color: $color-mine-shaft-darker;
+        line-height: 180%;
+        font-weight: 900;
+        animation: bounce 1.8s ease-in-out infinite;
+
+        @media screen and (min-width: $mobile-max-width-inclusive) {
+            opacity: 0;
+            visibility: hidden;
+        }
     }
 }
 
@@ -417,5 +437,15 @@ section {
     100% {
         margin-top: 2px;
         opacity: 0;
+    }
+}
+
+@keyframes bounce {
+    50% {
+        transform: translateY(-50%);
+    }
+
+    100% {
+        transform: translateY(0);
     }
 }
