@@ -219,25 +219,35 @@ function redirectToAppropriateSection(delta, threshold) {
     sectionLinks[linkIndex].click();
 }
 
-function isScrollable(delta) {
-    let servicesSectionCardContainer = document.querySelector('.services-section__card-container');
-
-    if (!servicesSectionCardContainer) {
+function isElementScrollable(element, delta) {
+    if (!element) {
         return false;
     }
 
-    let difference = servicesSectionCardContainer.scrollHeight - servicesSectionCardContainer.clientHeight;
+    let difference = element.scrollHeight - element.clientHeight;
 
     let isScrollPositionOnTopAndPositiveDelta = delta > 0
-        && 0 === servicesSectionCardContainer.scrollTop;
+        && 0 === element.scrollTop;
     let isScrollPositionOnBottomAndNegativeDelta = delta < 0
-        && servicesSectionCardContainer.scrollTop === difference;
-    let isScrollPositionInRange = 0 < servicesSectionCardContainer.scrollTop
-        && servicesSectionCardContainer.scrollTop < difference;
+        && element.scrollTop === difference;
+    let isScrollPositionInRange = 0 < element.scrollTop
+        && element.scrollTop < difference;
 
     return isScrollPositionOnTopAndPositiveDelta
         || isScrollPositionOnBottomAndNegativeDelta
         || isScrollPositionInRange;
+}
+
+function isScrollable(delta) {
+    let servicesSectionCardContainer = document.querySelector('.services-section__card-container');
+    let contactSectionCardContainer = document.querySelector('.contact-section__card-container');
+    let elements = [servicesSectionCardContainer, contactSectionCardContainer];
+
+    if (elements.every(e => !e)) {
+        return false;
+    }
+
+    return elements.some(e => isElementScrollable(e, delta));
 }
 
 function handleWindowOnWheel(e) {
