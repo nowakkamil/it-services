@@ -299,7 +299,8 @@ function contactEnterPromise(resolve, isBarbaTriggering = true) {
         .staggerTo(navbarLinksWithoutLogo, 1.2, {
             color: "#fff",
             textShadow: "0px 0px 0px #fff",
-            ease: Expo.easeOut
+            ease: Expo.easeOut,
+            clearProps: "all"
         }, 0.34, "navbarStart+=2");
 
     if (isDesktop()) {
