@@ -1,4 +1,4 @@
-import { githubPagesRepo, navbarToggler, navbarOverlay, header, links, linkServicesFromLanding, navbarLinksWithoutLogo, navbarLinkOverlayClass } from '../scripts/constants';
+import { githubPagesRepo, navbarToggler, navbarOverlay, header, links, linkServicesFromLanding, navbarLinksWithoutLogo, navbarLinkOverlayClass, sectionLinks } from '../scripts/constants';
 import { headerOutAnimation, navbarOverlayInAnimation, timelines } from '../scripts/gsap';
 
 function isNavbarTogglerChecked() {
@@ -193,6 +193,46 @@ function completeEachSectionAnimation() {
         .forEach(key => timelines[key].timeline.time(timelines[key].timeline.duration()));
 }
 
+function windowOnWheel(e) {
+    let deltaThreshold = 50;
+
+    if (Math.abs(e.deltaY) <= deltaThreshold) {
+        return;
+    }
+
+    let sectionElement = document.querySelector('section');
+    let sectionName = getSubstringAfterLastHyphen(sectionElement.id);
+    let linkIndex = sectionLinks.findIndex(link => getSubstringAfterLastHyphen(link.id) === sectionName);
+
+    if (e.deltaY < -deltaThreshold) {
+        if (linkIndex === 0) {
+            linkIndex = sectionLinks.length - 1;
+        } else {
+            --linkIndex;
+        }
+    } else if (e.deltaY > deltaThreshold) {
+        if (linkIndex === sectionLinks.length - 1) {
+            linkIndex = 0;
+        } else {
+            ++linkIndex;
+        }
+    }
+
+    sectionLinks[linkIndex].click();
+}
+
+function getSubstringAfterLastHyphen(input) {
+    return input.split('-').pop();
+}
+
+function deactivateOnWheel() {
+    window.onwheel = null;
+}
+
+function activateOnWheel() {
+    window.onwheel = windowOnWheel;
+}
+
 export {
     isNavbarTogglerChecked,
     unhideNavbarOverlayIfHidden,
@@ -211,5 +251,8 @@ export {
     closeNavbarOverlayIfTargetMatchesCurrent,
     adjustThemeColor,
     completeAllAnimations,
-    completeEachSectionAnimation
+    completeEachSectionAnimation,
+    windowOnWheel,
+    deactivateOnWheel,
+    activateOnWheel
 };

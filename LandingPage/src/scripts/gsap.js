@@ -81,7 +81,7 @@ function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
 
         let timelineDelay = (isBarbaTriggering) ? null : "+=0.48";
 
-        timelines.landing.timeline = new TimelineMax()
+        timelines.landing.timeline = new TimelineMax({ onComplete: resolve })
             .from(landing, 2.2, {
                 opacity: 0,
                 ease: Power4.easeInOut
@@ -101,15 +101,15 @@ function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
             }, "headerStart")
             .from(rightColumnRightText, 1.5, {
                 opacity: 0,
-                y: "2%",
+                y: "100%",
                 ease: Power4.easeOut,
+                onComplete: resolve,
                 clearProps: "all"
             }, "headerStart")
             .staggerFrom(navbarLinksWithoutLogo, 1.2, {
                 opacity: 0,
                 left: 80,
                 ease: Power4.easeOut,
-                onComplete: resolve,
                 clearProps: "all"
             }, -0.2, "-=1")
             .addLabel("rightColumnText", "-=1")
@@ -146,7 +146,7 @@ function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
 
         let mobileTimelineDelay = (isBarbaTriggering) ? "+=0.6" : "+=0.9";
 
-        timelines.landing.timeline = new TimelineMax()
+        timelines.landing.timeline = new TimelineMax({ onComplete: resolve })
             .from(mobileText, 1.4, {
                 opacity: 0,
                 y: "-140%",
@@ -157,7 +157,6 @@ function landingEnterPromise(landing, resolve, isBarbaTriggering = true) {
                 opacity: 0,
                 y: "100%",
                 ease: Power4.easeOut,
-                onComplete: resolve,
                 clearProps: "all"
             }, "-=0.7");
     }
@@ -169,20 +168,21 @@ function servicesEnterPromise(resolve, isBarbaTriggering = true) {
 
     let timelineDelay = (isBarbaTriggering) ? "+=0.62" : "+=0.86";
 
-    let timeline = new TimelineMax()
+    let timeline = new TimelineMax({ onComplete: resolve })
         .staggerFrom(cards, 1.8, {
             opacity: 0,
             y: "-34%",
             ease: Power4.easeOut,
-            clearProps: "all",
-            onComplete: resolve
+            onComplete: resolve,
+            clearProps: "all"
         }, 0.38, timelineDelay)
         .addLabel("navbarStart", "-=1.16")
         .staggerFrom(navbarLinksWithoutLogo, 1.4, {
             opacity: 0,
             y: "-160%",
             ease: Power4.easeOut,
-            clearProps: "all"
+            clearProps: "all",
+            onComplete: resolve
         }, 0.28, "navbarStart");
 
     if (isDesktop()) {
@@ -215,7 +215,8 @@ function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
     let timeline = new TimelineMax()
         .from(staff, 4.86, {
             opacity: 0,
-            ease: Power3.easeOut
+            ease: Power3.easeOut,
+            onComplete: resolve
         }, timelineDelay)
         .staggerFrom(cards, 1.5, {
             opacity: 0,
@@ -226,12 +227,14 @@ function staffEnterPromise(staff, resolve, isBarbaTriggering = true) {
             opacity: 0,
             y: "80%",
             ease: Power4.easeOut,
+            onComplete: resolve,
             clearProps: "all"
         }, "-=2.62")
         .addLabel("titleStart", "-=1.8")
         .from(cardsContainer, 4, {
             boxShadow: "none",
-            ease: Power3.easeInOut
+            ease: Power3.easeInOut,
+            onComplete: resolve
         }, "-=2.2")
         .staggerFrom(navbarLinksWithoutLogo, 1.4, {
             opacity: 0,
@@ -268,20 +271,19 @@ function contactEnterPromise(resolve, isBarbaTriggering = true) {
 
     let timelineDelay = (isBarbaTriggering) ? "+=0.66" : "+=1.22";
 
-    let timeline = new TimelineMax()
+    let timeline = new TimelineMax({ onComplete: resolve })
         .set(cardsContainer, {
             overflowY: "hidden"
         })
         .from(pricesCard, 1.7, {
             opacity: 0,
             y: isDesktop() ? "-20%" : "-26%",
-            ease: Power3.easeOut,
+            ease: Power3.easeOut
         }, timelineDelay)
         .from(contactCard, isDesktop() ? 1.7 : 1.8, {
             opacity: 0,
             y: isDesktop() ? "20%" : "-32%",
-            ease: isDesktop() ? Power3.easeOut : Power2.easeOut,
-            onComplete: resolve
+            ease: isDesktop() ? Power3.easeOut : Power2.easeOut
         }, isDesktop() ? "-=1.7" : "-=1.44")
         .from(footer, 0.9, {
             opacity: 0,
@@ -296,6 +298,7 @@ function contactEnterPromise(resolve, isBarbaTriggering = true) {
             opacity: 0,
             y: "-160%",
             ease: Power4.easeOut,
+            onComplete: resolve,
             clearProps: "all"
         }, 0.3, "navbarStart")
         .staggerTo(navbarLinksWithoutLogo, 1.2, {
