@@ -300,7 +300,7 @@ function contactEnterPromise(resolve, isBarbaTriggering = true) {
             color: "#fff",
             textShadow: "0px 0px 0px #fff",
             ease: Expo.easeOut,
-            clearProps: "all"
+            clearProps: "color,textShadow"
         }, 0.34, "navbarStart+=2");
 
     if (isDesktop()) {
