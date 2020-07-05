@@ -280,9 +280,13 @@ function handleTouchMove(evt) {
 
     let yUp = evt.touches[0].clientY;
     let yDiff = yDown - yUp;
-    let deltaThreshold = 80;
+    let deltaThreshold = 100;
 
     if (Math.abs(yDiff) <= deltaThreshold) {
+        return;
+    }
+
+    if (isScrollable(yDiff)) {
         return;
     }
 
