@@ -226,6 +226,10 @@ function isElementScrollable(element, delta) {
 
     let difference = element.scrollHeight - element.clientHeight;
 
+    if (difference <= 0) {
+        return false;
+    }
+
     let isScrollPositionOnTopAndPositiveDelta = delta > 0
         && 0 === element.scrollTop;
     let isScrollPositionOnBottomAndNegativeDelta = delta < 0
@@ -257,7 +261,7 @@ function handleWindowOnWheel(e) {
         return;
     }
 
-    if (!isDesktop() && isScrollable(e.deltaY)) {
+    if (isScrollable(e.deltaY)) {
         return;
     }
 
@@ -265,20 +269,20 @@ function handleWindowOnWheel(e) {
 }
 
 // This variable is used to handle the swipe movement and shared
-// between 'touchstart' and 'touchmove' event handlers
+// between 'touchstart' and 'touchend' event handlers
 var yDown = null;
 
-function handleTouchStart(evt) {
-    const firstTouch = evt.touches[0];
+function handleTouchStart(e) {
+    const firstTouch = e.touches[0];
     yDown = firstTouch.clientY;
 }
 
-function handleTouchMove(evt) {
+function handleTouchEnd(e) {
     if (!yDown) {
         return;
     }
 
-    let yUp = evt.touches[0].clientY;
+    let yUp = e.changedTouches[0].clientY;
     let yDiff = yDown - yUp;
     let deltaThreshold = 100;
 
@@ -300,8 +304,8 @@ function deactivateOnWheel() {
 }
 
 function deactivateOnSwipe() {
-    window.removeEventListener('touchstart', handleTouchStart, false);
-    window.removeEventListener('touchmove', handleTouchMove, false);
+    window.ontouchstart = null;
+    window.ontouchend = null;
 }
 
 function activateOnWheel() {
@@ -309,20 +313,20 @@ function activateOnWheel() {
 }
 
 function activateOnSwipe() {
-    window.addEventListener('touchstart', handleTouchStart, false);
-    window.addEventListener('touchmove', handleTouchMove, false);
+    window.ontouchstart = handleTouchStart;
+    window.ontouchend = handleTouchEnd;
 }
 
 function activateScrollIndicator() {
     scrollIndicator.style.opacity = "1";
     scrollIndicator.style.visibility = "visible";
-    window.addEventListener('click', deactivateScrollIndicator);
+    window.onclick = deactivateScrollIndicator;
 }
 
 function deactivateScrollIndicator() {
     scrollIndicator.style.opacity = "0";
     setTimeout(() => scrollIndicator.style = null, 1000);
-    window.removeEventListener('click', deactivateScrollIndicator);
+    window.onclick = null;
 }
 
 export {
