@@ -21,9 +21,10 @@
             transform: translate(-50%, -50%);
             width: 100vw;
             height: 84vh;
-            padding: 0 4.5%;
+            padding: 0 8.5%;
             overflow-x: hidden;
             overflow-y: auto;
+            z-index: 1;
 
             @media screen and (max-width: $tablet-max-width) {
                 margin-top: -4vh;
@@ -79,6 +80,7 @@
                 height: $viewportWidth;
                 min-width: 166px;
                 min-height: 45px;
+                box-shadow: 0 0 30px 0 black;
 
                 &:hover {
                     & #{$button} #{$rect} {
@@ -142,6 +144,28 @@
             left: 0;
             width: 100%;
             overflow: hidden;
+        }
+    }
+
+    &__icon {
+        $icon-offset: -11.2vw;
+
+        position: fixed;
+        top: 74%;
+        width: 40vw;
+        min-width: 40vh;
+        transform: translateY(-50%);
+
+        @media screen and (max-width: $laptop-undersized-width) {
+            display: none;
+        }
+
+        &-tag {
+            left: $icon-offset;
+        }
+
+        &-chat {
+            right: $icon-offset;
         }
     }
 }

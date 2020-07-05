@@ -261,6 +261,9 @@ function contactEnterPromise(resolve, isBarbaTriggering = true) {
     const cardsContainer =
         document.querySelector('.contact-section__card-container');
 
+    const icons =
+        document.querySelectorAll('.contact-section__icon');
+
     const footer =
         document.querySelector('.contact-section__footer');
 
@@ -290,6 +293,11 @@ function contactEnterPromise(resolve, isBarbaTriggering = true) {
             clearProps: "all"
         })
         .addLabel("navbarStart", "-=1.22")
+        .from(icons, 2.6, {
+            opacity: 0,
+            ease: Expo.easeOut,
+            clearProps: "all"
+        }, "navbarStart+=1")
         .staggerFrom(navbarLinksWithoutLogo, 1.46, {
             opacity: 0,
             y: "-160%",
