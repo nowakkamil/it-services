@@ -34,7 +34,7 @@
     "eslint": "7.5.0",
     "eslint-loader": "4.0.2",
     "file-loader": "6.0.0",
-    "gsap": "3.4.1",
+    "gsap": "3.4.2",
     "html-webpack-plugin": "4.3.0",
     "mini-css-extract-plugin": "0.9.0",
     "node-sass": "4.14.1",
