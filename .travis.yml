@@ -10,6 +10,8 @@ matrix:
         - npm install
       script:
         - npm run build
+        - npm run test:record
+        - kill $(jobs -p) || true
       deploy:
         provider: pages
         skip_cleanup: true
