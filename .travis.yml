@@ -9,7 +9,7 @@ matrix:
         - npm install
       script:
         - npm run build
-        - npm run test:record
+        - npm run test:run
         - kill $(jobs -p) || true
       deploy:
         provider: pages
