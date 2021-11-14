@@ -15,9 +15,11 @@ describe('The Landing Page', async () => {
             cy.get(`#link-${section}`).should('be.visible').click();
 
             cy.url().then(url => {
-                const lastUrlSegment = url.split('/').pop()
+                const lastUrlSegment = url.split('/').pop();
                 const lastUrlSegmentWithoutExtension = lastUrlSegment.split('.')[0];
+
                 expect(lastUrlSegmentWithoutExtension).to.equal(urlSegment);
+                cy.get(`[data-page="${section}"]`).should('be.visible');
             });
         };
 
