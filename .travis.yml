@@ -2,8 +2,7 @@ matrix:
   include:
     - language: node_js
       node_js:
-      - "lts/*"
-      - "node"
+        - 14
       before_install:
         - cd LandingPage
       install:
