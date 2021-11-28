@@ -34,7 +34,7 @@
     "@barba/core": "2.9.7",
     "autoprefixer": "9.8.8",
     "babel-loader": "8.2.3",
-    "clean-webpack-plugin": "2.0.2",
+    "clean-webpack-plugin": "4.0.0",
     "copy-webpack-plugin": "5.1.2",
     "css-loader": "3.6.0",
     "cypress": "8.4.0",
